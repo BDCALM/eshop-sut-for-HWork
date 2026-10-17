@@ -1,0 +1,2 @@
+Create a new Git commit for each step of the testing procedure of each feature.
+Provide the Git commit log in a text-based file format.
