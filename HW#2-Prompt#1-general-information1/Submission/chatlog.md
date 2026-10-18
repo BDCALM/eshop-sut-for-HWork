@@ -408,6 +408,796 @@ Under NO circumstances are you allowed to:
 Chỉ cần chèn đoạn này vào đúng vị trí, Coding Agent của bạn sẽ hoạt động vừa mạnh mẽ, vừa an toàn và tuân thủ tuyệt đối quy chế của môn học.
 "
 
-## Entry log 5 -  - 17/10/2026
+
+## Entry log 5 - 20h59 - 18/10/2026 
+
+Model used: Auto Copilot (GPT Luna 5.6)
+
+Prompt: "Chào bạn, tôi sắp phải thực hiện Bước A - Phân tích feature và Equivalence Partitioning
+- Trước tiên, tôi cần bạn liệt kê plan mà bạn sắp  thực hiện. Rồi để  tôi duyệt mới thực hiện nhé."
+File included: HW#2-Prompt#1-general-information1/0.my-guide-line.md, feature_inventory.md, SKILLS-Domain-Testing.md ở puclic repos: https://github.com/BDCALM/eshop-sut-for-HWork
 
 
+AI's answer: "
+```texx
+Chào bạn! Mình sẽ thực hiện **Bước A – Phân tích feature và Equivalence Partitioning** theo plan sau:
+
+1. **Xác định phạm vi feature**
+   - Đọc yêu cầu nghiệp vụ, user story và các điều kiện liên quan.
+   - Xác định actor, input, output và các quy tắc xử lý.
+   - Làm rõ phạm vi kiểm thử và những phần không thuộc feature.
+
+2. **Phân tích luồng xử lý**
+   - Xác định luồng chính khi dữ liệu hợp lệ.
+   - Liệt kê các luồng thay thế, lỗi và ngoại lệ.
+   - Ghi nhận các điều kiện trước/sau khi thực hiện chức năng.
+
+3. **Liệt kê các điều kiện đầu vào**
+   - Phân loại từng input: bắt buộc/tùy chọn, kiểu dữ liệu, miền giá trị, độ dài, định dạng.
+   - Xác định các ràng buộc giữa nhiều input nếu có.
+   - Xem xét trạng thái hệ thống hoặc quyền người dùng có ảnh hưởng đến kết quả.
+
+4. **Xây dựng các lớp tương đương**
+   - Chia mỗi input thành:
+     - **Lớp hợp lệ**: dữ liệu được chấp nhận.
+     - **Lớp không hợp lệ**: dữ liệu bị từ chối hoặc tạo ra lỗi.
+   - Đảm bảo mỗi lớp đại diện cho một nhóm dữ liệu có cách xử lý tương đương.
+   - Bao quát các trường hợp biên quan trọng, nhưng không nhầm Equivalence Partitioning với Boundary Value Analysis.
+
+5. **Đánh mã và mô tả lớp**
+   - Gán mã cho từng lớp, ví dụ `EP-01`, `EP-02`.
+   - Mô tả điều kiện, ví dụ dữ liệu mẫu và kết quả mong đợi.
+   - Ghi rõ lớp đó là hợp lệ hay không hợp lệ.
+
+6. **Lập bảng Equivalence Partitioning**
+   - Tạo bảng gồm các cột dự kiến:
+     - ID lớp
+     - Input/điều kiện
+     - Phân vùng
+     - Hợp lệ/không hợp lệ
+     - Dữ liệu đại diện
+     - Kết quả mong đợi
+     - Căn cứ từ yêu cầu
+
+7. **Kiểm tra độ bao phủ và tính nhất quán**
+   - Đối chiếu các lớp với toàn bộ yêu cầu và các luồng đã xác định.
+   - Kiểm tra không bỏ sót dữ liệu rỗng, sai kiểu, sai định dạng, ngoài miền và trạng thái bất hợp lệ.
+   - Loại bỏ các lớp trùng nhau hoặc không có khác biệt về cách xử lý.
+
+8. **Xác định các điểm cần làm rõ**
+   - Đánh dấu các yêu cầu mơ hồ, thiếu giới hạn hoặc có nhiều cách diễn giải.
+   - Tách các giả định khỏi các quy tắc đã được xác nhận.
+   - Đề xuất câu hỏi cần xác nhận trước khi chuyển sang thiết kế test case.
+
+9. **Tổng hợp kết quả đầu ra**
+   - Hoàn thiện phần phân tích feature.
+   - Hoàn thiện bảng Equivalence Partitioning.
+   - Liên kết từng lớp với yêu cầu hoặc luồng tương ứng.
+   - Đưa ra danh sách giả định, rủi ro và các điểm cần xác nhận.
+
+Sau khi hoàn tất Bước A, kết quả sẽ là một bộ phân vùng tương đương có thể dùng làm cơ sở để thiết kế test case ở bước tiếp theo.
+```
+"
+
+## Entry log 6 - 21h14 - 18/10/2026
+Model used: Auto Copilot (GPT Luna 5.6)
+
+Prompt: "
+```text
+Tốt, vậy theo bạn liệu tôi có cần yêu cầu bạn thực hiện từng FR cho từng đoạn chat không , để đảm bảo hiệu suất ? (nếu vậy thì sẽ bắt đàu với FR-05)
+
+Nếu không thì trong đoạn chat tới, ta sẽ làm FR-05. 11, 19 và phần sub module của FR20
+
+Và sau mỗi FR /hoàn thành task A, tôi sẽ cần bạn báo cáo  ngắn tương ứng với plan mà bạn đã đặt ra. Output báo cáo sẽ ở folder: HW#2-Prompt#1-general-information1/Process. Với báo cáo đầu tiên là: StepA-Report.md 
+
+Bạn hãy đọc và trả lời các câu hỏi trên, rồi ta tiếp tục làm nhé
+
+File mà tôi cần bạn chú ý thì tôi đã included cho bạn ở đoạn chat này nhé.
+
+``
+"
+
+AI'answer: "
+```text
+Mình sẽ đối chiếu nhanh guideline, feature inventory và ngữ cảnh trao đổi đã đính kèm để đưa ra khuyến nghị về cách chia phiên làm việc, đồng thời xác nhận phạm vi báo cáo và thứ tự xử lý.
+
+"Read" failed
+Completed with input: {
+  "path": "/home/codespace/.vscode-remote/data/agentSessionData/c787ec6e-8b91-4cac-98e3-0125e3859d52/0.my-guide-line.md",
+  "view_range": [
+    90,
+    180
+  ]
+}
+Tool execution failed: Path does not exist
+
+"Read" failed
+Completed with input: {
+  "path": "/home/codespace/.vscode-remote/data/agentSessionData/24681a10-a0f3-4f13-ace6-70d29a3bba73/feature_inventory.md",
+  "view_range": [
+    1,
+    270
+  ]
+}
+Tool execution failed: Path does not exist
+
+"Read" failed
+Completed with input: {
+  "path": "/home/codespace/.vscode-remote/data/agentSessionData/742dcd6a-c22c-4794-b794-74b7531af25b/SKILLS-Domain-Testing.md",
+  "view_range": [
+    1,
+    137
+  ]
+}
+Tool execution failed: Path does not exist
+
+"Read" failed
+Completed with input: {
+  "path": "/home/codespace/.vscode-remote/data/agentSessionData/bbb976d1-2f64-4421-8f85-89d159568255/file_chatlog.md",
+  "view_range": [
+    350,
+    420
+  ]
+}
+Tool execution failed: Path does not exist
+
+Có. **Không nên bắt buộc mỗi FR phải ở một đoạn chat riêng**. Cách hiệu quả hơn là chia theo **nhóm FR có phạm vi vừa phải**, vì:
+
+- Giảm việc phải đọc lại guideline và context nhiều lần.
+- Giữ được mối liên hệ giữa các feature có cùng domain hoặc dùng chung dữ liệu.
+- Dễ kiểm tra tính nhất quán giữa các phân vùng tương đương.
+- Vẫn có thể báo cáo riêng sau khi hoàn thành từng FR.
+
+## Khuyến nghị cho phạm vi sắp tới
+
+Trong đoạn chat tiếp theo, có thể xử lý chung:
+
+1. **FR-05**
+2. **FR-11**
+3. **FR-19**
+4. **Sub-module của FR-20**
+
+Phạm vi này phù hợp nếu các FR không quá lớn và không chứa quá nhiều business rule độc lập. Trong quá trình làm, nếu FR-20 có nhiều sub-module hoặc khác biệt đáng kể, mình sẽ tách phần đó thành một đơn vị phân tích riêng nhưng vẫn trong cùng đoạn chat nếu context còn phù hợp.
+
+## Cách mình sẽ thực hiện
+
+Với mỗi FR, mình sẽ lần lượt:
+
+1. Xác định mục tiêu và phạm vi của FR.
+2. Phân tích actor, input, output và điều kiện xử lý.
+3. Liệt kê luồng chính, luồng thay thế và luồng lỗi.
+4. Xây dựng các Equivalence Partition:
+   - Phân vùng hợp lệ.
+   - Phân vùng không hợp lệ.
+   - Điều kiện dữ liệu rỗng, sai định dạng, sai kiểu hoặc ngoài phạm vi.
+   - Các điều kiện trạng thái và ràng buộc liên quan.
+5. Ghi nhận giả định, điểm chưa rõ và rủi ro.
+6. Kiểm tra độ bao phủ so với feature inventory và guideline.
+
+## Báo cáo
+
+Mình sẽ cập nhật báo cáo tại:
+
+HW#2-Prompt#1-general-information1/Process/StepA-Report.md
+
+Báo cáo sẽ được cập nhật theo từng mốc:
+
+- Sau khi hoàn thành FR-05: thêm phần báo cáo FR-05.
+- Sau khi hoàn thành FR-11: thêm phần báo cáo FR-11.
+- Sau khi hoàn thành FR-19: thêm phần báo cáo FR-19.
+- Sau khi hoàn thành sub-module của FR-20: thêm phần báo cáo FR-20.
+- Khi hoàn tất toàn bộ Task A: bổ sung phần tổng kết Task A, độ bao phủ, giả định và các điểm cần xác nhận.
+
+Như vậy, **StepA-Report.md sẽ là một báo cáo tích lũy**, thay vì tạo nhiều file nhỏ và làm phân tán kết quả.
+
+## Kết luận
+
+Bạn **không cần yêu cầu mỗi FR trong một đoạn chat riêng**. Ta nên tiếp tục với nhóm:
+
+> **FR-05, FR-11, FR-19 và sub-module của FR-20**
+
+Sau mỗi FR, mình sẽ dừng ở một mốc rõ ràng để cập nhật báo cáo ngắn tương ứng, rồi mới chuyển sang FR tiếp theo.
+"
+```
+
+## Entry log 7 - 21h20 - 18/10/2026
+
+Model used: Auto Copilot
+
+Prompt: "
+```text
+Ok vậy chúng ta bắt tay vào thực hiện với các FR bên dưới, theo như kế hoạch nhé. Cảm ơn bạn.
+
+Một điều quan nữa là bạn hãy nhớ là làm theo file HW#2-Prompt#1-general-information1/Submission/SKILLS-Domain-Testing.md nhé.
+
+| Pool | Phạm vi | Tên dùng trong báo cáo |
+| --- | --- | --- |
+| Pool A | **FR-05 - Product listing and search** | Product listing/search |
+| Pool B | **FR-11 - User order history** | User order history |
+| Pool C | **FR-19 - Admin user management** | Admin user management |
+| Pool D | **FR-20 - Mobile application**, chỉ phần **mobile product browsing and order history** | Mobile product browsing/order history |
+```
+
+AI's Answer: "
+```text
+Mình sẽ bắt đầu bằng việc xác định tài liệu nguồn trong workspace và cấu trúc thư mục báo cáo, sau đó đối chiếu bốn pool với guideline Domain Testing trước khi lập các phân vùng tương đương và ghi báo cáo.
+
+Find files matching `**/*SKILLS-Domain-Testing.md`
+
+Find files matching `**/feature_inventory.md`
+
+Find files matching `**/*FR*`
+
+Find files matching `HW#2-Prompt#1-general-information1/**`
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/SKILLS-Domain-Testing.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Read , lines 1 to 300
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/feature_inventory.md",
+  "view_range": [
+    1,
+    300
+  ]
+}
+
+Read , lines 1 to 220
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/0.my-guide-line.md",
+  "view_range": [
+    1,
+    220
+  ]
+}
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/README.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+"Read" failed
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/Domain-testing-report.md",
+  "view_range": [
+    1,
+    220
+  ]
+}
+Tool execution failed: Path does not exist
+
+Theo STOP RULE trong `SKILLS-Domain-Testing.md`, lượt này chỉ làm **Context Gathering cho Step A**, chưa lập BVA hay test suite. Mình sẽ kiểm chứng requirement bằng source/API thực tế cho đúng bốn pool, rồi dừng tại mốc này để tránh suy diễn expected result.
+
+Find files matching `frontend-web/src/pages/Home.jsx`
+
+Find files matching `frontend-mobile/App.js`
+
+Find files matching `frontend-admin/src/App.jsx`
+
+"Search" failed
+Tool execution failed: rg: /workspaces/eshop-sut-for-HWork/server: No such file or directory (os error 2)
+rg: /workspaces/eshop-sut-for-HWork/backend-api: No such file or directory (os error 2)
+
+Find files matching `**/package.json`
+
+Find files matching `**/routes/**`
+
+Find files matching `**/*order*`
+
+Search for `my-orders|admin/users|/products|search`
+
+Read , lines 1 to 260
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-web/src/pages/Home.jsx",
+  "view_range": [
+    1,
+    260
+  ]
+}
+
+Read , lines 1 to 320
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-mobile/App.js",
+  "view_range": [
+    1,
+    320
+  ]
+}
+
+Search for `my-orders|admin/users|app\.get\('/api/products|search|orders/:id`
+
+Search for `user|Users|orders|password|delete`
+
+Read , lines 420 to 760
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-mobile/App.js",
+  "view_range": [
+    420,
+    760
+  ]
+}
+
+Read , lines 1030 to 1301
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-mobile/App.js",
+  "view_range": [
+    1030,
+    1301
+  ]
+}
+
+Read , lines 1 to 115
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-admin/src/App.jsx",
+  "view_range": [
+    1,
+    115
+  ]
+}
+
+Read , lines 870 to 930
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-admin/src/App.jsx",
+  "view_range": [
+    870,
+    930
+  ]
+}
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/backend/server.js",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Read , lines 300 to 355
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/backend/server.js",
+  "view_range": [
+    300,
+    355
+  ]
+}
+
+Find files matching `HW#2-Prompt#1-general-information1/Process/**`
+
+Đã xác minh được các surface chính và một số giới hạn quan trọng từ source. Mình sẽ ghi **chỉ kết quả Context Gathering** vào báo cáo tiến trình; chưa kết luận lớp tương đương, chưa tạo test case và chưa chuyển sang BVA.
+
+Edit 
+
+Ask User
+Completed with input: {
+  "message": "Mình đã hoàn tất Context Gathering của Step A và đã dừng đúng STOP RULE. Vui lòng xác nhận các điểm phạm vi/evidence dưới đây trước khi mình lập bảng Equivalence Partitioning: (1) giữ nguyên FR-20 chỉ gồm mobile product browsing và order history; (2) cho phép ghi các hành vi chưa có oracle rõ ràng là unresolved thay vì tự suy đoán; (3) tiếp tục đọc nốt mobile order-history và admin authorization để hoàn tất Step A.",
+  "requestedSchema": {
+    "properties": {
+      "scope_confirmation": {
+        "type": "string",
+        "title": "Xác nhận phạm vi và cách xử lý điểm chưa rõ",
+        "oneOf": [
+          {
+            "const": "confirmed",
+            "title": "Xác nhận, tiếp tục hoàn tất Step A"
+          },
+          {
+            "const": "needs_changes",
+            "title": "Cần chỉnh phạm vi hoặc cách xử lý"
+          }
+        ],
+        "default": "confirmed"
+      }
+    }
+  }
+}
+
+Đã nhận xác nhận. Mình sẽ hoàn tất phần evidence còn thiếu của cùng Step A: nhánh mobile order-history/navigation và cơ chế authorization của admin; sau đó mới lập bảng phân vùng tương đương trong một lượt riêng.
+
+Search for `orders|Đơn hàng|order|setView\("profile"|renderProfile|render.*Order`
+
+Search for `role|admin|authenticateToken|authorize|req\.user`
+
+Search for `activeTab === "users"|deleteUser|users\.length|No|Không|phone`
+
+Search for `order-history|my-orders|Đơn hàng|status|shipping_address|total_amount`
+
+Read , lines 880 to 980
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-mobile/App.js",
+  "view_range": [
+    880,
+    980
+  ]
+}
+
+Read , lines 490 to 545
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/backend/server.js",
+  "view_range": [
+    490,
+    545
+  ]
+}
+
+Read , lines 220 to 275
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-admin/src/App.jsx",
+  "view_range": [
+    220,
+    275
+  ]
+}
+
+Edit 
+
+Đã hoàn tất **Context Gathering của Step A** cho bốn phạm vi:
+
+- FR-05: Product listing/search
+- FR-11: User order history
+- FR-19: Admin user management
+- FR-20: Mobile product browsing/order history
+
+Báo cáo tiến trình đã được ghi tại `StepA-Report.md`.
+
+Các evidence chính đã xác minh:
+
+- FR-05 có web/mobile product list, search, loading/error state và kết quả rỗng.
+- FR-11 lọc order theo `req.user.id`; mobile hiển thị order ID, ngày, tổng tiền, status tiếng Việt và empty state.
+- FR-19 API không trả password; UI có danh sách và thao tác xóa; backend hiện chưa thể hiện rõ kiểm tra admin role hoặc ngăn xóa chính admin.
+- FR-20 đã giới hạn đúng vào browsing sản phẩm và order history; không đưa authentication, profile, cart, checkout hoặc cancellation vào phạm vi.
+
+Theo guideline, mình **chưa lập Equivalence Classes hoặc Domain Test Cases trong lượt này**. Bước tiếp theo sẽ là lập:
+
+1. Bảng Input/Output Equivalence Classes.
+2. Representative value cho từng class.
+3. Minimum Domain Test Cases theo nguyên tắc multi-coverage và single-fault.
+
+Mình dừng tại đây đúng theo STOP RULE trước khi chuyển sang sub-step tiếp theo.
+```
+"
+
+## Entry Log 8 - 21h30 - 18/10/2026
+
+Model used: Auto copilot
+
+promtp:"
+
+```text
+Cảm ơn bạn, nhưng trước đó tôi sẽ cần bạn tạo ra template báo cáo của 4 files. Để trong quá trình thực hiện Bước A, B, C và D ở guide line. Ta sẽ thực hiện điền thông tin cụ thể cho chúng.
+
+
+```"
+AI's Answer: "
+```text
+Mình sẽ kiểm tra cấu trúc báo cáo hiện có và các yêu cầu trong guideline cho bốn loại artifact, rồi tạo các template khung có thể điền dần trong các bước A–D mà không chèn dữ liệu kiểm thử chưa được xác minh.
+
+Find files matching `HW#2-Prompt#1-general-information1/Submission/reports/**`
+
+Read , lines 130 to 338
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/SKILLS-Domain-Testing.md",
+  "view_range": [
+    130,
+    338
+  ]
+}
+
+"Read" failed
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md",
+  "view_range": [
+    1,
+    220
+  ]
+}
+Tool execution failed: view_range out of bounds
+
+Read , lines 1 to 120
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/bug-report.md",
+  "view_range": [
+    1,
+    120
+  ]
+}
+
+"Read" failed
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/Boundary-Value-Analysis-report.md",
+  "view_range": [
+    1,
+    220
+  ]
+}
+Tool execution failed: Path does not exist
+
+"Read" failed
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md",
+  "view_range": [
+    1,
+    100
+  ]
+}
+Tool execution failed: view_range out of bounds
+
+"Read" failed
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md",
+  "view_range": [
+    1,
+    100
+  ]
+}
+Tool execution failed: view_range out of bounds
+
+Search for `Domain-testing-report|Boundary-Value|bug-report|test-case-report|Step C|Step D`
+
+Read , lines 150 to 225
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/0.my-guide-line.md",
+  "view_range": [
+    150,
+    225
+  ]
+}
+
+Read , lines 230 to 265
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/0.my-guide-line.md",
+  "view_range": [
+    230,
+    265
+  ]
+}
+
+Mình sẽ tạo bốn template đúng theo các artifact bạn đã nêu: Domain Testing, Boundary Value Analysis, Test Case và Bug Report. Các template sẽ có sẵn mục cho cả bốn pool, traceability và trạng thái; phần bug sẽ chỉ có placeholder để bạn tự viết theo yêu cầu academic-integrity.
+
+"Apply Patch" failed
+Completed with input: "*** Begin Patch\n*** Add File: /workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md\n+# Domain Testing Report\n+\n+## Document control\n+\n+| Field | Value |\n+| --- | --- |\n+| Student/group | `[To be completed]` |\n+| SUT/version/commit | `[To be completed]` |\n+| Date updated | `[YYYY-MM-DD]` |\n+| Scope | FR-05, FR-11, FR-19, and the selected FR-20 subsection |\n+| Method | Equivalence Partitioning and Domain Testing |\n+\n+## 1. Method and evidence rules\n+\n+- Requirements, UI labels, routes, API behavior, and expected results must be\n+  supported by checked evidence.\n+- Unknown limits or behaviors are recorded as `Unresolved`, not invented.\n+- Valid partitions may be multi-covered in one domain test.\n+- Each invalid domain test changes one invalid partition while other inputs\n+  remain at valid nominal values.\n+- Student review and corrections: `[To be completed]`.\n+\n+## 2. Evidence register\n+\n+| Evidence ID | Source/route/file | Observation | Verified by/date |\n+| --- | --- | --- | --- |\n+| E-001 | `[URL/file/API]` | `[Observed requirement or behavior]` | `[Name/date]` |\n+\n+## 3. FR-05 - Product listing and search\n+\n+### 3.1 Requirement and scope\n+\n+- In scope: `[Requirement confirmed from specification/source]`\n+- Out of scope: `[Explicit exclusions]`\n+- Open questions: `[Unresolved points]`\n+\n+### 3.2 Input and output variables\n+\n+| Variable ID | Type | Variable | Validity/constraints from evidence | Evidence ID |\n+| --- | --- | --- | --- | --- |\n+| FR05-V01 | Input | `[Search value]` | `[Constraint or unresolved]` | `[E-xxx]` |\n+| FR05-V02 | State | `[Product/request state]` | `[State]` | `[E-xxx]` |\n+| FR05-O01 | Output | `[Product result state]` | `[Observable output]` | `[E-xxx]` |\n+\n+### 3.3 Complete input/output equivalence classes\n+\n+| EC ID | Variable | Class (valid/invalid) | Condition/domain | Representative | Expected observable output | Evidence ID | Review status |\n+| --- | --- | --- | --- | --- | --- | --- | --- |\n+| FR05-EC-01 | `[Variable]` | `[Valid/Invalid]` | `[Class]` | `[Value]` | `[Output]` | `[E-xxx]` | `[Pending/Reviewed]` |\n+\n+### 3.4 Minimum domain test cases\n+\n+| Domain test ID | ECs covered | Data/representative values | Single-fault check | Expected output | Traceability |\n+| --- | --- | --- | --- | --- | --- |\n+| DT-FR05-01 | `[EC IDs]` | `[Data]` | `[Valid multi-cover or one invalid EC]` | `[Observable result]` | `[FR-05/EC]` |\n+\n+## 4. FR-11 - User order history\n+\n+### 4.1 Requirement and scope\n+\n+- In scope: `[Requirement confirmed from specification/source]`\n+- Out of scope: `[Explicit exclusions]`\n+- Open questions: `[Unresolved points]`\n+\n+### 4.2 Input and output variables\n+\n+| Variable ID | Type | Variable | Validity/constraints from evidence | Evidence ID |\n+| --- | --- | --- | --- | --- |\n+| FR11-V01 | State | `[Authentication/identity]` | `[Constraint]` | `[E-xxx]` |\n+| FR11-V02 | Input | `[Order identifier/ownership]` | `[Constraint]` | `[E-xxx]` |\n+| FR11-O01 | Output | `[Orders and fields shown]` | `[Observable output]` | `[E-xxx]` |\n+\n+### 4.3 Complete input/output equivalence classes\n+\n+| EC ID | Variable | Class (valid/invalid) | Condition/domain | Representative | Expected observable output | Evidence ID | Review status |\n+| --- | --- | --- | --- | --- | --- | --- | --- |\n+| FR11-EC-01 | `[Variable]` | `[Valid/Invalid]` | `[Class]` | `[Value]` | `[Output]` | `[E-xxx]` | `[Pending/Reviewed]` |\n+\n+### 4.4 Minimum domain test cases\n+\n+| Domain test ID | ECs covered | Data/representative values | Single-fault check | Expected output | Traceability |\n+| --- | --- | --- | --- | --- | --- |\n+| DT-FR11-01 | `[EC IDs]` | `[Data]` | `[Check]` | `[Observable result]` | `[FR-11/EC]` |\n+\n+## 5. FR-19 - Admin user management\n+\n+### 5.1 Requirement and scope\n+\n+- In scope: `[Requirement confirmed from specification/source]`\n+- Out of scope: `[Explicit exclusions]`\n+- Open questions: `[Unresolved points]`\n+\n+### 5.2 Input and output variables\n+\n+| Variable ID | Type | Variable | Validity/constraints from evidence | Evidence ID |\n+| --- | --- | --- | --- | --- |\n+| FR19-V01 | State | `[Authentication/role]` | `[Constraint]` | `[E-xxx]` |\n+| FR19-V02 | Input | `[Target user identifier]` | `[Constraint]` | `[E-xxx]` |\n+| FR19-O01 | Output | `[User list/deletion result]` | `[Observable output]` | `[E-xxx]` |\n+\n+### 5.3 Complete input/output equivalence classes\n+\n+| EC ID | Variable | Class (valid/invalid) | Condition/domain | Representative | Expected observable output | Evidence ID | Review status |\n+| --- | --- | --- | --- | --- | --- | --- | --- |\n+| FR19-EC-01 | `[Variable]` | `[Valid/Invalid]` | `[Class]` | `[Value]` | `[Output]` | `[E-xxx]` | `[Pending/Reviewed]` |\n+\n+### 5.4 Minimum domain test cases\n+\n+| Domain test ID | ECs covered | Data/representative values | Single-fault check | Expected output | Traceability |\n+| --- | --- | --- | --- | --- | --- |\n+| DT-FR19-01 | `[EC IDs]` | `[Data]` | `[Check]` | `[Observable result]` | `[FR-19/EC]` |\n+\n+## 6. FR-20 - Mobile product browsing and order history\n+\n+### 6.1 Requirement and scope\n+\n+- In scope: mobile product browsing and mobile order history only.\n+- Out of scope: mobile authentication, profile, cart, checkout, and\n+  cancellation.\n+- Open questions: `[Unresolved points]`\n+\n+### 6.2 Input and output variables\n+\n+| Variable ID | Type | Variable | Validity/constraints from evidence | Evidence ID |\n+| --- | --- | --- | --- | --- |\n+| FR20-V01 | Input/state | `[Search/product state]` | `[Constraint]` | `[E-xxx]` |\n+| FR20-V02 | State | `[Authenticated order-history state]` | `[Constraint]` | `[E-xxx]` |\n+| FR20-O01 | Output | `[Mobile list/order-history output]` | `[Observable output]` | `[E-xxx]` |\n+\n+### 6.3 Complete input/output equivalence classes\n+\n+| EC ID | Variable | Class (valid/invalid) | Condition/domain | Representative | Expected observable output | Evidence ID | Review status |\n+| --- | --- | --- | --- | --- | --- | --- | --- |\n+| FR20-EC-01 | `[Variable]` | `[Valid/Invalid]` | `[Class]` | `[Value]` | `[Output]` | `[E-xxx]` | `[Pending/Reviewed]` |\n+\n+### 6.4 Minimum domain test cases\n+\n+| Domain test ID | ECs covered | Data/representative values | Single-fault check | Expected output | Traceability |\n+| --- | --- | --- | --- | --- | --- |\n+| DT-FR20-MOB-01 | `[EC IDs]` | `[Data]` | `[Check]` | `[Observable result]` | `[FR-20/EC]` |\n+\n+## 7. Review gate\n+\n+| Gate item | Status | Student review/correction |\n+| --- | --- | --- |\n+| All classes have evidence | `[Pending]` | `[To be completed]` |\n+| Representatives are executable | `[Pending]` | `[To be completed]` |\n+| Invalid cases follow single-fault principle | `[Pending]` | `[To be completed]` |\n+| Gate A approved before BVA | `[Pending]` | `[To be completed]` |\n+\n*** Add File: /workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md\n+# Boundary Value Analysis Report\n+\n+## Document control\n+\n+| Field | Value |\n+| --- | --- |\n+| Student/group | `[To be completed]` |\n+| SUT/version/commit | `[To be completed]` |\n+| Date updated | `[YYYY-MM-DD]` |\n+| Precondition | Gate A reviewed and approved |\n+\n+## Rules\n+\n+- Analyze only ordered domains supported by the specification, UI, API, or\n+  source evidence.\n+- Record `Unresolved` when no boundary is defined; do not invent a limit.\n+- Use `alpha` appropriate to the data type.\n+- Vary one variable at a time; keep all other variables at valid nominal\n+  values.\n+- Do not combine invalid boundary values from multiple variables.\n+\n+## 1. FR-05 - Product listing and search\n+\n+| BVA ID | Variable/domain | LB | UB | Alpha | Nominal | Boundary points | Expected output | Evidence ID | Review status |\n+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n+| BVA-FR05-01 | `[Search length/result cardinality]` | `[Value/Unresolved]` | `[Value/Unresolved]` | `[Unit]` | `[Value]` | `[LB-alpha, LB, LB+alpha, UB-alpha, UB, UB+alpha]` | `[Observable output]` | `[E-xxx]` | `[Pending]` |\n+\n+## 2. FR-11 - User order history\n+\n+| BVA ID | Variable/domain | LB | UB | Alpha | Nominal | Boundary points | Expected output | Evidence ID | Review status |\n+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n+| BVA-FR11-01 | `[Order count/identifier/status]` | `[Value/Unresolved]` | `[Value/Unresolved]` | `[Unit]` | `[Value]` | `[Points]` | `[Observable output]` | `[E-xxx]` | `[Pending]` |\n+\n+## 3. FR-19 - Admin user management\n+\n+| BVA ID | Variable/domain | LB | UB | Alpha | Nominal | Boundary points | Expected output | Evidence ID | Review status |\n+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n+| BVA-FR19-01 | `[User count/identifier]` | `[Value/Unresolved]` | `[Value/Unresolved]` | `[Unit]` | `[Value]` | `[Points]` | `[Observable output]` | `[E-xxx]` | `[Pending]` |\n+\n+## 4. FR-20 - Mobile product browsing and order history\n+\n+| BVA ID | Variable/domain | LB | UB | Alpha | Nominal | Boundary points | Expected output | Evidence ID | Review status |\n+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n+| BVA-FR20-MOB-01 | `[Search/order count/identifier]` | `[Value/Unresolved]` | `[Value/Unresolved]` | `[Unit]` | `[Value]` | `[Points]` | `[Observable output]` | `[E-xxx]` | `[Pending]` |\n+\n+## Boundary test cases\n+\n+| BVA test ID | Feature | Variable varied | Input value | Other variables at nominal values | Expected output | Actual output | Status |\n+| --- | --- | --- | --- | --- | --- | --- | --- |\n+| BVA-TC-001 | `[FR-xx]` | `[Variable]` | `[Value]` | `[Nominal data]` | `[Observable result]` | `[To be executed]` | `Not yet executed` |\n+\n+## Gate B review\n+\n+| Review item | Status | Student correction/confirmation |\n+| --- | --- | --- |\n+| Every ordered domain has evidence | `[Pending]` | `[To be completed]` |\n+| LB/UB/alpha are justified | `[Pending]` | `[To be completed]` |\n+| One-variable-at-a-time constraint satisfied | `[Pending]` | `[To be completed]` |\n+| Gate B approved before Step C | `[Pending]` | `[To be completed]` |\n+\n*** Add File: /workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md\n+# Test Case Report\n+\n+## 1. Environment and evidence\n+\n+| Field | Value |\n+| --- | --- |\n+| SUT URL/build/commit | `[To be completed]` |\n+| Backend/API URL | `[To be completed]` |\n+| Web/mobile/admin environment | `[To be completed]` |\n+| Browser/device/OS | `[To be completed]` |\n+| Test data setup | `[To be completed]` |\n+| Cleanup/reset method | `[To be completed]` |\n+\n+| Evidence ID | URL/route/API/source | Verified observation | Screenshot/link |\n+| --- | --- | --- | --- |\n+| E-001 | `[To be completed]` | `[To be completed]` | `[Link or N/A]` |\n+\n+## 2. FR-05 - Product listing and search\n+\n+### A. Domain and equivalence partitioning\n+\n+See [Domain-testing-report.md](./main%20reports%20%28need%20md%20%2B%20pdf%29/Domain-testing-report.md), section 3.\n+\n+### B. Boundary Value Analysis\n+\n+See [Boundary-Value-Analysis-report.md](./main%20reports%20%28need%20md%20%2B%20pdf%29/Boundary-Value-Analysis-report.md), section 1.\n+\n+### C. Test cases and execution\n+\n+| ID | Objective/title (Action + Function + Condition) | Preconditions | Test data | Steps | Expected result | Actual result | Status | Evidence | Bug ID | Cleanup |\n+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n+| TC-FR05-001 | `[To be completed]` | `[To be completed]` | `[To be completed]` | `[≤15 steps]` | `[Observable result]` | `[To be executed]` | `Designed` | `[Link/N/A]` | `[N/A]` | `[To be completed]` |\n+\n+## 3. FR-11 - User order history\n+\n+### A. Domain and equivalence partitioning\n+\n+See [Domain-testing-report.md](./main%20reports%20%28need%20md%20%2B%20pdf%29/Domain-testing-report.md), section 4.\n+\n+### B. Boundary Value Analysis\n+\n+See [Boundary-Value-Analysis-report.md](./main%20reports%20%28need%20md%20%2B%20pdf%29/Boundary-Value-Analysis-report.md), section 2.\n+\n+### C. Test cases and execution\n+\n+| ID | Objective/title (Action + Function + Condition) | Preconditions | Test data | Steps | Expected result | Actual result | Status | Evidence | Bug ID | Cleanup |\n+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n+| TC-FR11-001 | `[To be completed]` | `[To be completed]` | `[To be completed]` | `[≤15 steps]` | `[Observable result]` | `[To be executed]` | `Designed` | `[Link/N/A]` | `[N/A]` | `[To be completed]` |\n+\n+## 4. FR-19 - Admin user management\n+\n+### A. Domain and equivalence partitioning\n+\n+See [Domain-testing-report.md](./main%20reports%20%28need%20md%20%2B%20pdf%29/Domain-testing-report.md), section 5.\n+\n+### B. Boundary Value Analysis\n+\n+See [Boundary-Value-Analysis-report.md](./main%20reports%20%28need%20md%20%2B%20pdf%29/Boundary-Value-Analysis-report.md), section 3.\n+\n+### C. Test cases and execution\n+\n+| ID | Objective/title (Action + Function + Condition) | Preconditions | Test data | Steps | Expected result | Actual result | Status | Evidence | Bug ID | Cleanup |\n+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n+| TC-FR19-001 | `[To be completed]` | `[To be completed]` | `[To be completed]` | `[≤15 steps]` | `[Observable result]` | `[To be executed]` | `Designed` | `[Link/N/A]` | `[N/A]` | `[To be completed]` |\n+\n+## 5. FR-20 - Mobile product browsing and order history\n+\n+### A. Domain and equivalence partitioning\n+\n+See [Domain-testing-report.md](./main%20reports%20%28need%20md%20%2B%20pdf%29/Domain-testing-report.md), section 6.\n+\n+### B. Boundary Value Analysis\n+\n+See [Boundary-Value-Analysis-report.md](./main%20reports%20%28need%20md%20%2B%20pdf%29/Boundary-Value-Analysis-report.md), section 4.\n+\n+### C. Test cases and execution\n+\n+| ID | Objective/title (Action + Function + Condition) | Preconditions | Test data | Steps | Expected result | Actual result | Status | Evidence | Bug ID | Cleanup |\n+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n+| TC-FR20-MOB-001 | `[To be completed]` | `[To be completed]` | `[To be completed]` | `[≤15 steps]` | `[Observable result]` | `[To be executed]` | `Designed` | `[Link/N/A]` | `[N/A]` | `[To be completed]` |\n+\n+## 6. Execution summary\n+\n+| Feature | Designed | Executed | Passed | Failed | Not yet executed |\n+| --- | ---: | ---: | ---: | ---: | ---: |\n+| FR-05 | 0 | 0 | 0 | 0 | 0 |\n+| FR-11 | 0 | 0 | 0 | 0 | 0 |\n+| FR-19 | 0 | 0 | 0 | 0 | 0 |\n+| FR-20 subsection | 0 | 0 | 0 | 0 | 0 |\n+| **Total** | **0** | **0** | **0** | **0** | **0** |\n+\n+## 7. Bugs and traceability\n+\n+- Total confirmed bugs: `0` until manually observed and documented.\n+- Bug report: [bug-report.md](./bug-report.md)\n+- Failed cases must link to real screenshots and a bug ID where applicable.\n+\n+## 8. Limitations and not-yet-executed work\n+\n+`[Record unavailable environments, unresolved requirements, missing test data,\n+and the reason each case has not been executed.]`\n+\n*** Add File: /workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/bug-report.md\n+# Bug Report\n+\n+> This file must contain only bugs personally observed or confirmed by the\n+> student. The student writes the Bug Description and Root Cause Analysis.\n+> Do not record speculative defects or unverified expected behavior.\n+\n+## Summary\n+\n+| Feature | Confirmed bugs |\n+| --- | ---: |\n+| FR-05 | 0 |\n+| FR-11 | 0 |\n+| FR-19 | 0 |\n+| FR-20 subsection | 0 |\n+| **Total** | **0** |\n+\n+## Bug index\n+\n+| Bug ID | Feature | Related test case(s) | Severity | Priority | Status | Evidence |\n+| --- | --- | --- | --- | --- | --- | --- |\n+| BUG-FRXX-001 | `[FR-xx]` | `[TC-xxx]` | `[To be completed]` | `[To be completed]` | `[Open/Confirmed/Fixed/Retest]` | `[Screenshot link]` |\n+\n+## Bug record template\n+\n+### BUG-FRXX-001 - [Student-written title]\n+\n+| Field | Student entry |\n+| --- | --- |\n+| Feature | `[FR-05/FR-11/FR-19/FR-20 subsection]` |\n+| Related test case(s) | `[TC-xxx]` |\n+| Date observed | `[YYYY-MM-DD]` |\n+| Environment/build/device | `[To be completed]` |\n+| Preconditions | `[Student-written]` |\n+| Test data | `[Student-written]` |\n+| Severity | `[Critical/High/Medium/Low]` |\n+| Priority | `[P0/P1/P2/P3]` |\n+| Status | `[Open/Confirmed/Fixed/Retest/Closed]` |\n+\n+#### Bug Description\n+\n+`[Student writes this section manually. Do not ask AI to draft it.]`\n+\n+#### Steps to reproduce\n+\n+1. `[Student-written step]`\n+2. `[Student-written step]`\n+3. `[Student-written step]`\n+\n+#### Expected result\n+\n+`[Student-written, evidence-backed expected result]`\n+\n+#### Actual result\n+\n+`[Student-written observed result]`\n+\n+#### Evidence\n+\n+- Screenshot: `[reports/screenshots/<filename>]`\n+- Video/log/request: `[Link or N/A]`\n+- Related source/API evidence: `[Link or N/A]`\n+\n+#### Root Cause Analysis\n+\n+`[Student writes this section manually, if required. Do not ask AI to draft\n+it.]`\n+\n+#### Resolution and retest\n+\n+| Item | Student entry |\n+| --- | --- |\n+| GitHub issue | `[Link or N/A]` |\n+| Fix reference/commit | `[Link/hash or N/A]` |\n+| Retest case/date | `[TC-xxx / date]` |\n+| Retest result | `[Passed/Failed/Not retested]` |\n+\n*** End Patch\n"
+Tool execution failed: Failed to apply patch: Error: File already exists: /workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md
+
+Các file đích đã tồn tại nhưng đang rỗng (riêng `bug-report.md` chỉ có dòng placeholder), nên thao tác “tạo mới” bị hệ thống từ chối. Mình sẽ thay nội dung các file đích đó bằng template hoàn chỉnh, không đụng tới file guideline hay dữ liệu khác.
+
+Edit , , , 
+
+Edit 
+
+Edit 
+
+Edit 
+
+Edit 
+
+Read , lines 1 to 35
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md",
+  "view_range": [
+    1,
+    35
+  ]
+}
+
+Read , lines 1 to 35
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md",
+  "view_range": [
+    1,
+    35
+  ]
+}
+
+Read , lines 1 to 35
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md",
+  "view_range": [
+    1,
+    35
+  ]
+}
+
+Read , lines 1 to 35
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/bug-report.md",
+  "view_range": [
+    1,
+    35
+  ]
+}
+
+Đã tạo xong template cho 4 file báo cáo:
+
+1. `Domain-testing-report.md`
+   - Evidence register
+   - Requirement/scope
+   - Input/output variables
+   - Equivalence Classes cho FR-05, FR-11, FR-19, FR-20
+   - Minimum Domain Test Cases
+   - Gate A review
+
+2. `Boundary-Value-Analysis-report.md`
+   - LB, UB, alpha, nominal value
+   - Boundary points
+   - One-variable-at-a-time constraint
+   - BVA test cases
+   - Gate B review
+
+3. `test-case-report.md`
+   - Environment/evidence
+   - Các mục FR-05, FR-11, FR-19, FR-20
+   - Liên kết tới Domain Testing và BVA
+   - Test case fields
+   - Execution summary: Designed, Executed, Passed, Failed, Not yet executed
+   - Bug traceability và limitations
+
+4. `bug-report.md`
+   - Bug summary/index
+   - Bug ID, feature, test case, severity, priority, status
+   - Steps, expected/actual result, evidence và retest
+   - Để trống phần **Bug Description** và **Root Cause Analysis** cho bạn tự viết, đúng yêu cầu trong guideline.
+
+Các template hiện chỉ chứa cấu trúc và placeholder, chưa đưa vào kết luận kiểm thử hoặc bug chưa được xác minh.
+```
+"
+
+## Entry log 9 - 21h35 - 18/10/2026
+
+Model used: Auto Copilot 
+Prompt: "Cảm ơn bạn, vậy ta tiếp tục thực hiện Bước A nhé. 
+Theo như những gì bạn đề cập là: "The next action is to complete the remaining evidence
+collection, then present the full Input/Output Equivalence Classes and Minimum
+Domain Test Cases for review"
+
+---
+
+Từ bây giờ, trong quá trình thực hiện thì bạn hãy điền vào các file report  nếu như bạn thấy cần thiết nhé"
+
+
+AI's Answer: "
+```text
+Step A đã có đầy đủ bảng trong report và đang ở Gate A. Mình sẽ gửi form review để bạn xác nhận/corrigenda từng nhóm partition trước khi chuyển sang BVA.
+
+Waiting for your response: "Gate A đã hoàn tất bản nháp cho FR-05, FR-11, FR-19 và FR-20 subsection. Vui lòng review Input/Output Equivalence Classes và representative values trong Domain-testing-report.md. Bạn có muốn chỉnh sửa hoặc bổ sung domain edge nào trước khi chuyển sang Step B (Boundary Value Analysis) không? Hãy đặc biệt kiểm tra các điểm unresolved: giới hạn search, no-result message, quyền admin ở backend, ngăn xóa current admin, invalid/nonexistent ID, và order-detail endpoint."
+
+Question:
+Kết quả review Gate A
+Answered:
+Duyệt các partition hiện tại, chuyển sang Step B
+Question:
+Điểm cần chỉnh sửa hoặc bổ sung
+Answered:
+Không có
+
+
+```
+"
+
+## Entry Log 10 - 21h47 - 18/10/2026
+
+Model used: Auto Copilot
+
+Prompt: "
+```text
+
+Cảm ơn bạn, bây giờ tôi đã hoàn tất Step A. 
+Tôi sẽ cần bạn gen ra một file StepB-LLMs-instruction.md để cho một coding agent (1 session khác) nắm được context hiện tại và không cần tôi chỉ dẫn lại từ đầu như ở 2 câu prompt đầu tiên:
+1. context hiện tại (file chứa thông tin: như 0.my-guide-line.md, feature-inventory.md, HW02_feature_selection_guide.md, file README.md (của project SUT này)), đang ở giai đoạn nào. 
+2. Những chỉ dẫn chung, Rule, SKILLS mà tôi đã thiết lập ở đầu đoạn chat.
+3. Sang Step B thì cần làm những gì
+4. Ghi dẫn chứng: mỗi khi bạn định ghi dẫn chứng trong report là feature_inventory.md thì bạn nên ghi là README.md (là file README của dự án Eshop này)
+5. Lưu ý khác ... (nếu bạn muốn thêm.)
+
+---
+
+Output: next-session-stepB.md trong folder: HW#2-Prompt#1-general-information1/Process
+```"
+File output: HW#2-Prompt#1-general-information1/Process/2.next-session-stepB.md
+AI's Answer: "
+```text
+
+Mình sẽ đối chiếu guideline, report Step A đã duyệt, cấu trúc report Step B và README của SUT trong workspace để viết một handoff rõ ràng cho session kế tiếp, đồng thời dùng đúng quy ước dẫn chứng `README.md` mà bạn yêu cầu.
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/0.my-guide-line.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/SKILLS-Domain-Testing.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Process/StepA-Report.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Find files matching `README.md`
+
+Find files matching `HW#2-Prompt#1-general-information1/HW02_feature_selection_guide.md`
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/README.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/HW02_feature_selection_guide.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Read , lines 80 to 145
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/SKILLS-Domain-Testing.md",
+  "view_range": [
+    80,
+    145
+  ]
+}
+
+Edit 
+
+Đã tạo file handoff cho session tiếp theo:
+
+`next-session-stepB.md`
+
+File bao gồm:
+
+- Context dự án và assignment.
+- Các file cần đọc trước khi bắt đầu.
+- Bốn scope đã chọn: FR-05, FR-11, FR-19 và FR-20 mobile subsection.
+- Trạng thái hiện tại: **Step A đã hoàn tất và Gate A đã được duyệt**.
+- Evidence và các unresolved points đã xác định.
+- Công việc bắt buộc của Step B:
+  - Xác định LB, UB, alpha, nominal value.
+  - Sinh các điểm `LB-alpha`, `LB`, `LB+alpha`, `UB-alpha`, `UB`, `UB+alpha`.
+  - Tuân thủ one-variable-at-a-time.
+  - Không tự tạo giới hạn khi chưa có evidence.
+- Các report cần cập nhật.
+- STOP RULE tại Gate B.
+- Quy tắc chung về không hallucinate UI/spec, academic integrity và bug report.
+- Quy ước mới: khi ghi dẫn chứng requirement, dùng **repository-root `README.md`**, không dùng `feature_inventory.md`.
+```
+"
+
+## Entry log 11 - 
