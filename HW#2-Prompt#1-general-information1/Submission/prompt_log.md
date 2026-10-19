@@ -1753,6 +1753,522 @@ Lưu ý: sau thay đổi Backend và Mobile, cần restart các process đang ch
 ```
  # Entry Log 14 - 14h15 - 19/10/2026
 
- 
+ Model used: Auto copilot
+
+  Prompt: "Cảm ơn bạn, ta tiếp tục với Bước B - Boundary Value Analysis nhé
+  ta sẽ thực hiện Feature Requirement 05.
+  Như tôi đã quy ươc từ đầu: trong lúc thực hiện bước B, bạn hãy điền các files report mà tôi đã nhắc từ đầu. 
+  Sau khi hoàn thành bước b, bạn hãy gen ra nội dung mà bạn đã thực hiên ở step B trong file 3. FR05-report.md nhé"
+  File input/included: HW#2-Prompt#1-general-information1/0.my-guide-line.md
+
+  AI's answer: "
+  ```text
+Mình sẽ thực hiện riêng **Step B cho FR-05**, dựa trên requirement trong README của SUT và các lớp đã được duyệt ở Step A. Mình sẽ kiểm tra giới hạn thực sự của search/result domain, cập nhật các report liên quan và tạo `3. FR05-report.md`; sau đó dừng tại Gate B để bạn review.
+
+Find files matching `**/3. FR05-report.md`
+
+Read , lines 35 to 75
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/README.md",
+  "view_range": [
+    35,
+    75
+  ]
+}
+
+Read , lines 25 to 90
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md",
+  "view_range": [
+    25,
+    90
+  ]
+}
+
+Read , lines 1 to 70
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md",
+  "view_range": [
+    1,
+    70
+  ]
+}
+
+Read , lines 1 to 100
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-web/src/pages/Home.jsx",
+  "view_range": [
+    1,
+    100
+  ]
+}
+
+Read , lines 75 to 165
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-mobile/App.js",
+  "view_range": [
+    75,
+    165
+  ]
+}
+
+Requirement FR-05 không quy định giới hạn trên cho độ dài search, nên mình sẽ **không bịa UB**. BVA hợp lệ ở đây gồm: ranh giới search rỗng/không rỗng (`0/1` ký tự) và ranh giới số kết quả quan sát được `0/1/nhiều`; phần “nhiều” không có UB hữu hạn theo đặc tả. Mình sẽ ghi rõ đây là boundary có căn cứ và đánh dấu giới hạn chưa xác định.
+
+Edit , , 
+
+Mình đã cập nhật BVA cho FR-05 và nhận thấy cần phân biệt rõ: boundary `1 ký tự` chỉ chứng minh chuyển sang non-empty search, không đảm bảo đúng một kết quả. Mình sẽ chỉnh representative để không biến boundary input thành một expected result không có căn cứ, rồi kiểm tra lại các report.
+
+Edit , 
+
+Read , lines 1 to 150
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md",
+  "view_range": [
+    1,
+    150
+  ]
+}
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Process/3. FR05-report.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Ran terminal command: git diff --check && git status --short --branch
+Tool execution failed with exit code 2
+
+BVA FR-05 đã được ghi vào các report. Kiểm tra format phát hiện một trailing whitespace cũ trong `Submission/prompt_log.md`, không nằm ở phần report mình vừa cập nhật; mình không sửa file log ngoài phạm vi. Mình dừng tại Gate B theo guideline.
+
+Ask User
+Completed with input: {
+  "message": "Gate B cho FR-05 đã sẵn sàng review. Vui lòng xác minh các boundary và expected output trong Boundary-Value-Analysis-report.md và Process/3. FR05-report.md. Có điểm nào cần chỉnh hoặc bổ sung không, đặc biệt: search length 0/1 ký tự, result cardinality 0/1/2+, maximum search length chưa xác định, maximum result count/pagination chưa xác định? Trước Step C, vui lòng cung cấp HTML/DOM hoặc screenshot UI theo yêu cầu của SKILLS.",
+  "requestedSchema": {
+    "properties": {
+      "review_result": {
+        "type": "string",
+        "title": "Kết quả review Gate B - FR-05",
+        "oneOf": [
+          {
+            "const": "approved",
+            "title": "Duyệt BVA, chuyển sang Step C sau khi cung cấp UI evidence"
+          },
+          {
+            "const": "needs_changes",
+            "title": "Cần chỉnh sửa/bổ sung boundary"
+          },
+          {
+            "const": "needs_evidence",
+            "title": "Cần bổ sung evidence/spec trước khi duyệt"
+          }
+        ],
+        "default": "needs_changes"
+      },
+      "corrections": {
+        "type": "string",
+        "title": "Boundary cần chỉnh sửa hoặc bổ sung",
+        "description": "Ghi rõ BVA ID hoặc boundary; nếu không có, ghi 'Không có'."
+      },
+      "ui_evidence": {
+        "type": "string",
+        "title": "HTML/DOM hoặc screenshot cho Step C",
+        "description": "Cung cấp ở lượt tiếp theo hoặc ghi 'Sẽ cung cấp sau'."
+      }
+    }
+  }
+}
+
+Gate B đã được bạn duyệt với “Không có” corrections. Mình sẽ cập nhật trạng thái approval vào hai report FR-05, giữ nguyên các boundary đã thống nhất, và chưa chuyển sang Step C vì bạn chưa cung cấp UI evidence.
+
+Read , lines 1 to 260
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md",
+  "view_range": [
+    1,
+    260
+  ]
+}
+
+Read , lines 1 to 240
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Process/3. FR05-report.md",
+  "view_range": [
+    1,
+    240
+  ]
+}
+
+Edit , 
+
+Ran terminal command: git diff --check -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/3. FR05-report.md'
+
+Ran terminal command: git diff --stat -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/3. FR05-report.md' && git status --short
+
+Gate B của FR-05 đã được ghi nhận là **Approved** vào:
+
+- `Boundary-Value-Analysis-report.md`
+- `3. FR05-report.md`
+
+Nội dung approval:
+
+- Sinh viên duyệt ngày **2026-10-19**.
+- Không có correction hoặc boundary cần bổ sung.
+- Các boundary được giữ nguyên:
+  - Search length: `0` → `1` ký tự.
+  - Result cardinality: `0`, `1`, `2+`.
+  - Maximum search length và maximum result count/pagination: vẫn là `Unresolved`, không tự suy đoán.
+- UI/DOM hoặc screenshot cho Step C sẽ được cung cấp sau.
+
+Đã kiểm tra format, các file report vừa cập nhật không có lỗi whitespace. **Step C chưa được thực hiện** cho đến khi có UI evidence.
+  ```
+
+  "
+
+# Entry Log 15 - 15h41 - 19/10/2026
+Model used: Auto Copilot
+
+Prompt: "Cảm ơn bạn, ta sang Bước C - Thiết kế và thực thi test case cho FR05 nhé
+Tôi đã cung cấp 6 UI evidences trong folder "HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-05" nhằm xác minh các test cases là đúng với thực tế"
 
 
+AI's Answer: "
+```text
+Mình sẽ kiểm tra 6 evidence trong thư mục FR-05, đối chiếu từng ảnh với các boundary/test case đã được Gate B duyệt, rồi cập nhật phần thiết kế và thực thi trong test-case report cùng FR05 report. Chỉ ghi Passed/Failed khi ảnh đủ chứng minh; case thiếu bằng chứng sẽ giữ Not yet executed hoặc cần xác nhận thêm.
+
+Read 
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-05"
+}
+
+Ran terminal command: git status --short -- 'HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-05'
+
+Read , lines 1 to 260
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Process/3. FR05-report.md",
+  "view_range": [
+    1,
+    260
+  ]
+}
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Read 
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-05/FR05-01-default.png"
+}
+
+Read 
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-05/FR05-02-searchEmpty.png"
+}
+
+Read 
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-05/FR05-04-searchNoResult.png"
+}
+
+Read 
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-05/FR05-05-searchOneResult.png"
+}
+
+Read 
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-05/FR05-03-searchOneChar.png"
+}
+
+Read 
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-05/FR05-06-searchTwo+Result.png"
+}
+
+Sáu ảnh đã đủ để xác minh các case FR-05: danh sách mặc định, search rỗng, search 1 ký tự, 0 kết quả, đúng 1 kết quả và 2 kết quả. Mình sẽ ghi chúng là các test case độc lập, cập nhật Actual/Status dựa trên ảnh, và giữ loading/error ở trạng thái chưa thực thi vì chưa có evidence tương ứng.
+
+Edit , 
+
+Read , lines 1 to 220
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Process/3. FR05-report.md",
+  "view_range": [
+    1,
+    220
+  ]
+}
+
+Ran terminal command: git diff --check -- 'HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md' 'HW#2-Prompt#1-general-information1/Process/3. FR05-report.md'
+
+Edit 
+
+Edit 
+
+Ran terminal command: git diff --check -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md' 'HW#2-Prompt#1-general-information1/Process/3. FR05-report.md'
+
+Ran terminal command: git diff --stat -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md' 'HW#2-Prompt#1-general-information1/Process/3. FR05-report.md'
+
+Step C FR-05 đã được cập nhật và kiểm tra format. Sáu case đều có evidence và Passed; loading/error vẫn chưa thực thi. Theo STOP rule, mình dừng tại Gate C để bạn review trước khi chuyển bước tiếp theo.
+
+Ask User
+Completed with input: {
+  "message": "Gate C FR-05 đã hoàn tất thiết kế và ghi nhận execution từ 6 screenshots. Vui lòng review các expected/actual/status và xác nhận trước khi chuyển sang bước tiếp theo. Lưu ý: loading state và API error state chưa có evidence nên vẫn unexecuted; không có failed case hoặc bug ID được tạo.",
+  "requestedSchema": {
+    "properties": {
+      "gate_c_result": {
+        "type": "string",
+        "title": "Kết quả review Gate C - FR-05",
+        "oneOf": [
+          {
+            "const": "approved",
+            "title": "Duyệt các test case và execution results"
+          },
+          {
+            "const": "needs_changes",
+            "title": "Cần chỉnh sửa test case hoặc kết quả"
+          },
+          {
+            "const": "needs_evidence",
+            "title": "Cần bổ sung evidence cho case chưa thực thi"
+          }
+        ],
+        "default": "approved"
+      },
+      "corrections": {
+        "type": "string",
+        "title": "Correction hoặc bổ sung",
+        "description": "Ghi rõ test case/field cần chỉnh sửa; nếu không có, ghi 'Không có'."
+      }
+    }
+  }
+}
+
+Bạn đã duyệt Gate C FR-05 và không có correction. Mình sẽ ghi nhận approval vào report trung tâm và report riêng FR-05, sau đó kết thúc Step C đúng phạm vi; chưa bắt đầu Step D hay các feature khác.
+
+Edit , 
+
+Step C cho FR-05 đã hoàn tất và được bạn duyệt Gate C ngày **2026-10-19**, không có correction.
+
+Đã cập nhật:
+
+- `test-case-report.md`
+  - Thiết kế 6 test case chuẩn.
+  - Ghi precondition, test data, steps, expected, actual, status, evidence và cleanup.
+  - Execution summary: **6 Designed, 6 Executed, 6 Passed, 0 Failed**.
+  - Liên kết tới 6 screenshots trong thư mục FR-05.
+  - Ghi nhận Gate C approval.
+
+- `3. FR05-report.md`
+  - Bổ sung phần Step C.
+  - Ghi nhận kết quả thực thi từng test case.
+  - Ghi nhận Gate C đã được duyệt.
+
+- `Boundary-Value-Analysis-report.md`
+  - Cập nhật 5 BVA test cases của FR-05 thành `Passed`.
+  - Liên kết từng case với screenshot tương ứng.
+
+Các điểm chưa thực thi:
+
+- Loading state.
+- API error state.
+
+Hai trạng thái này vẫn được ghi là **unexecuted** vì chưa có evidence tương ứng. Không có failed case hoặc bug ID nào được tạo. Format của các report đã được kiểm tra bằng `git diff --check`.
+```
+
+"
+
+## Entry Log 16 - 21h36 - 19/10/2026
+
+Model used: Auto Copilot
+Prompt: "Cảm ơn bạn, vậy chúng ta qua step B cho FR-11 nhé
+- Ban đầu chúng ta đã thực hiện Step A ở Domain-testing-report.md.
+Bạn hãy kiểm tra xem còn thiếu nội dung nào trước khi triển khai Step B cho FR-11 không nhé. Nếu không thì ta sẽ bắt đầu Step B"
+
+AI's answer:
+"
+```text
+Mình sẽ kiểm tra riêng FR-11 trong Domain-testing-report, đối chiếu với guideline/skill và source/API hiện tại để xác định Gate A đã đủ điều kiện cho BVA chưa. Mình chưa chỉnh report hoặc bắt đầu Step B cho đến khi xác minh xong các thiếu sót và boundary có căn cứ.
+
+Read , lines 70 to 150
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md",
+  "view_range": [
+    70,
+    150
+  ]
+}
+
+Read , lines 70 to 150
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/SKILLS-Domain-Testing.md",
+  "view_range": [
+    70,
+    150
+  ]
+}
+
+"Read" failed
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Process/4. FR11-report.md",
+  "view_range": [
+    1,
+    220
+  ]
+}
+Tool execution failed: view_range out of bounds
+
+Search for `order|orders|history|api/orders|Order History`
+
+Kết quả kiểm tra ban đầu cho thấy FR-11 đã có bảng Input/Output Equivalence Classes và Minimum Domain Test Cases, nhưng các dòng vẫn đang ở trạng thái `Pending`; vì vậy chưa thể bắt đầu BVA theo STOP rule nếu Gate A chưa được bạn xác nhận. Mình sẽ kiểm tra thêm evidence và boundary thực tế để chỉ ra chính xác phần cần review/bổ sung.
+
+Read , lines 1 to 78
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md",
+  "view_range": [
+    1,
+    78
+  ]
+}
+
+Read , lines 1 to 230
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-web/src/pages/Profile.jsx",
+  "view_range": [
+    1,
+    230
+  ]
+}
+
+Read , lines 320 to 385
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/backend/server.js",
+  "view_range": [
+    320,
+    385
+  ]
+}
+
+Search for `CREATE TABLE.*orders|INSERT INTO orders|status.*pending|shipping_address|orders`
+
+Read , lines 68 to 100
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/backend/database.js",
+  "view_range": [
+    68,
+    100
+  ]
+}
+
+Search for `FR-11|đơn hàng|Lịch sử đơn hàng|order history|orders`
+
+Search for `FR11|FR-11|User order history|Gate A|Approved|Pending`
+
+FR-11 **đã có đủ cấu trúc Step A cơ bản**:
+
+- Requirement và scope.
+- Input/output variables.
+- Input/Output Equivalence Classes.
+- Representative values.
+- Minimum Domain Test Cases.
+- Evidence mapping `E-004`, `E-005`.
+
+Các nội dung này nằm trong `Domain-testing-report.md`, mục **2. FR-11 - User order history**.
+
+Tuy nhiên, **chưa thể bắt đầu Step B ngay** vì còn hai điểm cần xử lý:
+
+## 1. Gate A của FR-11 chưa được approval riêng
+
+Các class FR-11 vẫn đang ghi:
+
+```text
+Review: Pending
+```
+
+Ngoài ra, bảng Minimum Domain Test Cases hiện chưa có trạng thái Gate A riêng cho FR-11. Việc Gate A trước đây được duyệt cho bản Step A tổng hợp không nên tự động xem là approval riêng cho FR-11 nếu bạn muốn quy trình traceability chặt chẽ theo từng feature.
+
+Bạn cần review các class sau:
+
+- `FR11-EC-01`: authenticated user.
+- `FR11-EC-02`: missing/invalid token.
+- `FR11-EC-03`: zero orders.
+- `FR11-EC-04`: exactly one order.
+- `FR11-EC-05`: multiple orders.
+- `FR11-EC-06`: supported order statuses.
+- `FR11-EC-07`: ownership protection.
+
+## 2. Một số điểm cần xác nhận trước BVA
+
+### Order count
+
+Hiện tại có thể dùng boundary:
+
+```text
+0 orders → 1 order → 2+ orders
+```
+
+Đây là boundary phù hợp với requirement và source hiện tại.
+
+### Order status
+
+Các status:
+
+```text
+pending, confirmed, shipping, delivered, canceled
+```
+
+là **categorical values**, không phải ordered numeric boundary. Vì vậy không nên áp dụng `LB - 1`, `LB`, `LB + 1` cho chúng. Có thể kiểm tra từng status bằng equivalence partitioning.
+
+### Authentication
+
+`valid token`, `missing token`, `invalid token` là state classes, không phải boundary số. Không cần tạo BVA numeric cho chúng.
+
+### Order ID/detail endpoint
+
+FR-11 đang tập trung vào endpoint:
+
+```text
+GET /api/orders/my-orders
+```
+
+Endpoint:
+
+```text
+GET /api/orders/:id
+```
+
+hiện không có authentication middleware trong source. Đây là một security observation đáng chú ý, nhưng không nên tự đưa vào expected result của FR-11 nếu scope chính là order history. Có thể ghi là unresolved/verification target hoặc để dành cho security/bug review sau khi thực thi.
+
+### Citation convention
+
+Phần report tổng quan vẫn có câu:
+
+```text
+Classes below are based on the checked feature inventory and source files.
+```
+
+Theo quy ước của bạn, các requirement nên được dẫn về project-root `README.md`, không nên dùng `feature_inventory.md` làm nguồn requirement chính. Đây là điểm documentation nên chỉnh trước hoặc trong Step B.
+
+## Kết luận
+
+**FR-11 chưa thiếu bảng Step A chính, nhưng chưa đủ điều kiện chuyển sang Step B vì Gate A chưa được bạn review/approve riêng.**
+
+Nếu bạn xác nhận các class trên là đúng và không có correction, mình sẽ ghi nhận Gate A FR-11 rồi bắt đầu Step B với các boundary có căn cứ:
+
+```text
+0 orders, 1 order, 2+ orders
+```
+
+và ghi rõ các domain status/authentication là categorical/state domains, không ép tạo numeric boundary.
+
+```"
+```
+
+# Entry

@@ -5,7 +5,6 @@
 | Field | Value |
 | --- | --- |
 | Student/group | `10` |
-| SUT/version/commit | `` |
 | Date updated | `2026-10-18` |
 | Scope | FR-05, FR-11, FR-19, and selected FR-20 subsection |
 | Method | Equivalence Partitioning and Domain Testing |
