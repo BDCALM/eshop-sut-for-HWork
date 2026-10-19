@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-const API_URL = "http://localhost:3000/api";
+import { API_URL } from "./config/api";
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem("adminToken") || "");
