@@ -1,2 +1,5 @@
-Create a new Git commit for each step of the testing procedure of each feature.
-Provide the Git commit log in a text-based file format.
+
+1. Git commit 049851d: docs: Phân tích feature và Equivalence Partitioning cho 4 Feature Requirements (05, 11, 19, 20)
+- Commit 1 là commit gộp của 4 FR (05, 11, 19, 20) về việc phân tích từng feature và lớp tương đương của chúng
+2. Git commit 
+- Từ Git commit 2 trở đi sẽ là từng commit riêng cho 4 feature ở mỗi step
