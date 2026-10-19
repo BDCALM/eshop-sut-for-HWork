@@ -1,6 +1,6 @@
 
 
-## Entry log 1 - 16h10 - 17/10/2026
+# Entry log 1 - 16h10 - 17/10/2026
 Model used: Gemini 3.1 Pro - High
 Prompt: "Hi, this is my homework. I want you to read the homework (HW02) file. 
 After that, you need to take some related information to prepare for the SKILLS-Domain-testing.md which is the file i will import it into an Coding Agent for assisting and helping me complete the HW02. 
@@ -86,7 +86,7 @@ Execute testing tasks strictly in the following order:
 ```
 "
 
-## Entry log 2 - 16h20 - 17/10/2026
+# Entry log 2 - 16h20 - 17/10/2026
 Model: Gemini 3.1 Pro - High  
 prompt: "Bạn giúp tôi nhận xét file SKILLS.md dùng cho Coding Agent trong nhiệm vụ thực hiện Domain Testing cho Homework của tôi nhé."  
 file included: SKILLS-Domain-testing.md  
@@ -153,7 +153,7 @@ Chỉ cần siết chặt lại các điều kiện dừng (Stop Rules) và phâ
 ```
 "
 
-## Entry log 3 - 16h27 - 17/10/2026
+# Entry log 3 - 16h27 - 17/10/2026
 Context: cùng một Context và Model với Entry Log 1  
 Model used: Gemini 4 Argon - High  
 prompt: "  
@@ -329,7 +329,7 @@ At the end of each feature's testing cycle, remind the student to complete the f
 
 "
 
-## Entry log 4 - 16h35 - 17/10/2026
+# Entry log 4 - 16h35 - 17/10/2026
 Model: Gemini 3.1 Pro - High
 prompt: "
 ```text
@@ -409,7 +409,7 @@ Chỉ cần chèn đoạn này vào đúng vị trí, Coding Agent của bạn s
 "
 
 
-## Entry log 5 - 20h59 - 18/10/2026 
+# Entry log 5 - 20h59 - 18/10/2026 
 
 Model used: Auto Copilot (GPT Luna 5.6)
 
@@ -479,7 +479,7 @@ Sau khi hoàn tất Bước A, kết quả sẽ là một bộ phân vùng tươ
 ```
 "
 
-## Entry log 6 - 21h14 - 18/10/2026
+# Entry log 6 - 21h14 - 18/10/2026
 Model used: Auto Copilot (GPT Luna 5.6)
 
 Prompt: "
@@ -600,7 +600,7 @@ Sau mỗi FR, mình sẽ dừng ở một mốc rõ ràng để cập nhật bá
 "
 ```
 
-## Entry log 7 - 21h20 - 18/10/2026
+# Entry log 7 - 21h20 - 18/10/2026
 
 Model used: Auto Copilot
 
@@ -867,7 +867,7 @@ Mình dừng tại đây đúng theo STOP RULE trước khi chuyển sang sub-st
 ```
 "
 
-## Entry Log 8 - 21h30 - 18/10/2026
+# Entry Log 8 - 21h30 - 18/10/2026
 
 Model used: Auto copilot
 
@@ -1051,7 +1051,7 @@ Các template hiện chỉ chứa cấu trúc và placeholder, chưa đưa vào 
 ```
 "
 
-## Entry log 9 - 21h35 - 18/10/2026
+# Entry log 9 - 21h35 - 18/10/2026
 
 Model used: Auto Copilot 
 Prompt: "Cảm ơn bạn, vậy ta tiếp tục thực hiện Bước A nhé. 
@@ -1083,7 +1083,7 @@ Không có
 ```
 "
 
-## Entry Log 10 - 21h47 - 18/10/2026
+# Entry Log 10 - 21h47 - 18/10/2026
 
 Model used: Auto Copilot
 
@@ -1200,4 +1200,559 @@ File bao gồm:
 ```
 "
 
-## Entry log 11 - 
+# Entry log 11 - 11h53 - 19/10/2026
+
+Model used: Auto copilot
+
+Prompt: "Bạn giúp tôi kiểm tra trạng thái của codespace trước khi tôi thực hiện chạy ứng dụng Eshop nhé"
+
+AI's Answer: "
+
+```text
+Mình sẽ kiểm tra trạng thái an toàn trước khi khởi chạy: Git/worktree, runtime và package manager, cấu trúc các app, dependency hiện có, database/config, cùng các port/process đang dùng. Mình chỉ kiểm tra, chưa khởi động hay thay đổi ứng dụng.
+
+Ran terminal command: git status --short --branch && printf '\nRecent commits:\n' && git --no-pager log -3 --oneline
+
+Ran terminal command: printf 'Node: '; node --version; printf 'npm: '; npm --version; printf 'pnpm: '; (pnpm --version 2>/dev/null || true); printf 'yarn: '; (yarn --version 2>/dev/null || true)
+
+Ran terminal command: printf 'Top-level files:\n'; find . -maxdepth 2 -type f \( -name package.json -o -name package-lock.json -o -name pnpm-lock.yaml -o -name yarn.lock -o -name README.md \) -print | sort
+
+Ran terminal command: printf 'Listening ports:\n'; (ss -ltnp 2>/dev/null || netstat -ltnp 2>/dev/null || true) | grep -E ':(3000|5173|5174)\b' || true; printf '\nRelated processes:\n'; ps -eo pid,ppid,stat,cmd | grep -E '[n]ode|[v]ite|[e]xpo' || true
+
+Ran terminal command: for d in backend frontend-web frontend-admin frontend-mobile; do printf '\n== %s ==\n' "$d"; if [ -d "$d/node_modules" ]; then echo 'node_modules: present'; else echo 'node_modules: missing'; fi; if [ -f "$d/package.json" ]; then node -e "const p=require('./$d/package.json'); console.log(JSON.stringify({scripts:p.scripts,dependencies:p.dependencies,devDependencies:p.devDependencies},null,2))"; fi; done
+
+Ran terminal command: printf 'Database/config candidates:\n'; find backend -maxdepth 2 -type f \( -iname '*.db' -o -iname '*.sqlite' -o -iname '*.sqlite3' -o -name '.env' -o -name '.env.*' \) -print 2>/dev/null | sort; printf '\nSetup guide snapshot:\n'; if [ -f '/home/codespace/.vscode-remote/data/agentSessionData/13deca7a-a07d-449f-84c6-4c9430d48413/attachments/4af30498-c681-4feb-bb38-7bd0ba8fe29f/setup_guide.md' ]; then sed -n '1,160p' '/home/codespace/.vscode-remote/data/agentSessionData/13deca7a-a07d-449f-84c6-4c9430d48413/attachments/4af30498-c681-4feb-bb38-7bd0ba8fe29f/setup_guide.md'; fi
+
+## Trạng thái Codespace hiện tại
+
+### 1. Git repository
+
+- Branch hiện tại: `main`
+- Worktree: **sạch**, không có thay đổi chưa commit.
+- Commit gần nhất:
+
+d3a4c84 docs: add Demo for making youtube video demo SKILLS
+
+Các commit liên quan trước đó:
+
+049851d docs: Phân tích feature và Equivalence Partitioning cho 4 Feature Requirements (05, 11, 19, 20)
+d3f086a docs: adding submission template and selft guideline
+
+
+Không có dấu hiệu cần xử lý Git trước khi chạy ứng dụng.
+
+### 2. Runtime
+
+| Công cụ | Phiên bản | Trạng thái |
+|---|---:|---|
+| Node.js | `v24.21.0` | Có |
+| npm | `11.19.0` | Có |
+| pnpm | `12.3.4` | Có |
+| Yarn | `1.22.22` | Có |
+
+Node.js hiện tại đáp ứng yêu cầu tối thiểu `>=18`.
+
+### 3. Dependencies
+
+Hiện tại cả bốn thư mục đều **chưa có `node_modules`**:
+
+- `backend`
+- `frontend-web`
+- `frontend-admin`
+- `frontend-mobile`
+
+Các file `package.json` và `package-lock.json` đều tồn tại. Trước khi chạy ứng dụng cần cài dependency tương ứng bằng `npm install`.
+
+### 4. Port và process
+
+Hiện chưa có ứng dụng EShop nào đang chạy:
+
+- Port `3000`: chưa sử dụng
+- Port `5173`: chưa sử dụng
+- Port `5174`: chưa sử dụng
+
+Các process Node đang thấy chỉ là process nội bộ của VS Code/Copilot, không phải backend hoặc frontend EShop.
+
+### 5. Database
+
+Database hiện có:
+
+backend/database.sqlite
+
+Vì database đã tồn tại, **không nên tự động chạy lại**:
+
+
+node database.js
+
+
+trừ khi bạn muốn seed/reset dữ liệu. Việc chạy lại có thể thay đổi dữ liệu test hiện tại.
+
+### 6. Lưu ý về tài khoản Admin
+
+Trong setup guide có thông tin Admin là:
+
+admin@eshop.com / admin123
+
+Trong repository-root `README.md`, tài khoản được ghi là:
+
+admin@eshop.com / Admin123!
+
+Nên ưu tiên repository-root `README.md` làm nguồn yêu cầu/tài khoản chính, và chỉ thử tài khoản trong setup guide nếu tài khoản trong README không hoạt động.
+
+## Kết luận
+
+Codespace hiện ở trạng thái phù hợp để chuẩn bị chạy EShop:
+
+- Git sạch.
+- Node/npm hoạt động.
+- Các port cần thiết đang trống.
+- Database đã tồn tại.
+- Chưa cài dependencies.
+
+Trình tự an toàn tiếp theo là:
+
+cd backend
+npm install
+cd ../frontend-web
+npm install
+cd ../frontend-admin
+npm install
+cd ../frontend-mobile
+npm install
+
+Sau đó có thể khởi chạy Backend trước, rồi Web/Admin/Mobile theo nhu cầu kiểm thử.
+```
+"
+
+# Entry log 12 - 13h46 - 19/10/2026
+
+Model used: Auto copilot
+
+Prompt: "Hiện tại tôi đang gặp vấn đề như sau: Khi tôi truy cập web Eshop (thông qua forwared Address của port 5173) thì tôi không thể sử dụng bất kỳ API nào và cả login. Có lẽ do tôi sử dụng Github Codespace nên FE và BE đều được deploy ở Virtual Machine của Codespace (nen chúng sẽ có link truy cập khác), tuy nhiên theo tôi tìm hiểu thì mã nguồn FE-web hiện tại đang mặc định (hard-code) sử dụng đường dẫn http://localhost:3000/api để call tới BE. Vậy nên tôi sẽ cần đổi một xíu ở mã nguồn, tiện cho việc testing. Bạn giúp tôi tìm và thực hiện các bước bên dưới nhé: 
+
+1.Thay thế Hardcode bằng Biến môi trường:Frontend Codebase.Xóa chuỗi http://localhost:3000/api. Cấu hình Frontend sử dụng biến môi trường trỏ trực tiếp vào Forwarded URL của Backend: https://orange-disco-9775gp4r5rv6c757g-3000.app.github.dev/api .
+
+2.Mở khóa Public Port:GitHub Codespaces.Mặc định Codespaces chặn mọi truy cập từ bên ngoài. Mở tab Ports ở panel dưới cùng, click chuột phải vào port 3000 -> chọn Port Visibility -> đổi thành Public.
+
+3.Cho phép Origin tại Backend (CORS):Backend Codebase.Cấu hình CORS middleware ở Backend để chấp nhận các request gửi đến từ nguồn của Frontend https://orange-disco-9775gp4r5rv6c757g-5173.app.github.dev.
+
+Answer: "
+```text
+  Mình sẽ kiểm tra toàn bộ các API call của Frontend Web, cấu hình Vite/env hiện có và middleware CORS Backend trước khi sửa, để thay đổi đồng bộ mà không bỏ sót endpoint nào. Việc đổi Port Visibility sang Public là thao tác trong giao diện Codespaces, mình sẽ tách rõ khỏi thay đổi mã nguồn.
+
+Search for `http://localhost:3000/api|localhost:3000`
+
+Find files matching `frontend-web/**/{.env*,vite.config.*,package.json}`
+
+Read , lines 1 to 25
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/backend/server.js",
+  "view_range": [
+    1,
+    25
+  ]
+}
+
+Ran terminal command: git status --short --branch
+
+Read , lines 1 to 120
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-web/vite.config.js",
+  "view_range": [
+    1,
+    120
+  ]
+}
+
+Read , lines 1 to 100
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-web/package.json",
+  "view_range": [
+    1,
+    100
+  ]
+}
+
+Find files matching `frontend-web/.gitignore`
+
+"Read" failed
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/.gitignore",
+  "view_range": [
+    1,
+    120
+  ]
+}
+Tool execution failed: Path does not exist
+
+Read , lines 1 to 120
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-web/.gitignore",
+  "view_range": [
+    1,
+    120
+  ]
+}
+
+Search for `http://localhost:3000/api|localhost:3000`
+
+Mình đã xác định tất cả hard-code API trong Frontend Web và thấy CORS hiện đang mở rộng bằng `cors()` mặc định. Mình sẽ thay bằng một module cấu hình dùng `VITE_API_URL`, tạo cấu hình local cho forwarded Backend URL, cập nhật toàn bộ API call, và giới hạn CORS theo Frontend origin nhưng vẫn giữ `localhost:5173` cho phát triển local.
+
+Edit , , , , , , , , , , 
+
+Search for `http://localhost:3000/api|localhost:3000`
+
+Ran terminal command: node --check backend/server.js && cd frontend-web && npm run build
+
+Ran terminal command: git diff --stat && git status --short
+
+Đã thực hiện phần thay đổi mã nguồn cho việc chạy Frontend Web qua GitHub Codespaces.
+
+## Đã thay đổi
+
+### 1. Thay hard-code API bằng biến môi trường
+
+Đã tạo:
+
+- `.env.example`
+- `frontend-web/.env.local` dùng URL Backend forwarded hiện tại
+- `api.js`
+
+API URL hiện được lấy từ:
+
+```env
+VITE_API_URL=https://orange-disco-9775gp4r5rv6c757g-3000.app.github.dev/api
+```
+
+Đã cập nhật toàn bộ API call trong:
+
+- `AuthContext.jsx`
+- `Home.jsx`
+- `Register.jsx`
+- `ProductDetail.jsx`
+- `Profile.jsx`
+- `Checkout.jsx`
+- `ForgotPassword.jsx`
+
+Đã kiểm tra và không còn chuỗi `http://localhost:3000/api` trong `frontend-web/src`.
+
+### 2. Cấu hình CORS Backend
+
+Đã cập nhật `server.js` để cho phép:
+
+```text
+http://localhost:5173
+https://orange-disco-9775gp4r5rv6c757g-5173.app.github.dev
+```
+
+Có thể thay Frontend origin bằng biến môi trường:
+
+```bash
+FRONTEND_ORIGIN=https://your-frontend-domain-5173.app.github.dev
+```
+
+### 3. Kiểm tra build
+
+Đã chạy thành công:
+
+```bash
+node --check backend/server.js
+cd frontend-web
+npm run build
+```
+
+Kết quả:
+
+```text
+✓ built successfully
+```
+
+### Việc bạn cần thực hiện trong GitHub Codespaces
+
+#### Public port 3000
+
+Trong tab **PORTS**:
+
+1. Chuột phải vào port `3000`.
+2. Chọn **Port Visibility**.
+3. Chọn **Public**.
+4. Làm tương tự với port `5173` nếu Frontend cũng cần truy cập từ bên ngoài.
+
+Mình không thể thay đổi Port Visibility trực tiếp bằng mã nguồn.
+
+#### Khởi động lại Backend và Frontend
+
+Các process hiện tại đã chạy trước khi thay đổi, nên cần restart để nạp code mới:
+
+```bash
+cd /workspaces/eshop-sut-for-HWork/backend
+node server.js
+```
+
+Terminal khác:
+
+```bash
+cd /workspaces/eshop-sut-for-HWork/frontend-web
+npm run dev -- --host 0.0.0.0
+```
+
+Nếu Vite cũ vẫn giữ process, hãy dừng process đó bằng `Ctrl+C` trước khi chạy lại.
+
+### Cách xác minh
+
+Mở Frontend forwarded URL, nhấn `F12` → **Network**, sau đó đăng nhập.
+
+Request đúng phải có dạng:
+
+```text
+https://orange-disco-9775gp4r5rv6c757g-3000.app.github.dev/api/login
+```
+
+Không được còn là:
+
+```text
+http://localhost:3000/api/login
+```
+
+Lưu ý: `frontend-web/.env.local` là file local và đang được ignore; không xuất hiện trong Git status.
+
+```
+
+"
+```
+# Entry Log 13 - 13h50 - 19/10/2026
+Model used: Auto copilot
+Prompt: "Vậy bạn đã thêm file .env.local và env.example vaò trong .gitignore chưa nhỉ ?
+
+Và bạn cũng kiểm tra giúp tôi, liệu frontend-mobile có thể sử dụng giao diện máy tính (để truy cập được không ?) Nếu có thì bạn hãy giúp tôi sửa biến môi trường và biến hard-code mà nó đang gọi tới backend luôn nhé"
+ 
+ AI's Answer: "
+```text
+Mình sẽ kiểm tra `.gitignore`, khả năng chạy Expo trên web và toàn bộ backend URL trong mobile. Sau đó mình sẽ cấu hình mobile dùng biến môi trường phù hợp với Expo, giữ fallback rõ ràng cho môi trường local, rồi build/check web để xác minh.
+
+Read , lines 1 to 100
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-web/.gitignore",
+  "view_range": [
+    1,
+    100
+  ]
+}
+
+Read , lines 1 to 120
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-mobile/package.json",
+  "view_range": [
+    1,
+    120
+  ]
+}
+
+Search for `192\.168\.10\.13:3000|localhost:3000|API_URL`
+
+Find files matching `frontend-mobile/**/{.gitignore,.env*,app.json,app.config.*}`
+
+Ran terminal command: git check-ignore -v frontend-web/.env.local frontend-web/.env.example || true; git status --short --untracked-files=all | sed -n '1,80p'
+
+Read , lines 1 to 100
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-mobile/.gitignore",
+  "view_range": [
+    1,
+    100
+  ]
+}
+
+Read , lines 1 to 120
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-mobile/app.json",
+  "view_range": [
+    1,
+    120
+  ]
+}
+
+Search for `from ['"]|import `
+
+Đã xác nhận: `.env.local` đang được ignore bởi rule `*.local`; `.env.example` không bị ignore và nên được commit để mô tả cấu hình mẫu. Mobile Expo có script `web`, nên có thể chạy giao diện trên trình duyệt máy tính. Mình sẽ chuyển mobile sang `EXPO_PUBLIC_API_URL` và mở CORS có kiểm soát cho các origin web/mobile local cùng forwarded origin.
+
+Edit , , , 
+
+Search for `192\.168\.10\.13:3000|localhost:3000|API_URL =`
+
+Ran terminal command: git check-ignore -v frontend-mobile/.env.local frontend-mobile/.env.example; node --check backend/server.js
+
+Ran terminal command: cd frontend-mobile && npm install
+
+Ran terminal command: git diff -- frontend-mobile/App.js backend/server.js frontend-web/.gitignore frontend-mobile/.gitignore | sed -n '1,240p'
+
+Edit 
+
+Ran terminal command: cd frontend-mobile && npx expo export --platform web
+Tool execution failed with exit code 1
+
+Ran terminal command: node --check backend/server.js && git check-ignore -v frontend-web/.env.local frontend-mobile/.env.local && git status --short --untracked-files=all | grep -E '(^ M|^\?\?).*(backend/server.js|frontend-mobile|frontend-web/src/config|frontend-web/\.env)' | head -80
+
+Expo Web hiện chưa build được vì project thiếu hai dependency bắt buộc `react-dom` và `react-native-web`; đây là vấn đề dependency của khả năng chạy trên trình duyệt, không phải lỗi biến môi trường. Mình sẽ cài đúng dependency bằng `expo install`, rồi chạy lại export web.
+
+Ran terminal command: cd frontend-mobile && npx expo install react-dom react-native-web
+
+Ran terminal command: cd frontend-mobile && npx expo export --platform web
+
+Read , lines 1 to 100
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-mobile/package.json",
+  "view_range": [
+    1,
+    100
+  ]
+}
+
+Ran terminal command: git diff --stat; git status --short --untracked-files=all | grep -E 'frontend-mobile|frontend-web/src/config|frontend-web/\.env|backend/server.js' | head -100
+
+Edit 
+
+## `.env` đã được kiểm tra
+
+### Frontend Web
+
+Trong `frontend-web/.gitignore` đã có:
+
+```gitignore
+*.local
+```
+
+Vì vậy:
+
+- `frontend-web/.env.local`: **được ignore**, không commit.
+- `frontend-web/.env.example`: **không bị ignore**, có thể commit làm file mẫu.
+
+### Frontend Mobile
+
+Trong `frontend-mobile/.gitignore` đã có:
+
+```gitignore
+.env*.local
+```
+
+Vì vậy:
+
+- `frontend-mobile/.env.local`: **được ignore**.
+- `frontend-mobile/.env.example`: **không bị ignore**, có thể commit.
+
+Mình đã xác nhận bằng `git check-ignore`.
+
+## Frontend Mobile có chạy trên máy tính được không?
+
+Có. Expo hỗ trợ Web thông qua script:
+
+```json
+"web": "expo start --web"
+```
+
+Ban đầu mobile thiếu hai dependency cần thiết:
+
+- `react-dom`
+- `react-native-web`
+
+Mình đã cài bằng:
+
+```bash
+cd frontend-mobile
+npx expo install react-dom react-native-web
+```
+
+và cập nhật `package.json`.
+
+Đã xác minh thành công bằng:
+
+```bash
+npx expo export --platform web
+```
+
+Kết quả:
+
+```text
+Web Bundled successfully
+Exported: dist
+```
+
+## Các thay đổi cho Frontend Mobile
+
+Trong `App.js`:
+
+- Đã xóa hard-code:
+
+```js
+http://192.168.10.13:3000/api
+```
+
+- Đã chuyển sang biến môi trường:
+
+```env
+EXPO_PUBLIC_API_URL=https://orange-disco-9775gp4r5rv6c757g-3000.app.github.dev/api
+```
+
+- Đã áp dụng biến này cho toàn bộ API call của mobile.
+- Search query được encode bằng `encodeURIComponent`.
+
+Files cấu hình:
+
+- `.env.example`
+- `frontend-mobile/.env.local` — local-only, đã được ignore.
+
+## CORS cho Mobile Web
+
+Backend trong `server.js` hiện cho phép các origin:
+
+```text
+http://localhost:5173
+http://localhost:8081
+http://localhost:19006
+https://orange-disco-9775gp4r5rv6c757g-5173.app.github.dev
+https://orange-disco-9775gp4r5rv6c757g-8081.app.github.dev
+https://orange-disco-9775gp4r5rv6c757g-19006.app.github.dev
+```
+
+Như vậy cả Web Frontend và Mobile Web forwarded URL hiện tại đều đã được đưa vào danh sách cho phép.
+
+## Cách chạy Mobile trên trình duyệt máy tính
+
+```bash
+cd /workspaces/eshop-sut-for-HWork/frontend-mobile
+npx expo start --web --host 0.0.0.0
+```
+
+Expo Web thường dùng port `8081`. Sau đó:
+
+1. Mở tab **PORTS** trong Codespaces.
+2. Forward port `8081`.
+3. Đặt visibility phù hợp.
+4. Mở URL dạng:
+
+```text
+https://orange-disco-9775gp4r5rv6c757g-8081.app.github.dev
+```
+
+Backend phải chạy đồng thời ở port `3000`.
+
+## Trạng thái xác minh
+
+Đã thành công:
+
+- Kiểm tra `.gitignore`.
+- Không còn hard-code IP `192.168.10.13:3000` trong Mobile.
+- Cài dependency Expo Web.
+- Export Mobile Web thành công.
+- Kiểm tra cú pháp Backend thành công.
+
+Lưu ý: sau thay đổi Backend và Mobile, cần restart các process đang chạy để chúng nạp code và biến môi trường mới.
+```
+
+ "
+```
+ # Entry Log 14 - 14h15 - 19/10/2026
+
+ 
+
+

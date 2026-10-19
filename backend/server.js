@@ -8,7 +8,33 @@ const app = express();
 const PORT = 3000;
 const SECRET_KEY = "super_secret_key_that_should_not_be_here";
 
-app.use(cors());
+const configuredOrigins = process.env.FRONTEND_ORIGINS
+  ?.split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+const allowedOrigins = new Set(
+  configuredOrigins || [
+    "http://localhost:5173",
+    "http://localhost:8081",
+    "http://localhost:19006",
+    "https://orange-disco-9775gp4r5rv6c757g-5173.app.github.dev",
+    "https://orange-disco-9775gp4r5rv6c757g-8081.app.github.dev",
+    "https://orange-disco-9775gp4r5rv6c757g-19006.app.github.dev",
+  ],
+);
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.has(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error(`CORS origin is not allowed: ${origin}`));
+    },
+  }),
+);
 app.use(bodyParser.json());
 
 const userCarts = {};

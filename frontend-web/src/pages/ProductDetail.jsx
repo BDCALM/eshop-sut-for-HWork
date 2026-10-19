@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../config/api";
 import { useCart } from "../context/CartContext";
 
 export default function ProductDetail() {
@@ -13,7 +14,7 @@ export default function ProductDetail() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/products/${id}`)
+      .get(`${API_URL}/products/${id}`)
       .then((res) => setProduct(res.data))
       .catch((err) => console.error(err));
   }, [id]);

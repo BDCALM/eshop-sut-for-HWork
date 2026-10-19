@@ -13,7 +13,15 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
-const API_URL = "http://192.168.10.13:3000/api"; // IP LAN để chạy được trên iOS/Android và thiết bị thật
+const configuredApiUrl = process.env.EXPO_PUBLIC_API_URL?.trim();
+
+if (!configuredApiUrl) {
+  throw new Error(
+    "EXPO_PUBLIC_API_URL is not configured. Create frontend-mobile/.env.local before starting the mobile app.",
+  );
+}
+
+const API_URL = configuredApiUrl.replace(/\/+$/, "");
 
 const formatMoney = (value) => `${Number(value).toLocaleString()} ₫`;
 
@@ -85,7 +93,9 @@ export default function App() {
     setLoadingProducts(true);
     try {
       setErrorHtml("");
-      const response = await fetch(`${API_URL}/products?search=${query}`);
+      const response = await fetch(
+        `${API_URL}/products?search=${encodeURIComponent(query)}`,
+      );
       const text = await response.text();
       let data = text;
       try {
