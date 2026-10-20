@@ -33,7 +33,12 @@
 udit
     - FR-19, Step B - Boundary Value Analysis
     - FR-19, Step C - Test Case Design and Execution
-    - Includes five UI screenshots, a markdown proof (in reports/screenshots/FR-19 ) and the FR-11 process report
+    - Includes five UI screenshots, a markdown proof (in reports/screenshots/FR-19 ) and the FR-19 process report
     - There are two bugs were reported in bug-report.md (/reports/bug-report.md)
       AI Audit/Critique and prompt log remain shared student-owned files.
-
+8. Git commit 25a1205: test(fr20): Complete BVA, design and execute user-order-history cases, Bug reporting and AI audit
+    - FR-20, Step B - Boundary Value Analysis
+    - FR-20, Step C - Test Case Design and Execution
+    - Includes two UI screenshots,  and the FR-20 process report
+    - No separate commit created: no confirmed bug report was added, and the
+      AI Audit/Critique and prompt log remain shared student-owned files.
