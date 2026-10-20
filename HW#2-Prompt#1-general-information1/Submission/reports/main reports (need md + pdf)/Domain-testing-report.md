@@ -94,13 +94,13 @@
 
 | EC ID | Variable | Valid/invalid | Condition/domain | Representative | Expected observable output | Evidence | Review |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| FR11-EC-01 | Authentication | Valid | Authenticated current user | Valid token for User A | User A's history can be loaded. | E-004,E-005 | Pending |
-| FR11-EC-02 | Authentication | Invalid | Missing or invalid token | No token / invalid token | Access is rejected rather than returning a history. | E-004 | Pending |
-| FR11-EC-03 | Order count | Valid | No orders for current user | User A with zero orders | Mobile empty-order message is displayed. | E-005 | Pending |
-| FR11-EC-04 | Order count | Valid | Exactly one own order | User A with one order | One order with required fields is displayed. | E-004,E-005 | Pending |
-| FR11-EC-05 | Order count | Valid | Multiple own orders | User A with two or more orders | All own orders are displayed in descending ID order. | E-004,E-005 | Pending |
-| FR11-EC-06 | Order status | Valid | Supported status value | One order per supported status | Status is translated to the observed Vietnamese label. | E-005 | Pending |
-| FR11-EC-07 | Ownership | Invalid/security | Attempt to obtain another user's order through own-history flow | User A token, User B order | User B's order must not appear in User A history. | E-004 | Pending |
+| FR11-EC-01 | Authentication | Valid | Authenticated current user | Valid token for User A | User A's history can be loaded. | E-004,E-005 | Approved |
+| FR11-EC-02 | Authentication | Invalid | Missing or invalid token | No token / invalid token | Access is rejected rather than returning a history. | E-004 | Approved |
+| FR11-EC-03 | Order count | Valid | No orders for current user | User A with zero orders | Mobile empty-order message is displayed. | E-005 | Approved |
+| FR11-EC-04 | Order count | Valid | Exactly one own order | User A with one order | One order with required fields is displayed. | E-004,E-005 | Approved |
+| FR11-EC-05 | Order count | Valid | Multiple own orders | User A with two or more orders | All own orders are displayed in descending ID order. | E-004,E-005 | Approved |
+| FR11-EC-06 | Order status | Valid | Supported status value | One order per supported status | Status is translated to the observed Vietnamese label. | E-005 | Approved |
+| FR11-EC-07 | Ownership | Invalid/security | Attempt to obtain another user's order through own-history flow | User A token, User B order | User B's order must not appear in User A history. | E-004 | Approved |
 
 ### Minimum domain test cases
 
@@ -208,3 +208,6 @@
 | Representatives are executable | Approved | Student approved on 2026-10-18; no corrections |
 | Invalid cases follow single-fault principle | Approved | Student approved on 2026-10-18; no corrections |
 | Gate A approved before BVA | Approved | Student approved on 2026-10-18; no corrections |
+
+FR-11 Gate A was additionally reviewed by the student on 2026-10-19.
+No corrections or missing domain edges were reported.

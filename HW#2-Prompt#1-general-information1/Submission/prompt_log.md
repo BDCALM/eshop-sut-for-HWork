@@ -2085,7 +2085,7 @@ Hai trạng thái này vẫn được ghi là **unexecuted** vì chưa có evide
 
 "
 
-## Entry Log 16 - 21h36 - 19/10/2026
+# Entry Log 16 - 21h36 - 19/10/2026
 
 Model used: Auto Copilot
 Prompt: "Cảm ơn bạn, vậy chúng ta qua step B cho FR-11 nhé
@@ -2271,4 +2271,456 @@ và ghi rõ các domain status/authentication là categorical/state domains, kh�
 ```"
 ```
 
-# Entry
+# Entry Log 17 - 21h50 - 19/10/2026
+
+Model used: Auto copilot
+
+Prompt: "
+```text
+Cảm ơn bạn, tôi đã review Gate A của FR-11 và tôi thấy chưa có vấn đề nào đối với Gate A. Nên ta sẽ bắt đầu Step B cho FR-11 nhé
+```"
+
+AI's Answer: "
+```text
+Gate A FR-11 đã được bạn xác nhận không có correction. Mình sẽ ghi nhận approval đó và thực hiện riêng Step B: xác định các boundary có căn cứ cho số lượng order, đồng thời ghi rõ authentication/status là state/categorical domains không áp dụng numeric BVA. Sau đó mình sẽ dừng tại Gate B để bạn review.
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Read , lines 50 to 95
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md",
+  "view_range": [
+    50,
+    95
+  ]
+}
+
+"Read" failed
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Process/4. FR11-report.md",
+  "view_range": [
+    1,
+    120
+  ]
+}
+Tool execution failed: view_range out of bounds
+
+Read , lines 195 to 225
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md",
+  "view_range": [
+    195,
+    225
+  ]
+}
+
+Ran terminal command: wc -l 'HW#2-Prompt#1-general-information1/Process/4. FR11-report.md' && ls -l 'HW#2-Prompt#1-general-information1/Process/4. FR11-report.md'
+
+"Apply Patch" failed
+Completed with input: {"path":"/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md"}
+Tool execution failed: Error: Failed to find expected lines in /workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md:
+| BVA-E-01 | Source | Observation |
+
+Gate A FR-11 đã được ghi nhận trong Domain report. Một patch gộp bị dừng vì header evidence thực tế không khớp mẫu dự kiến; thay đổi đã áp dụng chỉ ở Domain report, chưa làm hỏng Boundary report. Mình sẽ tiếp tục bằng các patch nhỏ, đúng nội dung hiện tại của file, rồi kiểm tra diff trước khi kết thúc Gate B.
+
+Read , lines 1 to 130
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md",
+  "view_range": [
+    1,
+    130
+  ]
+}
+
+Read , lines 90 to 225
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md",
+  "view_range": [
+    90,
+    225
+  ]
+}
+
+Edit , 
+
+Edit 
+
+Ran terminal command: git diff --check -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/4. FR11-report.md'
+
+Ran terminal command: git diff --stat -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/4. FR11-report.md'
+
+FR-11 đã được chuyển sang **Step B - Boundary Value Analysis**.
+
+Đã cập nhật:
+
+- `Domain-testing-report.md`
+  - Ghi nhận Gate A FR-11 được bạn review ngày **2026-10-19**.
+  - Không có correction hoặc domain edge bị thiếu.
+  - Các class `FR11-EC-01` đến `FR11-EC-07` chuyển sang `Approved`.
+
+- `Boundary-Value-Analysis-report.md`
+  - Bổ sung phần BVA cho FR-11.
+  - Boundary order count:
+    - `0` orders — LB.
+    - `1` order — alpha/nominal boundary.
+    - `2+` orders — multiple-order class.
+    - Maximum order count/pagination — `Unresolved`.
+  - Ghi rõ authentication và order status là categorical/state domains, không áp dụng numeric BVA nhân tạo.
+  - Bổ sung 3 BVA test cases:
+    - `BVA-TC-FR11-01`: 0 order.
+    - `BVA-TC-FR11-02`: 1 order.
+    - `BVA-TC-FR11-03`: 2+ orders.
+
+- `4. FR11-report.md`
+  - Ghi lại nội dung Step B riêng cho FR-11.
+  - Ghi nhận các boundary chưa xác định.
+  - Đặt trạng thái Gate B là **Ready for student review; not yet approved**.
+
+Các BVA test case FR-11 hiện chưa thực thi vì chưa có UI evidence. Mình dừng tại **Gate B**. Bạn hãy review:
+
+1. Boundary `0/1/2+` orders.
+2. Expected output của empty history và populated history.
+3. Việc không tạo numeric boundary cho authentication/status.
+4. Có UI page-size, order-ID constraint hoặc boundary nào khác cần bổ sung không.
+```
+"
+
+
+# Entry Log 18 - 00:26 - 20/10/2026
+
+Model used: Auto copilot
+
+Prompt: "
+Cảm ơn bạn, tôi đã có UI Evidence cho FR-11, bạn hãy kiểm tra các tên ảnh là được rồi nhé - không cần đọc ảnh đâu - vì tôi đã xác minh rồi. 
+Bạn hãy giúp tôi điền vào các report nhé. Sau đó liệu ta có thể chuyển sang Step C của Fr-11 chưa nhỉ ?
+"
+
+AI's Answer: 
+"
+```text
+Mình sẽ chỉ kiểm tra tên file trong thư mục evidence, không mở/đọc nội dung ảnh như bạn yêu cầu. Sau đó mình sẽ đối chiếu tên ảnh với 5 BVA case FR-11, cập nhật các report và dừng tại Gate C; Step C chỉ bắt đầu sau khi Gate B được bạn duyệt.
+
+Find files matching `**/Submission/reports/screenshots/FR-11/*`
+
+Read , lines 100 to 220
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md",
+  "view_range": [
+    100,
+    220
+  ]
+}
+
+Read , lines 50 to 90
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md",
+  "view_range": [
+    50,
+    90
+  ]
+}
+
+Read , lines 1 to 160
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Process/4. FR11-report.md",
+  "view_range": [
+    1,
+    160
+  ]
+}
+
+Đã xác nhận đúng 7 tên evidence trong `Submission/reports/screenshots/FR-11/`: 3 case cardinality, 1 missing/invalid token, và 2 ảnh ownership của User A/User B; ngoài ra có 1 ảnh multi-order thể hiện supported status. Mình sẽ dùng tên file làm evidence link, không suy diễn thêm nội dung ảnh, cập nhật BVA execution và FR-11 process report, rồi dừng tại Gate B.
+
+Edit , 
+
+Ran terminal command: git diff --check -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/4. FR11-report.md'
+
+Ran terminal command: git status --short -- 'HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-11' 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/4. FR11-report.md'
+
+Tên evidence đã được ghi vào report và format đã pass. Ba BVA case cardinality được đánh dấu Passed theo xác nhận của bạn; các ảnh token/ownership được ghi là additional evidence để trace Step C. Theo STOP rule, chưa chuyển sang Step C trước khi Gate B được bạn duyệt.
+
+Ask User
+Completed with input: {
+  "message": "FR-11 Step B đã được cập nhật với tên 7 UI evidence. Bạn hãy review và xác nhận Gate B: boundary `0/1/2+` orders, expected empty/one/multiple output, và việc authentication/status là state/categorical domain không có numeric BVA. Sau khi Gate B được duyệt, ta sẽ chuyển sang Step C thiết kế và thực thi test case.",
+  "requestedSchema": {
+    "properties": {
+      "gate_b_result": {
+        "type": "string",
+        "title": "Kết quả review Gate B - FR-11",
+        "oneOf": [
+          {
+            "const": "approved",
+            "title": "Duyệt BVA và chuyển sang Step C"
+          },
+          {
+            "const": "needs_changes",
+            "title": "Cần chỉnh sửa boundary hoặc expected output"
+          },
+          {
+            "const": "needs_evidence",
+            "title": "Cần bổ sung evidence hoặc xác minh thêm"
+          }
+        ],
+        "default": "approved"
+      },
+      "corrections": {
+        "type": "string",
+        "title": "Correction hoặc boundary cần bổ sung",
+        "description": "Nếu không có, ghi 'Không có'."
+      }
+    }
+  }
+}
+
+Gate B FR-11 đã được bạn duyệt ngày 2026-10-19, không có correction. Mình sẽ ghi nhận approval vào hai report FR-11; sau đó FR-11 đủ điều kiện chuyển sang Step C, nhưng vẫn dừng ở ranh giới giữa hai step theo guideline.
+
+Edit , 
+
+Ran terminal command: git diff --check -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/4. FR11-report.md'
+
+Ran terminal command: git status --short -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/4. FR11-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-11'
+
+Đã ghi nhận tên các UI evidence FR-11 mà bạn cung cấp. Mình **không đọc nội dung ảnh**, chỉ dùng tên file để liên kết evidence trong report.
+
+Đã cập nhật:
+
+- `Boundary-Value-Analysis-report.md`
+- `4. FR11-report.md`
+
+### Các BVA case FR-11 đã ghi nhận
+
+| Case | Evidence | Status |
+|---|---|---|
+| `BVA-TC-FR11-01` — 0 orders | `FR-11-03-empty.png` | Passed |
+| `BVA-TC-FR11-02` — 1 order | `FR-11-01-exactOneOrder.png` | Passed |
+| `BVA-TC-FR11-03` — 2+ orders | `FR-11-02-multiOrder.png` | Passed |
+
+Evidence bổ sung cũng đã được liên kết:
+
+- `FR-11-02-multiOrderSupported.png`
+- `FR-11-04-missingOrInvalidToken.png`
+- `FR11-05-userAOrders.png`
+- `FR11-05-userBOrders.png`
+
+### Gate B FR-11
+
+Bạn đã duyệt Gate B ngày **2026-10-19**, với:
+
+- Boundary `0/1/2+ orders`: approved.
+- Expected output của empty/one/multiple order: approved.
+- Authentication và status được giữ là categorical/state domains.
+- Maximum order count/pagination và order-ID range: vẫn `Unresolved`.
+- Correction: **Không có**.
+
+Các report đã qua `git diff --check`.
+
+## Có thể chuyển sang Step C chưa?
+
+**Có. FR-11 hiện đủ điều kiện chuyển sang Step C.**
+
+Ở Step C tiếp theo, mình sẽ thiết kế và ghi execution cho các test case:
+
+- Missing/invalid token.
+- Empty order history.
+- Exactly one order.
+- Multiple orders.
+- Supported order statuses.
+- Ownership isolation giữa User A và User B.
+
+Theo STOP rule, mình chưa tự bắt đầu Step C trong lượt này.
+```"
+
+```
+# Entry Log 19 - 00:28 - 20/10/2026
+
+Model used: Auto copilot
+
+Prompt: "Cảm ơn bạn, vậy chúng ta sang Step C của FR-11 luôn nhé"
+
+AI's Answer: "
+```text
+Mình sẽ dùng đúng các evidence filename bạn đã xác minh để thiết kế và ghi nhận Step C FR-11, không đọc nội dung ảnh. Mình sẽ bổ sung các test case độc lập cho empty/one/multiple orders, status, missing/invalid token và ownership; sau đó cập nhật execution summary và dừng tại Gate C để bạn review.
+
+Read , lines 1 to 135
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md",
+  "view_range": [
+    1,
+    135
+  ]
+}
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Process/4. FR11-report.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Read , lines 1 to 80
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/bug-report.md",
+  "view_range": [
+    1,
+    80
+  ]
+}
+
+Read , lines 105 to 145
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md",
+  "view_range": [
+    105,
+    145
+  ]
+}
+
+Edit , 
+
+Ran terminal command: git diff --check -- 'HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md' 'HW#2-Prompt#1-general-information1/Process/4. FR11-report.md'
+
+Ran terminal command: git status --short -- 'HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md' 'HW#2-Prompt#1-general-information1/Process/4. FR11-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-11'
+
+Step C FR-11 đã được thiết kế và ghi nhận execution dựa trên các evidence filename bạn đã cung cấp.
+
+Đã cập nhật:
+
+- `test-case-report.md`
+- `4. FR11-report.md`
+
+### Các test case FR-11
+
+| Test case | Mục tiêu | Status |
+|---|---|---|
+| `TC-FR11-001` | Hiển thị empty history khi user có 0 order | Passed |
+| `TC-FR11-002` | Hiển thị đúng 1 order | Passed |
+| `TC-FR11-003` | Hiển thị nhiều order theo descending order ID | Passed |
+| `TC-FR11-004` | Hiển thị supported status labels | Passed |
+| `TC-FR11-005` | Từ chối truy cập khi missing/invalid token | Passed |
+| `TC-FR11-006` | Cô lập order history giữa User A và User B | Passed |
+
+Execution summary hiện tại:
+
+```text
+FR-05: 6 designed, 6 executed, 6 passed
+FR-11: 6 designed, 6 executed, 6 passed
+Tổng: 12 designed, 12 executed, 12 passed
+```
+
+Không có failed case hoặc bug ID được tạo. `git diff --check` đã pass.
+
+## Gate C FR-11
+
+Hiện trạng là:
+
+```text
+Ready for student review; not yet approved
+```
+
+Bạn hãy review:
+
+- Objective của 6 test case.
+- Preconditions và test data.
+- Steps.
+- Expected/actual result.
+- Evidence links.
+- Việc gộp missing token và invalid token trong `TC-FR11-005` bằng Data Matrix.
+
+Sau khi bạn xác nhận Gate C, FR-11 mới chuyển sang Step D.
+```
+"
+```
+
+# Entry Log 20 - 00:35 - 20/10/2026
+
+Prompt: "Tôi đồng ý - approve. Ta sang Step D của FR-11 nhé"
+
+AI's Answer: "
+```text
+Gate C FR-11 đã được bạn approve. Theo quy định Step D, mình có thể ghi nhận kết quả “0 confirmed bugs” và cấu trúc phần FR-11, nhưng không được tự điền Bug Description/Root Cause hoặc tự chấm verdict AI Audit/AI Critique thay bạn. Mình sẽ kiểm tra các report hiện có, cập nhật phần Step D không chứa nội dung student-owned, rồi xin phần review thủ công cần thiết để hoàn thiện audit.
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/9.(draft)AI-Audit-Report.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Read , lines 1 to 120
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/10.(draft)AI-Critique.md",
+  "view_range": [
+    1,
+    120
+  ]
+}
+
+Read , lines 1 to 80
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/bug-report.md",
+  "view_range": [
+    1,
+    80
+  ]
+}
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Process/4. FR11-report.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Mình sẽ ghi nhận Gate C FR-11 là Approved và cập nhật Step D ở mức kết quả kiểm thử: không có failed case/confirmed bug. Phần AI Audit/AI Critique sẽ giữ đúng quyền sở hữu của bạn; mình không tự điền verdict, reasoning hoặc student fix khi bạn chưa cung cấp review thủ công.
+
+Edit , 
+
+Ran terminal command: git diff --check -- 'HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md' 'HW#2-Prompt#1-general-information1/Process/4. FR11-report.md'
+
+Ran terminal command: git status --short -- 'HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md' 'HW#2-Prompt#1-general-information1/Process/4. FR11-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/bug-report.md'
+
+Step D FR-11 đã được bắt đầu và Gate C đã được ghi nhận là **Approved** ngày **2026-10-19**, không có correction.
+
+Đã cập nhật:
+
+- `test-case-report.md`
+  - Gate C FR-11: Approved.
+  - 6 test case đều Passed.
+  - Không có failed case hoặc bug ID.
+
+- `4. FR11-report.md`
+  - Bổ sung Step D.
+  - Confirmed FR-11 bugs: `0`.
+  - Không tạo Bug Description hoặc Root Cause Analysis vì không có bug được xác nhận.
+  - Ghi rõ phần AI Audit và AI Critique là phần bạn phải review/điền thủ công.
+
+### Trạng thái Step D
+
+| Nội dung | Trạng thái |
+|---|---|
+| Bug reporting | Hoàn tất với `0` confirmed bugs |
+| AI Audit verdict/reasoning/student fix | Chờ bạn review thủ công |
+| AI Critique | Chờ bạn viết/review thủ công |
+
+Các file cần bạn hoàn thiện:
+
+- `9.(draft)AI-Audit-Report.md`
+- `10.(draft)AI-Critique.md`
+
+`git diff --check` đã pass.
+```
+"
+# Entry Log 21

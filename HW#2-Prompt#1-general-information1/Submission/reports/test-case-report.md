@@ -19,6 +19,12 @@
 | E-FR05-04 | `Web product listing/search route` | `Search `xyz-no-product-999` displays no product card.` | [FR05-04-searchNoResult.png](./screenshots/FR-05/FR05-04-searchNoResult.png) |
 | E-FR05-05 | `Web product listing/search route` | `Search `iPhone 15` displays one product card and the count text shows one product.` | [FR05-05-searchOneResult.png](./screenshots/FR-05/FR05-05-searchOneResult.png) |
 | E-FR05-06 | `Web product listing/search route` | `Search `1` displays two product cards and the count text shows two products.` | [FR05-06-searchTwo+Result.png](./screenshots/FR-05/FR05-06-searchTwo+Result.png) |
+| E-FR11-01 | `Web profile/order-history route` | `One-order history state was supplied and verified by the student.` | [FR-11-01-exactOneOrder.png](./screenshots/FR-11/FR-11-01-exactOneOrder.png) |
+| E-FR11-02 | `Web profile/order-history route` | `Multiple-order history state was supplied and verified by the student.` | [FR-11-02-multiOrder.png](./screenshots/FR-11/FR-11-02-multiOrder.png) |
+| E-FR11-03 | `Web profile/order-history route` | `Empty-order history state was supplied and verified by the student.` | [FR-11-03-empty.png](./screenshots/FR-11/FR-11-03-empty.png) |
+| E-FR11-04 | `Web profile/order-history route` | `Supported-status evidence was supplied and verified by the student.` | [FR-11-02-multiOrderSupported.png](./screenshots/FR-11/FR-11-02-multiOrderSupported.png) |
+| E-FR11-05 | `Web profile/order-history route` | `Missing/invalid-token state was supplied and verified by the student.` | [FR-11-04-missingOrInvalidToken.png](./screenshots/FR-11/FR-11-04-missingOrInvalidToken.png) |
+| E-FR11-06 | `GET /api/orders/my-orders` | `User A and User B order-history evidence was supplied and verified by the student.` | [FR11-05-userAOrders.png](./screenshots/FR-11/FR11-05-userAOrders.png), [FR11-05-userBOrders.png](./screenshots/FR-11/FR11-05-userBOrders.png) |
 
 ## 2. FR-05 - Product listing and search
 
@@ -58,8 +64,8 @@ corresponding evidence was supplied.
 
 See [Domain-testing-report.md](./main%20reports%20%28need%20md%20%2B%20pdf%29/Domain-testing-report.md), section 2.
 
-Draft domain cases: `DT-FR11-01` through `DT-FR11-05`. These remain subject
-to Gate A review.
+Domain cases: `DT-FR11-01` through `DT-FR11-05`; Gate A was approved on
+2026-10-19.
 
 ### B. BVA
 
@@ -69,7 +75,16 @@ See [Boundary-Value-Analysis-report.md](./main%20reports%20%28need%20md%20%2B%20
 
 | ID | Objective/title (Action + Function + Condition) | Preconditions | Test data | Steps (≤15) | Expected | Actual | Status | Evidence | Bug ID | Cleanup |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| TC-FR11-001 | `[To be completed]` | `[To be completed]` | `[To be completed]` | `[Steps]` | `[Observable result]` | `[To be executed]` | `Designed` | `[Link/N/A]` | `[N/A]` | `[To be completed]` |
+| TC-FR11-001 | Display Empty Order History for a User with Zero Orders | User A is authenticated; order-history route is available. | User A with 0 orders. | 1. Sign in as User A. 2. Open the profile/order-history route. 3. Observe the order-history panel. | The order-history panel displays the empty-order message and no order row. | Student-verified evidence shows the empty-order state. | Passed | [FR-11-03-empty.png](./screenshots/FR-11/FR-11-03-empty.png) | N/A | Sign out; no order data changed. |
+| TC-FR11-002 | Display One Order in Order History for a User with One Order | User A is authenticated; exactly one own order exists. | User A with 1 own order. | 1. Sign in as User A. 2. Open the profile/order-history route. 3. Observe the order row. | One order row displays its ID, date, total, and translated status. | Student-verified evidence shows the one-order history state. | Passed | [FR-11-01-exactOneOrder.png](./screenshots/FR-11/FR-11-01-exactOneOrder.png) | N/A | Sign out; no order data changed. |
+| TC-FR11-003 | Display Multiple Orders in Descending Order for a User with Multiple Orders | User A is authenticated; at least two own orders exist. | User A with 2+ own orders. | 1. Sign in as User A. 2. Open the profile/order-history route. 3. Observe all order rows and their order IDs. | Multiple own orders are displayed in descending order ID order, with ID, date, total, and status fields. | Student-verified evidence shows the multiple-order history state. | Passed | [FR-11-02-multiOrder.png](./screenshots/FR-11/FR-11-02-multiOrder.png) | N/A | Sign out; no order data changed. |
+| TC-FR11-004 | Display Supported Status Labels in Order History for Orders with Supported Statuses | User A is authenticated; orders with supported statuses exist. | `pending`, `confirmed`, `shipping`, `delivered`, or `canceled` order statuses. | 1. Sign in as User A. 2. Open the profile/order-history route. 3. Observe the status labels for the available orders. | Each supported status is displayed using its corresponding Vietnamese label. | Student-verified evidence covers supported order-status display. | Passed | [FR-11-02-multiOrderSupported.png](./screenshots/FR-11/FR-11-02-multiOrderSupported.png) | N/A | Sign out; no order data changed. |
+| TC-FR11-005 | Reject Order History Access without a Valid Token | Profile route is available; no persistent order data change is required. | Data Matrix: missing token; invalid token. | 1. Remove the stored token or use an invalid token. 2. Open/reload the profile/order-history route. 3. Observe the authentication state and order-history request result. | The unauthenticated state is shown and the order-history request does not return order history. | Student-verified evidence shows the missing/invalid-token state. | Passed | [FR-11-04-missingOrInvalidToken.png](./screenshots/FR-11/FR-11-04-missingOrInvalidToken.png) | N/A | Remove invalid token; sign in again only if further testing is needed. |
+| TC-FR11-006 | Isolate Order History by User for Two Authenticated Users | User A and User B exist; each has at least one order; order-history endpoint is available. | User A orders versus User B orders. | 1. Sign in as User A and open order history. 2. Record the returned order IDs/user IDs. 3. Sign out. 4. Sign in as User B and open order history. 5. Record the returned order IDs/user IDs. 6. Compare both result sets. | User A receives only User A orders; User B receives only User B orders; neither response exposes the other user's order. | Student-verified evidence shows separate User A and User B histories. | Passed | [FR11-05-userAOrders.png](./screenshots/FR-11/FR11-05-userAOrders.png), [FR11-05-userBOrders.png](./screenshots/FR-11/FR11-05-userBOrders.png) | N/A | Sign out; no order data changed. |
+
+**Gate C status:** Approved by the student on 2026-10-19. The six FR-11 cases
+were designed and recorded as passed from the student-verified evidence. No
+failed case or bug ID was created.
 
 ## 4. FR-19 - Admin user management
 
@@ -114,22 +129,22 @@ See [Boundary-Value-Analysis-report.md](./main%20reports%20%28need%20md%20%2B%20
 | Feature | Designed | Executed | Passed | Failed | Not yet executed |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | FR-05 | 6 | 6 | 6 | 0 | 0 |
-| FR-11 | 0 | 0 | 0 | 0 | 0 |
+| FR-11 | 6 | 6 | 6 | 0 | 0 |
 | FR-19 | 0 | 0 | 0 | 0 | 0 |
 | FR-20 subsection | 0 | 0 | 0 | 0 | 0 |
-| **Total** | **6** | **6** | **6** | **0** | **0** |
+| **Total** | **12** | **12** | **12** | **0** | **0** |
 
 ## 7. Bugs and traceability
 
-- Confirmed bugs: `0` based on the six supplied screenshots; loading and error
-  states were not executed.
+- Confirmed bugs: `0` for the executed FR-05 and FR-11 cases; no failed case
+  or student-confirmed bug was reported.
 - Bug report: [bug-report.md](./bug-report.md)
 - Failed cases require real screenshot evidence and a bug ID where applicable.
 
 ## 8. Limitations and not-yet-executed work
 
-- Loading state and API error state were not included in the supplied six
-  screenshots, so no execution verdict is recorded for those additional
-  behaviors.
+- FR-05 loading and API error states remain unexecuted.
+- FR-11 maximum order count/pagination remains unresolved; no evidence was
+  supplied for an upper cardinality boundary.
 - Device/OS, exact backend URL, and execution timestamps were not visible in
   the supplied screenshots.
