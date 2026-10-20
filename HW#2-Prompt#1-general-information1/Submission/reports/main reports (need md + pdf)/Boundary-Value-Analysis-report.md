@@ -171,8 +171,9 @@ Additional FR-11 evidence filenames supplied by the student:
 
 ### BVA rules and boundary analysis
 
-User-list cardinality is an observable count domain with classes `0`, `1`,
-and `2+` users. No maximum list size or pagination limit is specified.
+Customer-user-list cardinality is an observable count domain with classes `0`,
+`1`, and `2+` customer users, while the logged-in admin remains a baseline
+record. No maximum list size or pagination limit is specified.
 
 Target user identity has an observed integer-ID representation, but no
 user-facing minimum/maximum or malformed-ID contract is specified. Therefore
@@ -185,19 +186,19 @@ verification targets.
 
 | BVA ID | Variable/domain | LB | UB | Alpha | Nominal | Boundary points | Expected observable output | Evidence | Review |
 | --- | --- | ---: | --- | ---: | --- | --- | --- | --- | --- |
-| BVA-FR19-01 | User-list count | 0 users | Unresolved | 1 user | 1 listed user | 0, 1, 2+ users | At 0, an empty-list state is observable. At 1, one user is listed. At 2+, multiple users are listed and password values are absent. | BVA-FR19-E-01 through BVA-FR19-E-04 | Pending |
+| BVA-FR19-01 | Customer-user-list count | 0 customer users | Unresolved | 1 customer user | 1 listed customer user | 0, 1, 2+ customer users | At 0, the admin baseline is listed with no customer user. At 1, one customer user is listed. At 2+, multiple customer users are listed and password values are absent. | BVA-FR19-E-01 through BVA-FR19-E-04 | Pending |
 | BVA-FR19-02 | Target user ID | Unresolved | Unresolved | 1 integer ID | Existing other-user ID | Existing ID; current-admin ID; absent ID; malformed ID | Existing other-user ID triggers the delete flow; current-admin, absent, and malformed IDs require observed protection/error behavior. | BVA-FR19-E-02 through BVA-FR19-E-04 | Pending |
 
 ### Boundary Value Test Cases
 
 | Test ID | Variable varied | Input/controlled data | Other variables at nominal values | Expected observable result | Actual result | Status | Traceability |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| BVA-TC-FR19-01 | User-list count | Admin with 0 users in the list | Admin authentication; user-management route available | Empty user-list state is observable. | `[To be executed]` | Not yet executed | FR19-EC-01/04, BVA-FR19-01 |
-| BVA-TC-FR19-02 | User-list count | Admin with exactly 1 listed user | Admin authentication; one valid user record | One user is listed and password is not exposed. | `[To be executed]` | Not yet executed | FR19-EC-01/05, BVA-FR19-01 |
-| BVA-TC-FR19-03 | User-list count | Admin with 2+ listed users | Admin authentication; multiple valid user records | Multiple users are listed and password values are absent. | `[To be executed]` | Not yet executed | FR19-EC-01/05, BVA-FR19-01 |
-| BVA-TC-FR19-04 | Target user ID | Existing other-user integer ID | Admin authentication; target is not current admin | The selected other user is deleted and the refreshed list no longer contains that user. | `[To be executed]` | Not yet executed | FR19-EC-01/06, BVA-FR19-02 |
-| BVA-TC-FR19-05 | Target user ID | Current-admin integer ID | Admin authentication; no other target variation | Current administrator remains; protection/error behavior is recorded. | `[To be executed]` | Not yet executed | FR19-EC-01/07, BVA-FR19-02 |
-| BVA-TC-FR19-06 | Target user ID | Absent integer ID or malformed ID | Admin authentication; one invalid identifier only | Error/no-op behavior is recorded without deleting a valid user. | `[To be executed]` | Not yet executed | FR19-EC-08, BVA-FR19-02 |
+| BVA-TC-FR19-01 | Customer-user-list count | Admin with 0 customer users | Admin authentication; user-management route available | Admin baseline remains listed and no customer user is listed. | UI evidence filename supplied by student. | Passed | FR19-EC-01/04, BVA-FR19-01; [FR-19-01-zeroUser.png](../screenshots/FR-19/FR-19-01-zeroUser.png) |
+| BVA-TC-FR19-02 | Customer-user-list count | Admin with exactly 1 customer user | Admin authentication; one valid customer user record | Admin and one customer user are listed; password is not exposed. | UI evidence filename supplied by student. | Passed | FR19-EC-01/05, BVA-FR19-01; [FR-19-02-oneUser.png](../screenshots/FR-19/FR-19-02-oneUser.png) |
+| BVA-TC-FR19-03 | Customer-user-list count | Admin with 2+ customer users | Admin authentication; multiple valid customer user records | Admin and multiple customer users are listed; password values are absent. | UI evidence filename supplied by student. | Passed | FR19-EC-01/05, BVA-FR19-01; [FR-19-03-multipleUser.png](../screenshots/FR-19/FR-19-03-multipleUser.png) |
+| BVA-TC-FR19-04 | Target user ID | Existing other-user integer ID `3` | Admin authentication; target is not current admin | The selected other user is deleted and the refreshed list no longer contains that user. | UI evidence filename supplied by student. | Passed | FR19-EC-01/06, BVA-FR19-02; [FR-19-04-delUserID=3.png](../screenshots/FR-19/FR-19-04-delUserID=3.png) |
+| BVA-TC-FR19-05 | Target user ID | Current-admin integer ID | Admin authentication; no other target variation | Current administrator remains in the user list and current admin access is protected. | UI shows deletion success; after refresh admin is absent from the list while the existing session remains active. | Failed | FR19-EC-01/07, BVA-FR19-02; [FR-19-05-delAdminUserSuccessfully.png](../screenshots/FR-19/FR-19-05-delAdminUserSuccessfully.png); `BUG-FR19-001` |
+| BVA-TC-FR19-06 | Target user ID | Absent integer ID and malformed IDs | Admin authentication; one invalid identifier per request | Invalid identifiers produce an error or defined no-op response without false success. | Requests return `200 OK` with `{"message":"User deleted"}` for absent/malformed IDs; valid user list remains unchanged. | Failed | FR19-EC-08, BVA-FR19-02; [FR-19-06-deleteInvalidUser.md](../screenshots/FR-19/FR-19-06-deleteInvalidUser.md); `BUG-FR19-002` |
 
 ### Boundary limitations
 
@@ -212,7 +213,7 @@ verification targets.
 
 | Review item | Status | Student correction/confirmation |
 | --- | --- | --- |
-| Every justified ordered domain has LB/UB/alpha | Ready for student review | `[To be completed]` |
-| Unspecified limits are not invented | Ready for student review | `[To be completed]` |
-| One-variable-at-a-time constraint satisfied | Ready for student review | `[To be completed]` |
-| Gate B approved before Step C | Waiting for student review | `[To be completed]` |
+| Every justified ordered domain has LB/UB/alpha | Approved | `Student approved on 2026-10-20; no corrections; 0/1/2+ user-list boundary documented` |
+| Unspecified limits are not invented | Approved | `Student approved on 2026-10-20; list size/pagination and user-ID range remain unresolved` |
+| One-variable-at-a-time constraint satisfied | Approved | `Student approved on 2026-10-20; each case varies one domain only` |
+| Gate B approved before Step C | Approved | `Student approved on 2026-10-20; no corrections` |

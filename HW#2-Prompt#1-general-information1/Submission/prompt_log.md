@@ -2723,4 +2723,837 @@ Các file cần bạn hoàn thiện:
 `git diff --check` đã pass.
 ```
 "
-# Entry Log 21
+# Entry Log 21 - 13h09 - 20/10/2026
+
+Model used: "Auto copilot"
+Prompt: "Cảm ơn bạn, vậy ta tiếp tục với (thông tin: ## 3. FR-19 - Admin user management) để bắt đầu Step B ### Step B: Boundary Value Analysis (BVA) của FR-19 nhé"
+
+AI's Answer: "
+```text
+Mình sẽ kiểm tra Gate A và evidence/source của FR-19 trước, đặc biệt các boundary về số lượng user và identifier. Sau đó mình sẽ bổ sung BVA cho FR-19 vào report chung và report riêng, nhưng sẽ dừng tại Gate B để bạn review trước khi sang Step C.
+
+Read , lines 120 to 175
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md",
+  "view_range": [
+    120,
+    175
+  ]
+}
+
+Read , lines 500 to 635
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/backend/server.js",
+  "view_range": [
+    500,
+    635
+  ]
+}
+
+Read , lines 35 to 175
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-admin/src/App.jsx",
+  "view_range": [
+    35,
+    175
+  ]
+}
+
+"Read" failed
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Process/5. FR19-report.md",
+  "view_range": [
+    1,
+    160
+  ]
+}
+Tool execution failed: view_range out of bounds
+
+Search for `FR-19|user management|quản lý người dùng|xóa user|delete user|Admin`
+
+FR-19 hiện có đủ bảng Step A nhưng các class vẫn đang `Pending`, và source cho thấy hai điểm quan trọng chưa được chứng minh: authorization theo role/current-admin và giới hạn identifier. Vì bạn yêu cầu bắt đầu Step B, mình sẽ lập bản BVA dựa trên các boundary có căn cứ, giữ các hành vi chưa được source/spec xác nhận là `Unresolved`, và không tự đánh dấu Gate A là approved.
+
+Edit , 
+
+Ran terminal command: git diff --check -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/5. FR19-report.md'
+
+Ran terminal command: git diff --stat -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/5. FR19-report.md'
+
+Search for `## 5\. FR-19|BVA-FR19|Gate B review`
+
+BVA FR-19 đã được bổ sung và format đã pass. Các boundary chính là `0/1/2+ users`; user ID không có UB/LB được đặc tả nên giữ unresolved; role/current-admin là security/state targets, không giả định backend đã bảo vệ. Mình dừng tại Gate B để bạn review.
+
+Ask User
+Completed with input: {
+  "message": "Vui lòng review Gate B FR-19 trong Boundary-Value-Analysis-report.md và Process/5. FR19-report.md. Bạn xác nhận giúp: (1) boundary user-list `0/1/2+` đúng chưa; (2) giữ maximum list/pagination và user-ID range là Unresolved; (3) giữ role authorization/current-admin protection là execution targets vì source chưa chứng minh middleware kiểm tra role/current admin; (4) có boundary hoặc correction nào khác không? Chưa chuyển Step C cho đến khi Gate B được duyệt.",
+  "requestedSchema": {
+    "properties": {
+      "gate_b_result": {
+        "type": "string",
+        "title": "Kết quả review Gate B - FR-19",
+        "oneOf": [
+          {
+            "const": "approved",
+            "title": "Duyệt BVA FR-19"
+          },
+          {
+            "const": "needs_changes",
+            "title": "Cần chỉnh sửa boundary hoặc expected output"
+          },
+          {
+            "const": "needs_evidence",
+            "title": "Cần bổ sung evidence/spec trước khi duyệt"
+          }
+        ],
+        "default": "needs_changes"
+      },
+      "corrections": {
+        "type": "string",
+        "title": "Correction hoặc boundary cần bổ sung",
+        "description": "Nếu không có, ghi 'Không có'."
+      }
+    }
+  }
+}
+
+Gate B FR-19 đã được bạn approve ngày 2026-10-20, không có correction. Mình sẽ ghi nhận approval vào hai report và giữ nguyên các unresolved/security targets đã thống nhất; Step C chưa bắt đầu trong lượt này.
+
+Edit , 
+
+Ran terminal command: git diff --check -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/5. FR19-report.md'
+
+Ran terminal command: git status --short -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/5. FR19-report.md'
+
+FR-19 Step B đã hoàn tất và Gate B được bạn approve ngày **2026-10-20**, không có correction.
+
+Đã cập nhật:
+
+- `Boundary-Value-Analysis-report.md`
+- `5. FR19-report.md`
+
+### Boundary đã chốt
+
+- User-list cardinality:
+  - `0 users`
+  - `1 user`
+  - `2+ users`
+- Maximum user-list count/pagination: `Unresolved`.
+- User ID minimum/maximum: `Unresolved`.
+- Malformed identifier behavior: `Unresolved`.
+- Role authorization và current-admin protection: giữ là security/state execution targets vì source chưa chứng minh backend đã enforce các điều kiện này.
+
+### BVA cases đã thiết kế
+
+- `BVA-TC-FR19-01`: 0 users.
+- `BVA-TC-FR19-02`: 1 listed user.
+- `BVA-TC-FR19-03`: 2+ listed users.
+- `BVA-TC-FR19-04`: existing other-user ID.
+- `BVA-TC-FR19-05`: current-admin ID.
+- `BVA-TC-FR19-06`: absent/malformed ID.
+
+Các case chưa thực thi vì chưa có UI evidence. `git diff --check` đã pass.
+
+FR-19 hiện đủ điều kiện chuyển sang **Step C**, nhưng mình dừng đúng tại Gate B theo guideline.
+```
+"
+
+# Entry Log 22 - 14h36 - 20/10/2026
+
+Model used: Auto Copilot
+
+Prompt: "Bạn hãy giúp tôi viết script call api để test cho case: BVA-TC-FR19-06 với sử dụng "Absent integer ID or malformed ID" nhé.
+
+Đây là token của admin, bạn tạo ra lệnh curl test các case giúp tôi nhé (eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzkyNDc4OTc5fQ.Ke4UvM-XbdR_gJRh9nfq7qkEzByEF_Lw5Sva055Cr3k)"
+
+AI's Answer: "
+```text
+Bạn có thể chạy các lệnh dưới đây. Mình không lặp lại token trong câu trả lời; hãy nhập token khi được yêu cầu để tránh lưu token vào command history.
+
+## 1. Nhập token an toàn
+
+```bash
+read -s ADMIN_TOKEN
+echo
+```
+
+Khi terminal chờ nhập, hãy dán token Admin rồi nhấn Enter.
+
+Khai báo URL backend:
+
+```bash
+BACKEND_URL="https://orange-disco-9775gp4r5rv6c757g-3000.app.github.dev/api"
+```
+
+## 2. Lấy danh sách user trước khi test
+
+```bash
+curl -i -sS \
+  "$BACKEND_URL/admin/users" \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+```
+
+Lưu ý danh sách user hiện tại, đặc biệt các ID hợp lệ như `1`, `2`, `3`.
+
+## 3. Test absent integer ID
+
+Dùng ID số nhưng chắc chắn không tồn tại:
+
+```bash
+curl -i -sS -X DELETE \
+  "$BACKEND_URL/admin/users/999999" \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+```
+
+Cần ghi nhận:
+
+- HTTP status.
+- Response body.
+- Có thông báo lỗi hay success-shaped response hay không.
+
+## 4. Test malformed ID
+
+Dùng ID không đúng định dạng số:
+
+```bash
+curl -i -sS -X DELETE \
+  "$BACKEND_URL/admin/users/abc" \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+```
+
+Có thể test thêm một dạng malformed khác:
+
+```bash
+curl -i -sS -X DELETE \
+  "$BACKEND_URL/admin/users/1abc" \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+```
+
+## 5. Kiểm tra dữ liệu sau khi test
+
+```bash
+curl -i -sS \
+  "$BACKEND_URL/admin/users" \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+```
+
+Xác minh:
+
+- Các user hợp lệ không bị xóa.
+- Admin ID `1` vẫn còn.
+- Không có user mới hoặc thay đổi ngoài dự kiến.
+- Request `999999`, `abc` và `1abc` không làm xóa nhầm user.
+
+## 6. Ghi kết quả
+
+Bạn có thể lưu toàn bộ output vào file tạm để làm evidence:
+
+```bash
+{
+  echo "=== Before ==="
+  curl -sS \
+    "$BACKEND_URL/admin/users" \
+    -H "Authorization: Bearer $ADMIN_TOKEN"
+
+  echo
+  echo "=== Absent integer ID: 999999 ==="
+  curl -i -sS -X DELETE \
+    "$BACKEND_URL/admin/users/999999" \
+    -H "Authorization: Bearer $ADMIN_TOKEN"
+
+  echo
+  echo "=== Malformed ID: abc ==="
+  curl -i -sS -X DELETE \
+    "$BACKEND_URL/admin/users/abc" \
+    -H "Authorization: Bearer $ADMIN_TOKEN"
+
+  echo
+  echo "=== After ==="
+  curl -sS \
+    "$BACKEND_URL/admin/users" \
+    -H "Authorization: Bearer $ADMIN_TOKEN"
+} | tee /tmp/fr19-bva-06-output.txt
+```
+
+Không đưa token vào file output hoặc screenshot.
+
+## Diễn giải kết quả
+
+- `404` hoặc `400`, không thay đổi user: có thể ghi nhận là error/no-op.
+- `200` nhưng không thay đổi user: ghi nhận là no-op; cần xem đây có phù hợp expected behavior của nhóm hay không.
+- `200` và có user hợp lệ bị xóa: **Failed**, cần bạn tự viết Bug Description và Root Cause Analysis.
+- Nếu token hết hạn hoặc bị từ chối, đăng nhập lại để lấy token mới.
+
+Vì token đã được gửi trong cuộc trò chuyện, sau khi hoàn tất kiểm thử bạn nên đăng xuất hoặc tạo token mới nếu hệ thống hỗ trợ.
+```
+
+"
+```
+# Entry Log 23 - 14h48 - 20/10/2026
+
+Model used: Gemini 3.1 Pro - High
+
+Prompt: "
+```text
+Cảm ơn bạn, tôi đang test một case nhu bên dưới: 
+"
+| Test ID | Variable varied | Input/controlled data | Other variables at nominal values | Expected observable result | Actual result | Status | Traceability |
+| BVA-TC-FR19-06 | Target user ID | Absent integer ID or malformed ID | Admin authentication; one invalid identifier only | Error/no-op behavior is recorded without deleting a valid user. | `[To be executed]` | Not yet executed | FR19-EC-08, BVA-FR19-02 |"
+
+Với kết quả bao gồm dòng lệnh như ben dưới, tôi cần bạn tóm tắt nội dung và kết quả kèm theo nhận xét của các lệnh/api được gọi (có vẻ như các id không tồn tại và id sai định dạng vẫn được gọi thành công và trả về "deleted user".
+
+Dưới đây là đoạn script tôi đã dùng: "
+@BDCALM ➜ /workspaces/eshop-sut-for-HWork (main) $ BACKEND_URL="https://orange-disco-9775gp4r5rv6c757g-3000.app.github.dev/api"
+@BDCALM ➜ /workspaces/eshop-sut-for-HWork (main) $ ADMIN_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzkyNDc4OTc5fQ.Ke4UvM-XbdR_gJRh9nfq7qkEzByEF_Lw5Sva055Cr3k"
+@BDCALM ➜ /workspaces/eshop-sut-for-HWork (main) $ curl -i -sS \
+  "$BACKEND_URL/admin/users" \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+HTTP/2 200 
+date: Tue, 20 Oct 2026 07:31:19 GMT
+content-type: application/json; charset=utf-8
+content-length: 407
+cache-control: no-cache,no-store
+etag: W/"197-MR0zLSS1Z5O043x0y8p3eLHElsQ"
+expires: Thu, 01 Jan 1970 00:00:00 GMT
+pragma: no-cache
+set-cookie: .Tunnels.Relay.WebForwarding.Cookies=CfDJ8NJJuTEdEi5KqensronCVW1P7ld6o1tMK6QwXbsPwt92DfTlz2-ipBVSwTrDFjZJKit4JtbcXAr0V0Exg1iwVgg9m8HeERZtgCwgUvEfrlQqu_EzusD-B1msxxPP08vhhGKf8yQVTrqZY0LZN-7zWRtTpi_LSiAzoLZXLUagOVV62HEVoi9jdStLOOS2XVBeeLunp89CQ211X94Zf2CmQyuxx_tRjZXOJtRFGuNMcZw-rDvQ9T8J6-LVgQttc9AHhqmq51lxiExDUF6avQDfgldWlc_Wnq_90unMo-qhszBqzISPl3vd6wyJQkMokxjW2e5JmVyH7hjGyV4jLc0u4mjhSswRVwab6zgOf08X2HqK2Dag9MNscEPgj2_icFRxyOuVTKI1cbWS_pqjPsbrtHKBCcRLupjrj_o18qlQnPM8K-4S8QhWR3KdUWNpuk8aAsjgps5ebAgrimusxYgO4H_HVIDgwGCi5Or6CKBs2TFo3aSZhybuXPD50W_hNJtrAWJ_XTNc0inYNj2wlGxvnCGGlEd715bZhDxBnsyyFr1YiNakf8oQBnTgMXH2hhYJi6CzkVN7OK8yMOH-WUIl7AslLfkP7SsWf7nbja_6mhUKswp2c8BUUnRDBASgoOY1i3Y-RULtBZbg37eDVg1rA2CDxcRbzEq7u9R8n5bxr-JgWa1zmPg91xad5Htp7SHj3jP7U0qaC9iSzNoR2EAAhrNb0o3gtRVs-MvrSc9VNbtroP8nnklobebzkcMZE9HdlhhttiWDSVlCsIcczV_bE9EUk6R0ps92Qc0mdiOk4lH7ShGjQFAKDIh4NuGMcA4jz8tviGFb4bJVBrBTUkZNQKKw85jURMHNRojIUnETL-TMg6HLyf_Bgfi4EBA0Ip4-XX27H5zPrmLu9Yure9Uv93jubZxTvVYTjmK1l29BRw58KQRfJMcN_5KtcaUg7DFJ93gzOIwt6e27ZeWWMHRwAhQDWzhXOPCdD5TcYsUV-C-cltr49M9uaZswwKk56NWjPA; path=/;secure; samesite=none; Partitioned
+vary: Origin
+x-content-type-options: nosniff
+ratelimit-limit: HttpRequestRatePerPort:1500/m
+ratelimit-remaining: HttpRequestRatePerPort:1499
+ratelimit-reset: HttpRequestRatePerPort:58s
+x-report-abuse: https://msrc.microsoft.com/report/abuse
+x-ms-ratelimit-limit: 1500
+x-ms-ratelimit-remaining: 1497
+x-ms-ratelimit-used: 3
+x-ms-ratelimit-reset: 0
+x-powered-by: Express
+x-robots-tag: noindex, nofollow
+referrer-policy: same-origin
+vssaas-request-id: e36c5f65-236b-4be1-819e-d44310858ee0
+strict-transport-security: max-age=31536000; includeSubDomains
+x-served-by: tunnels-prod-rel-asse-v3-cluster
+
+[{"id":2,"name":"Test User","email":"test@eshop.com","role":"user","login_attempts":0,"locked_until":null,"shipping_address":null},{"id":4,"name":"Binh Duong 2","email":"dn0167772@gmail.com","role":"user","login_attempts":0,"locked_until":null,"shipping_address":null},{"id":5,"name":"Binh Duong 3","email":"dn0167773@gmail.com","role":"user","login_attempts":0,"@BDCALM ➜ /workspaces/eshop-sut-for-HWork (main) $ curl -i -sS -X DELETE \t-for-HWork (main) $ curl -i -sS -X DELETE \
+  "$BACKEND_URL/admin/users/999999" \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+HTTP/2 200 
+date: Tue, 20 Oct 2026 07:31:43 GMT
+content-type: application/json; charset=utf-8
+content-length: 26
+cache-control: no-cache,no-store
+etag: W/"1a-+BFCXZBji7vrbkrwyE5s2YKViik"
+expires: Thu, 01 Jan 1970 00:00:00 GMT
+pragma: no-cache
+set-cookie: .Tunnels.Relay.WebForwarding.Cookies=CfDJ8NJJuTEdEi5KqensronCVW1aM7untLBk-InyO3C1b0ukm_ZN7M_wWaA0eWSoev7MlrybSne9mar705cHl3PsD4cqKGBo2a5VnaV4PB5Bb3XBI4lGeVEL4_ckGro64QWidtaSb0Qi-jb13gaF_FXPZ86MeZUDAd9OCuYw93kH2aCBVG669WvpwgmeJzGoCSwNVlzEXRlVVPrOZaNoiTaJLeQYLVCl7XtDoQoL9nCI7o5y72qhecj4ApSncxqjP7gqmBr25M51hVgyCGD3leT-imZ_Wfs2tR9eSj-25A54c9YqF2_f3jhGBFwIZS1KwfBtsKxa59S08QjTbdcAN-SQI4WQUY3QWps18PI4gVMF68wKi277CTu0yeDX7G7PkLSG2JiYBZHlP1Q_1oV-dPS_I_nE6rZua0x38Jf8QMmyehdULtxIDiAUq6nWUY_OwIXCC3_IFn0OK7FO4pHdSZPMLenaeA00N8J42soBWpr9um53Vj6czs_sQs0-SeyTiDxlRcmplvT5RK3SHRvGgapsq4IH1AT1-ZO979umdYHToKgO_jw_oBg7dHT_PGf2R5fZNUeJCLMXlpwOzyJPAN_cQDhIL8lGZMQNQYW_w262l67y4DoB9K7ErM8lpuFADThApAHf1NdwLzd1YoPJNvr-NBWcyT5ZfmN5nP0zdS1pTvb0owPHQiM1FQBekB3EAfHLvT4JRKljrGO1PNM4_GNYvZYS3zo7e1rb-aFnWrZcIKdeWt1Q8gM7K5zhcj-Fiii7yNHtN20Y0qYQyNJwAFY1pgxZZP2mDOD9xnpfvpomEdQLBw9M1AUcN53W7AOMDF69a1xcBs2aEUF2CDPwOyU9yv3z2tYbk4RBgBtj4AyxMtKzp5FISIbnFNeDFlhVP69s24KyoB1YUaOScz6zu5K1xrWYSLKbetPrm9AY7m0uODwDXLDvoXs85Khk3DAGQBaQW0MdYFsuA4OSWjSaVr3C7wqe9f7DKOOho4mFSSCGa2HrDzoBXX_SRT-vKmqohMMK9g; path=/;secure; samesite=none; Partitioned
+vary: Origin
+x-content-type-options: nosniff
+ratelimit-limit: HttpRequestRatePerPort:1500/m
+ratelimit-remaining: HttpRequestRatePerPort:1499
+ratelimit-reset: HttpRequestRatePerPort:22s
+x-report-abuse: https://msrc.microsoft.com/report/abuse
+x-ms-ratelimit-limit: 1500
+x-ms-ratelimit-remaining: 1496
+x-ms-ratelimit-used: 4
+x-ms-ratelimit-reset: 0
+x-powered-by: Express
+x-robots-tag: noindex, nofollow
+referrer-policy: same-origin
+vssaas-request-id: 41b72eef-baf3-4e5a-a4ae-f178f5d30110
+strict-transport-security: max-age=31536000; includeSubDomains
+x-served-by: tunnels-prod-rel-asse-v3-cluster
+
+@BDCALM ➜ /workspaces/eshop-sut-for-HWork (main) $ curl -i -sS -X DELETE \ $ curl -i -sS -X DELETE \
+  "$BACKEND_URL/admin/users/abc" \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+HTTP/2 200 
+date: Tue, 20 Oct 2026 07:32:16 GMT
+content-type: application/json; charset=utf-8
+content-length: 26
+cache-control: no-cache,no-store
+etag: W/"1a-+BFCXZBji7vrbkrwyE5s2YKViik"
+expires: Thu, 01 Jan 1970 00:00:00 GMT
+pragma: no-cache
+set-cookie: .Tunnels.Relay.WebForwarding.Cookies=CfDJ8NJJuTEdEi5KqensronCVW3bHCrDhu02SBko3mGc0HGLhCPa2Qn33o4MvKGoWjUUxChl-asJBi7-tAr_prkQvdF2_EQ0CCmddJ8V7IQr7ojthF3ppmYXp0lSiD7mO56RE9BBql3h3yT4u3ywMtLDnapC9pGfYcP4G7-sArCh0znUEWDYgTmHNaehAdPskNOxnVe7VrtGR23xYlJ6-uxoiS474g02VS6M2sO7tACT7JqjEaP8qyBhCIh3gMVcXjIHKMlSUe0G3Z_f73n1ay5BCFRfmEYVt7oddHo-MtZjXPBFEgXiZ8uZ9H6B2EnQoSTH7S_pWD8s1tSSxS8dVtsroh9jRIsK9BfnjAOM2Xt79GvYxvHO7X5hgXEhyz8sxSw6ukcixNuU7f6VOzaEb9nisURXEP5KKE3K6DH1J4pELHcvlUmDfXi2mkLtJ9lMZBt68ZghIqtGKp40TGWq_HklRipBBiS5hlutfHctvK9zFZeo6dFBibOVSjGNj7f5fS59oZe7PTeRM7hNTKP1tjf_-lwK_oTcg-ngYBcfg1wX6XTgdOWdioTWUIDD3eApUbGL-rzSYEQw6x2I9DgUxe8Bftt91z5KJnknn9p0Hfj4QrPROccyXBbbS1ukpYJRHiFesyBRPfbYsiAfyiETrD0sAabuyXkTn0BoJtNlprEax_bZoQ5O-aeKwa6950UyCxecybyGkE1brFzbydB99pszDWlj8K-jDIItFMb9D-z4xPDQO1puI90m2fNWY82ubCxohoRLgsOcuPN6g5FmBGQ2UWUHz8LK5PrI87rA-MIyWfYqOEVT_IYoWS9_5i8KC3xUQ1JWsT1tyj5RYGHLh32K2whbt-njydyMkzSKLhVafdVLHfzWFJgs_lNBfuknT6jYHqD-YRwhzv0jwEG2IOgmuf8iStqfK2sRhXMETbZ7dLjqdEXUqoD008Y_GJ3kMe0p-2VRYOc81A1Q3ih_KANkQbJcLIOyUF3MeIBJnCG2EieTPkbwAoSoKGPvmCk0JE9WtA; path=/;secure; samesite=none; Partitioned
+vary: Origin
+x-content-type-options: nosniff
+ratelimit-limit: HttpRequestRatePerPort:1500/m
+ratelimit-limit: ClientConnectionsPerPort: max 1000
+ratelimit-remaining: HttpRequestRatePerPort:1499
+ratelimit-remaining: ClientConnectionsPerPort:1000
+ratelimit-reset: HttpRequestRatePerPort:49s
+x-report-abuse: https://msrc.microsoft.com/report/abuse
+x-ms-ratelimit-limit: 1500
+x-ms-ratelimit-remaining: 1497
+x-ms-ratelimit-used: 3
+x-ms-ratelimit-reset: 0
+x-powered-by: Express
+x-robots-tag: noindex, nofollow
+referrer-policy: same-origin
+vssaas-request-id: 0281cb25-9ad0-4845-9219-8e2ba9f00a89
+strict-transport-security: max-age=31536000; includeSubDomains
+x-served-by: tunnels-prod-rel-asse-v3-cluster
+
+{"message":"User deleted"}
+@BDCALM ➜ /workspaces/eshop-sut-for-HWork (main) $ 
+@BDCALM ➜ /workspaces/eshop-sut-for-HWork (main) $ curl -i -sS -X DELETE \
+  "$BACKEND_URL/admin/users/1abc" \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+HTTP/2 200 
+date: Tue, 20 Oct 2026 07:32:39 GMT
+content-type: application/json; charset=utf-8
+content-length: 26
+cache-control: no-cache,no-store
+etag: W/"1a-+BFCXZBji7vrbkrwyE5s2YKViik"
+expires: Thu, 01 Jan 1970 00:00:00 GMT
+pragma: no-cache
+set-cookie: .Tunnels.Relay.WebForwarding.Cookies=CfDJ8NJJuTEdEi5KqensronCVW1VW_AdpVLZxzlPxsm20HQYkD7q-Aiqs2Kn2mTiJmL8j7sgZA6zR9di-O-6errJ6SNmJmkLgoYhJY9bxZNXdfw1zmGFuSkkZedxGGcaBVyOONOmT8INxocINq1xUhOzxXeWyj1bsld0R6mbUt7H8yuShTAUq5GdQNxBg3nomzv50huxKVQf8QflM4WfOtMDhj22-ffcMv9q999IOTkOnXkyVXt29xDfTQE2o8YjkN-caSf8EgKONKmYUxFQW3N1avEmpAmvcH9PigeGng4ubKH187bKQTpbQfbYSbNTboNYp86z09Ok8grvNMOAzRMLRpVW5D9930vXaNkqa-JO9I478NjXDwHR1B9iU8sW05L-CuoRy4ThaPZf7ze70SMhGWEdxnrB2uuB9fNwCwavV7dq1ESCuFLwhBrXNE1zviG0Vym_1Lo4h1LSpzYpUDvihfvmwiiMjmIG587Fr7mw2PjoN0SX8yqQl-GkW2avNN212fMGEC3b_bPh93Hq_wE2IFDkZ6-ZJUjg2tr8meh30VORPe8IlpA3PvTb15l8FF1BWDpLM_L3GaUKKtQtOHPGCP3vecPvT4A_CdECuUMeVTxPMdCo6-7X6DCFEytJxEKddetuEA7zgXbiYSbezAOtBlkqrfGirzh3mJ7Dn9OkbdZ4GAz98WiTukAHiKEKBAtvFl_L4X-EFmkGPn52M2kGysQ5GWO93iyCvxZkPsCJDqDQsJPhAhB3tuiuPyWyR-klBjRhHh6g8y27YGXNnaE3vskOEbHtURe_zF8Uy2yXsOzCCIxpXrgblZg7ae6X4Nv1uDrno5Wvdi_J8iWwJ-qJVn4hyIOUCCvmP6-l1CVqOIFSlNdK_ez-bOTBoyRCHwUH8eSM6CwRslJRRPAjA0wuqOe0Rjr98SU6UccsdsRWP3jW3k01tGwULZbHDm5-QmVTOd_9Iz31XMZjgGM2sfPVma4Lmwtn8WXcTafA1TlvwO8YlIOogrDAcCxyrFHEa-Y0mA; path=/;secure; samesite=none; Partitioned
+vary: Origin
+x-content-type-options: nosniff
+ratelimit-limit: HttpRequestRatePerPort:1500/m
+ratelimit-remaining: HttpRequestRatePerPort:1499
+ratelimit-reset: HttpRequestRatePerPort:18s
+x-report-abuse: https://msrc.microsoft.com/report/abuse
+x-ms-ratelimit-limit: 1500
+x-ms-ratelimit-remaining: 1496
+x-ms-ratelimit-used: 4
+x-ms-ratelimit-reset: 0
+x-powered-by: Express
+x-robots-tag: noindex, nofollow
+referrer-policy: same-origin
+vssaas-request-id: 49ea7cd9-e6d8-4375-a98e-2663082e0041
+strict-transport-security: max-age=31536000; includeSubDomains
+x-served-by: tunnels-prod-rel-asse-v3-cluster
+
+@BDCALM ➜ /workspaces/eshop-sut-for-HWork (main) $ curl -i -sS \ork (main) $ curl -i -sS \
+  "$BACKEND_URL/admin/users" \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+HTTP/2 200 
+date: Tue, 20 Oct 2026 07:32:45 GMT
+content-type: application/json; charset=utf-8
+content-length: 407
+cache-control: no-cache,no-store
+etag: W/"197-MR0zLSS1Z5O043x0y8p3eLHElsQ"
+expires: Thu, 01 Jan 1970 00:00:00 GMT
+pragma: no-cache
+set-cookie: .Tunnels.Relay.WebForwarding.Cookies=CfDJ8NJJuTEdEi5KqensronCVW16Bs5LtiUaz2xhoCEPfdcicUBsSlJBjK58BS_wOOvxcOmIYOAeqZJ2rTVFfnRuFnTCq19Y9F3iokzDjFouTMrcFgQslf08DzrkpNrvKMJqgNDOZa4J-g1xbClf-uQqmhVdz5zlT7CYsOEcleQZXluCZWvsnQD1s1f0I-miN0oll6uMgBRa6XCsaI2ipAYiI2ToecNHuj6tMIpNLlOxhh3ry2RNBGjMOYW_QeYGwYdy_AtA7W4YznZOAzw5R9InDxVhhbgUjwo7L8dewg1k0IBT6CsduVbwI_qfGsPCCDabPXWOR_DpkQakdb4SlY7rCm7dL3RyYW60l1_DW1PiwtUVAWV1qEAPVY1wu4mWHs9Hua0VW9VvDLupWzATYUbCY0yT-DJaXrbYf7DVB9pTA7o86aN36WSSf87Ch-IwQxc50k3611vTmCMK0rgdpUkw555BxoN4nlyqOHqok07n7VH_VUJ_2lgS7zlxZH2wCf7qO3fnQ3uXOceUf5P7HzaOCv_RrkYFG4cHmeMrxcXTe8W6LQhi2qyFIkaDqN80IPsOoq_63oXvbIepXVxfXtibUXejsQjNAjlZHKFfs_aTpcAiYWB7hgYtrISKxvvQKZSPpF6wDmNTBz4KtlIbVECzUggm8FmYXQ6MiavYh9WXSZe-9Z-_eeUYJ1t5-etYLddsyhwO4KYTcLFTw1V93GSuBfrCcPxbbXOiRxVfLQXSN7yxTK8f_rwSgXHA64piUccBqFQX27UnAepaIVa7LZEVxRHfc_COGoO0rd_-FggZFbJFJpTHav0d4PuR6I_C9_vs-oOR32CwJKbz_-yYMVcDpaw1N1OTt_wY8HC8fNaWV9CiR07mQ0RNENHvvku1WiPfWn-M8yQz8zXBVpO5LaTu7pJgO4hOc6YidF5u_hNiJElDrUghVkpQq6ILya0aE6AGobPIr1jaOF6c60LKwsv05sUjkt8NCiUJ3JZoy9AxmaYzo1wngkcGwoHos2UxVfhedQ; path=/;secure; samesite=none; Partitioned
+vary: Origin
+x-content-type-options: nosniff
+ratelimit-limit: HttpRequestRatePerPort:1500/m
+ratelimit-limit: ClientConnectionsPerPort
+ratelimit-remaining: HttpRequestRatePerPort:1498
+ratelimit-reset: HttpRequestRatePerPort:20s
+x-report-abuse: https://msrc.microsoft.com/report/abuse
+x-ms-ratelimit-limit: 1500
+x-ms-ratelimit-remaining: 1497
+x-ms-ratelimit-used: 3
+x-ms-ratelimit-reset: 0
+x-powered-by: Express
+x-robots-tag: noindex, nofollow
+referrer-policy: same-origin
+vssaas-request-id: daa2b51a-9455-4bd7-b06c-df9bad650ddc
+strict-transport-security: max-age=31536000; includeSubDomains
+x-served-by: tunnels-prod-rel-asse-v3-cluster
+
+[{"id":2,"name":"Test User","email":"test@eshop.com","role":"user","login_attempts":0,"locked_until":null,"shipping_address":null},{"id":4,"name":"Binh Duong 2","email":"dn0167772@gmail.com","role":"user","login_attempts":0,"locked_until":null,"shipping_address":null},{"id":5,"name":"Binh Duong 3","email":"dn0167773@gmail.com","role":"user","login_attempts":0,
+"
+```
+"
+
+AI's Answer: "
+```text
+Quá trình thực thi test case **BVA-TC-FR19-06** phơi bày một thiết kế API có phần cẩu thả và thiếu chặt chẽ từ phía Backend, bất chấp việc hệ thống may mắn bảo toàn được dữ liệu thực tế.
+
+## Tóm tắt quá trình thực thi
+
+1. **Kiểm tra trạng thái gốc (`GET /admin/users`):** Cơ sở dữ liệu ghi nhận có 3 user hợp lệ với ID là 2, 4 và 5.
+2. **Xóa ID không tồn tại (`DELETE .../999999`):** Hệ thống chấp nhận request và trả về mã `HTTP 200 OK`.
+3. **Xóa ID hoàn toàn sai định dạng (`DELETE .../abc`):** Trái với kỳ vọng báo lỗi, hệ thống vẫn trả về `HTTP 200 OK` kèm theo thông báo khẳng định chắc nịch: `{"message":"User deleted"}`.
+4. **Xóa ID sai định dạng hỗn hợp (`DELETE .../1abc`):** Tình trạng tương tự tái diễn, API tiếp tục trả về `HTTP 200 OK`.
+5. **Nghiệm thu hệ thống (`GET /admin/users`):** Danh sách user vẫn nguyên vẹn (ID 2, 4, 5). Hành vi xóa thực tế bị vô hiệu (no-op).
+
+**Đánh giá trạng thái (Status):** **FAILED**
+Kỳ vọng của test case là hệ thống phải ghi nhận lỗi (Error) nhưng API lại trả về phản hồi thành công (200 OK).
+
+## Phân tích rủi ro hệ thống
+
+Việc API không xóa nhầm user chỉ là kết quả của việc cơ sở dữ liệu ngầm từ chối câu lệnh truy vấn vô lý, chứ không xuất phát từ việc logic code được kiểm soát an toàn.
+
+* **Thủng tầng Input Validation:** Backend không thực hiện xác thực kiểu dữ liệu (type casting/validation) ở tầng controller. Một endpoint đạt chuẩn phải ngay lập tức chặn các chuỗi như `abc` hoặc `1abc` và bẻ lái thành `400 Bad Request` trước khi request kịp chạm đến tầng xử lý dữ liệu.
+* **Tạo dữ liệu rác bằng False Positive:** Việc trả về `HTTP 200` và `{"message":"User deleted"}` cho mọi trường hợp lỗi là một vi phạm nghiêm trọng về tính toàn vẹn tín hiệu. Các client (như frontend, hệ thống log, hoặc các microservice khác) sẽ bị đánh lừa rằng thao tác đã diễn ra thành công, dẫn đến tình trạng sai lệch giao diện hoặc làm hỏng các luồng xử lý dây chuyền.
+* **Vi phạm nguyên tắc RESTful:** Thao tác DELETE nhắm vào một định danh không tồn tại cần phản hồi `404 Not Found`. Trong kịch bản hệ thống được cố tình thiết kế theo hướng Idempotent (coi việc xóa một thứ không tồn tại là không có lỗi), API vẫn bắt buộc phải ném lỗi `400` cho các định dạng ID sai cú pháp.
+
+Nhiều khả năng ở dưới tầng Data Access, developer đang bắt lỗi bằng một khối `try-catch` lỏng lẻo, hoặc không hề kiểm tra số lượng bản ghi thực tế bị tác động (rows affected = 0) sau khi chạy câu lệnh DELETE, dẫn đến việc mặc định gán mọi kết quả không văng lỗi runtime là "Thành công".
+```
+
+"
+
+# Entry log 24 - 15h00 - 20/10/2026
+
+Model used: Auto copilot
+
+Prompt: "
+Chào bạn, tôi đã cung cấp các UI Evidence kèm theo script evidence ở một test case dành cho FR-19 ở folder "HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-19"
+
+Yêu cầu: Bây giò tôi cần bạn chỉnh sửa các tài liệu liên quan đến FR-19 và kiểm tra thông tin xem tôi có thiếu bất kỳ thông tin. bước nào nữa trước khi ta sang bước C nhé.
+
+Lưu ý: ở FR-19-05-delAdminUserSuccessfully đang có kết quả là xóa thành công ở UI.
++ Tuy nhiên tôi vẫn dùng tài khoản admin bình thường (refresh trang mà không bị văng ra ngoài/bắt đăng nhập lại).
++ Khi tôi refres/call API trả về danh sách các user thì admin user vừa bị bấm nút xóa, không xuất hiện (khá kỳ lạ).
+- Lưu ý 2: FR-19-06-deleteInvalidUser khi tôi xóa các user kèm theo invalid id (không tồn tại/sai định dạng) thì hệ thống vẫn trả về thành công (Bạn có thể xem ở file mà đã mô tả minh chứng: HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-19/FR-19-06-deleteInvalidUser.md)
+- Lưu ý 3: Bạn không càn phải đọc toàn bộ ảnh trong folder FR-19. Chỉ cần đọc tên file ảnh là được. 
++ Đối với file: "FR-19-01-zeroUser.png" ta sẽ chú thích là zero có nghĩa là số lượng user là khách hàng, tương ứng với các case tiếp theo là one và multiple
+"
+
+AI's Answer: "
+```text
+Mình sẽ chỉ liệt kê tên evidence FR-19 và đọc file mô tả `FR-19-06-deleteInvalidUser.md` vì đây là script evidence được bạn yêu cầu đối chiếu. Mình sẽ cập nhật BVA/test-case reports với kết quả thực tế, đánh dấu các case cần Step D bug report, nhưng không tự viết Bug Description hoặc Root Cause Analysis thay bạn.
+
+Find files matching `**/Submission/reports/screenshots/FR-19/*`
+
+Read , lines 1 to 220
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-19/FR-19-06-deleteInvalidUser.md",
+  "view_range": [
+    1,
+    220
+  ]
+}
+
+Read , lines 155 to 225
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md",
+  "view_range": [
+    155,
+    225
+  ]
+}
+
+Read , lines 78 to 115
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md",
+  "view_range": [
+    78,
+    115
+  ]
+}
+
+"Read" failed
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Process/5. FR19-report.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+Tool execution failed: Path does not exist
+
+Evidence filenames cho FR-19 đã được xác định. Có hai điểm cần chỉnh trước Step C: `zeroUser` thực tế là **0 customer users** nhưng vẫn có admin baseline, và hai case delete cần ghi nhận Failed với bug references do bạn mô tả rõ hành vi sai lệch. Mình sẽ kiểm tra đường dẫn report FR-19 hiện có, rồi cập nhật các report mà không viết thay phần Bug Description/Root Cause.
+
+Find files matching `**/*FR19*`
+
+Find files matching `**/Process/*`
+
+Ran terminal command: git status --short -- 'HW#2-Prompt#1-general-information1/Process' 'HW#2-Prompt#1-general-information1/Submission/reports/screenshots/FR-19' 'HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/bug-report.md'
+
+Read , lines 1 to 220
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Process/5.FR19-report.md",
+  "view_range": [
+    1,
+    220
+  ]
+}
+
+Read , lines 1 to 45
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/bug-report.md",
+  "view_range": [
+    1,
+    45
+  ]
+}
+
+Read , lines 125 to 165
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md",
+  "view_range": [
+    125,
+    165
+  ]
+}
+
+Mình sẽ cập nhật ba lớp thông tin: (1) Domain/BVA để phân biệt số **customer users** với admin baseline, (2) execution evidence/status cho 6 BVA case FR-19, và (3) test-case report với hai failed findings có bug ID tham chiếu. Mình sẽ không điền Bug Description/Root Cause vào bug report; đó là phần bạn phải viết thủ công trước khi Gate C.
+
+Edit , , 
+
+Các report đã được cập nhật, nhưng mình phát hiện cần kiểm tra lại đường dẫn Markdown vì BVA/Domain nằm trong thư mục con `main reports (need md + pdf)`. Mình sẽ sửa link evidence nếu cần và kiểm tra diff/định dạng; sau đó báo rõ các điều kiện còn thiếu trước Gate C.
+
+Search for `\]\(\.\./\.\./screenshots/FR-19`
+
+Ran terminal command: git diff --check -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/5.FR19-report.md'
+
+Edit 
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/SKILLS-Domain-Testing.md",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Search for `FR19|BVA-TC-FR19|FR-19-0`
+
+Ran terminal command: git diff --check && git status --short -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Process/5.FR19-report.md'
+Tool execution failed with exit code 2
+
+Kiểm tra cho thấy thay đổi FR-19 không có lỗi định dạng trong các file mục tiêu; các cảnh báo `git diff --check` còn lại thuộc `prompt_log.md` đã có từ trước và không do lần chỉnh sửa này. Theo STOP/Gate rules, mình chưa chuyển sang Step C vì còn hai điều kiện cần bạn xác nhận: Gate A của FR-19 vẫn đang `Pending`, và hai failed cases cần bug IDs cùng phần bug report do bạn tự viết.
+
+Ask User
+Completed with input: {
+  "message": "Bạn hãy xác nhận trạng thái trước khi bắt đầu Step C của FR-19. Mình đã cập nhật evidence/BVA và ghi nhận BVA-TC-FR19-05, BVA-TC-FR19-06 là Failed; chưa viết Bug Description hoặc Root Cause Analysis thay bạn.",
+  "requestedSchema": {
+    "properties": {
+      "gate_a_fr19": {
+        "type": "string",
+        "title": "FR-19 Gate A",
+        "description": "Xác nhận các equivalence classes, representatives và minimum domain tests của FR-19; đặc biệt cách hiểu 0 customer users với admin baseline.",
+        "oneOf": [
+          {
+            "const": "approve",
+            "title": "Approve Gate A và cho phép sang Step C"
+          },
+          {
+            "const": "revise",
+            "title": "Yêu cầu chỉnh sửa thêm trước Step C"
+          }
+        ],
+        "default": "approve"
+      },
+      "bug_records": {
+        "type": "string",
+        "title": "Bug records",
+        "description": "Chọn trạng thái hai findings cần được liên kết trong Step C.",
+        "oneOf": [
+          {
+            "const": "ready",
+            "title": "Tôi sẽ cung cấp/điền Bug ID, Bug Description và Root Cause Analysis trước Step C"
+          },
+          {
+            "const": "later",
+            "title": "Ghi nhận finding trước; hoàn thiện bug report ở Step D"
+          }
+        ],
+        "default": "ready"
+      }
+    }
+  }
+}
+
+Bạn đã approve Gate A của FR-19. Mình sẽ ghi nhận approval đó trong Domain/BVA process report; mình chưa tạo nội dung bug report vì bạn vẫn phải tự viết hai bug record. Sau cập nhật này, chỉ còn cần bạn cung cấp Bug ID/hoàn tất hai record đó trước khi mình thiết kế và ghi execution cho Step C.
+
+Edit , 
+
+Ask User
+Completed with input: {
+  "message": "Gate A đã được ghi nhận là Approved. Trước khi mình bắt đầu Step C, hãy gửi hai Bug ID bạn đã tạo trong `bug-report.md` và xác nhận bạn đã tự hoàn tất Bug Description/Root Cause Analysis cho từng finding.",
+  "requestedSchema": {
+    "properties": {
+      "admin_delete_bug_id": {
+        "type": "string",
+        "title": "Bug ID cho BVA-TC-FR19-05",
+        "description": "Ví dụ: BUG-FR19-001; phải là ID bạn đã ghi trong bug-report.md.",
+        "default": ""
+      },
+      "invalid_id_bug_id": {
+        "type": "string",
+        "title": "Bug ID cho BVA-TC-FR19-06",
+        "description": "Ví dụ: BUG-FR19-002; phải là ID bạn đã ghi trong bug-report.md.",
+        "default": ""
+      },
+      "bug_records_completed": {
+        "type": "boolean",
+        "title": "Đã hoàn tất bug records",
+        "description": "Xác nhận bạn đã tự viết Bug Description và Root Cause Analysis, không dùng nội dung do AI tạo.",
+        "default": false
+      }
+    }
+  }
+}
+
+Bạn đã cung cấp `BUG-FR19-001` và `BUG-FR19-002`, đồng thời xác nhận đã tự hoàn tất hai bug record. Mình sẽ bắt đầu đúng **Step C của FR-19**: thiết kế và ghi nhận 6 test case theo evidence đã có, gắn bug IDs cho hai case Failed, rồi dừng tại Gate C để bạn review.
+
+Read , lines 88 to 137
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/SKILLS-Domain-Testing.md",
+  "view_range": [
+    88,
+    137
+  ]
+}
+
+Read , lines 1 to 35
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md",
+  "view_range": [
+    1,
+    35
+  ]
+}
+
+Read , lines 10 to 70
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/bug-report.md",
+  "view_range": [
+    10,
+    70
+  ]
+}
+
+Read , lines 110 to 155
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md",
+  "view_range": [
+    110,
+    155
+  ]
+}
+
+Search for `Execution summary|Designed|Total`
+
+Search for `Users|Delete|Xóa|admin/users|user`
+
+Read , lines 1 to 220
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-admin/src/App.jsx",
+  "view_range": [
+    1,
+    220
+  ]
+}
+
+Read , lines 240 to 275
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-admin/src/App.jsx",
+  "view_range": [
+    240,
+    275
+  ]
+}
+
+Read , lines 870 to 925
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/frontend-admin/src/App.jsx",
+  "view_range": [
+    870,
+    925
+  ]
+}
+
+Search for `BUG-FR19-001|BUG-FR19-002`
+
+Ran terminal command: git status --short -- 'HW#2-Prompt#1-general-information1/Submission/reports/bug-report.md'
+
+Edit , , 
+
+Step C đã được thiết kế với 6 case: 4 Passed và 2 Failed, có liên kết `BUG-FR19-001/002`. Mình đang bổ sung trạng thái Step C vào process report và kiểm tra consistency; mình cũng sẽ giữ nguyên `bug-report.md` vì dù bạn đã cung cấp IDs, nội dung bug record vẫn là phần student-owned.
+
+Edit 
+
+Ran terminal command: git diff --check -- 'HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md' 'HW#2-Prompt#1-general-information1/Process/5.FR19-report.md'
+
+Search for `TC-FR19-00[1-6]|BUG-FR19-00[12]|\| FR-19 \|`
+
+Ran terminal command: git status --short -- 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Domain-testing-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/main reports (need md + pdf)/Boundary-Value-Analysis-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md' 'HW#2-Prompt#1-general-information1/Process/5.FR19-report.md' 'HW#2-Prompt#1-general-information1/Submission/reports/bug-report.md'
+
+Read , lines 98 to 108
+Completed with input: {
+  "path": "/workspaces/eshop-sut-for-HWork/HW#2-Prompt#1-general-information1/Submission/reports/test-case-report.md",
+  "view_range": [
+    98,
+    108
+  ]
+}
+
+Step C đã hoàn tất phần thiết kế và ghi nhận execution theo evidence hiện có. Mình sẽ dừng tại Gate C theo quy trình, để bạn review expected/actual/bug traceability và xác nhận có cần sửa case nào trước khi sang Step D.
+
+Ask User
+Completed with input: {
+  "message": "Vui lòng review và xác nhận Gate C của FR-19. Hãy kiểm tra 6 test case, đặc biệt expected/actual của TC-FR19-005 và TC-FR19-006, evidence links và BUG-FR19-001/002. Sau khi bạn xác nhận, mình sẽ tiếp tục Step D; nếu có sai hoặc thiếu, hãy nêu case cần sửa.",
+  "requestedSchema": {
+    "properties": {
+      "gate_c": {
+        "type": "string",
+        "title": "FR-19 Gate C",
+        "oneOf": [
+          {
+            "const": "approve",
+            "title": "Approve Gate C; các case và kết quả đã chính xác"
+          },
+          {
+            "const": "revise",
+            "title": "Yêu cầu chỉnh sửa/bổ sung trước khi approve"
+          }
+        ],
+        "default": "approve"
+      },
+      "corrections": {
+        "type": "string",
+        "title": "Corrections or missing cases",
+        "description": "Nếu chọn revise, ghi rõ test case hoặc nội dung cần sửa; nếu không, để trống.",
+        "default": ""
+      }
+    }
+  }
+}
+
+Bạn đã approve Gate C không có correction. Mình sẽ ghi nhận approval vào test-case/process reports; sau đó FR-19 sẽ sẵn sàng chuyển sang Step D, với điều kiện hai bug record thủ công được lưu thực tế trong `bug-report.md` trước khi commit.
+
+Edit , 
+
+Edit 
+
+Đã hoàn tất việc cập nhật và review FR-19:
+
+### Đã cập nhật
+
+- `Domain-testing-report.md`
+  - Phân biệt rõ `0 customer users` với admin baseline.
+  - Cập nhật Gate A của FR-19 thành **Approved**.
+
+- `Boundary-Value-Analysis-report.md`
+  - Gắn 6 evidence filenames cho các BVA cases.
+  - Ghi nhận:
+    - `BVA-TC-FR19-01` đến `04`: Passed.
+    - `BVA-TC-FR19-05`: Failed, liên kết `BUG-FR19-001`.
+    - `BVA-TC-FR19-06`: Failed, liên kết `BUG-FR19-002`.
+
+- `test-case-report.md`
+  - Thiết kế và ghi nhận 6 test cases:
+    - 4 Passed.
+    - 2 Failed.
+  - Cập nhật execution summary FR-19: `6 Designed / 6 Executed / 4 Passed / 2 Failed`.
+  - Gate C đã được ghi nhận là **Approved**.
+
+- `5.FR19-report.md`
+  - Bổ sung evidence, kết quả execution, bug IDs và trạng thái Gate A/Gate C.
+
+### Findings được ghi nhận
+
+1. `BUG-FR19-001`
+   - Xóa current admin được UI báo thành công.
+   - Admin biến mất khỏi danh sách sau refresh.
+   - Session hiện tại vẫn còn hoạt động.
+
+2. `BUG-FR19-002`
+   - ID `999999`, `abc`, `1abc` đều trả về `200 OK`.
+   - Response vẫn là `{"message":"User deleted"}`.
+   - Danh sách user hợp lệ không thay đổi.
+
+Mình không chỉnh sửa nội dung `bug-report.md`, vì phần Bug Description và Root Cause Analysis phải do bạn tự viết. Hãy đảm bảo hai record `BUG-FR19-001` và `BUG-FR19-002` đã được lưu thực tế trong file này trước khi commit.
+
+FR-19 hiện đã hoàn tất Step A, Step B và Step C. Bước tiếp theo là **Step D: Bug Report validation, AI Audit và AI Critique**.
+```"
+```
+# Entry Log 25

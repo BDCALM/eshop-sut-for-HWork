@@ -103,7 +103,16 @@ See [Boundary-Value-Analysis-report.md](./main%20reports%20%28need%20md%20%2B%20
 
 | ID | Objective/title (Action + Function + Condition) | Preconditions | Test data | Steps (≤15) | Expected | Actual | Status | Evidence | Bug ID | Cleanup |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| TC-FR19-001 | `[To be completed]` | `[To be completed]` | `[To be completed]` | `[Steps]` | `[Observable result]` | `[To be executed]` | `Designed` | `[Link/N/A]` | `[N/A]` | `[To be completed]` |
+| TC-FR19-001 | Display the customer-user list with zero customer users | Admin is authenticated; admin user-management view is available. | Admin baseline only; zero customer users. | 1. Open the admin user-management view. 2. Observe the user table. | The admin baseline remains listed; no customer user is listed; password values are not exposed. | Supplied UI evidence shows the zero-customer-user state. | Passed | [FR-19-01-zeroUser.png](./screenshots/FR-19/FR-19-01-zeroUser.png) | N/A | No data changed. |
+| TC-FR19-002 | Display the customer-user list with exactly one customer user | Admin is authenticated; admin user-management view is available. | Admin baseline plus one customer user. | 1. Open the admin user-management view. 2. Observe the user table. | The admin baseline and exactly one customer user are listed; password values are not exposed. | Supplied UI evidence shows the one-customer-user state. | Passed | [FR-19-02-oneUser.png](./screenshots/FR-19/FR-19-02-oneUser.png) | N/A | No data changed. |
+| TC-FR19-003 | Display the customer-user list with multiple customer users | Admin is authenticated; admin user-management view is available. | Admin baseline plus 2+ customer users. | 1. Open the admin user-management view. 2. Observe the user table. | The admin baseline and multiple customer users are listed; password values are not exposed. | Supplied UI evidence shows the multiple-customer-user state. | Passed | [FR-19-03-multipleUser.png](./screenshots/FR-19/FR-19-03-multipleUser.png) | N/A | No data changed. |
+| TC-FR19-004 | Delete an existing other user with a valid integer ID | Admin is authenticated; target user ID `3` exists and is not the current admin. | Target user ID `3`. | 1. Open the admin user-management view. 2. Select the row for user ID `3`. 3. Select `Xóa`. 4. Refresh the user list. | The selected other user is deleted and user ID `3` is absent from the refreshed list. | Supplied UI evidence shows the deletion of user ID `3`. | Passed | [FR-19-04-delUserID=3.png](./screenshots/FR-19/FR-19-04-delUserID=3.png) | N/A | Deleted test user remains removed as observed. |
+| TC-FR19-005 | Protect the current admin from deletion with the current admin ID | Admin is authenticated; current admin row is visible. | Current logged-in admin ID. | 1. Open the admin user-management view. 2. Select the current admin row. 3. Select `Xóa`. 4. Refresh the user list. 5. Verify whether the authenticated session remains active. | The current admin is not deleted; the admin row remains present and protected behavior is displayed. | UI reports deletion success; after refresh the admin row is absent while the existing session remains active. | Failed | [FR-19-05-delAdminUserSuccessfully.png](./screenshots/FR-19/FR-19-05-delAdminUserSuccessfully.png) | BUG-FR19-001 | Student-owned bug record; restore test data before retest. |
+| TC-FR19-006 | Reject invalid user deletion identifiers for absent and malformed IDs | Admin is authenticated; valid users with IDs `2`, `4`, and `5` are present. | `999999`, `abc`, and `1abc`, one identifier per request. | 1. Record the current user list. 2. Send a DELETE request for each test identifier. 3. Record each response status/body. 4. Request the user list again. 5. Compare the before/after lists. | Each invalid identifier produces an error or a defined no-op response without a false deletion-success message; valid users remain unchanged. | Each request returns `200 OK` and `{"message":"User deleted"}`; the valid user list remains unchanged. | Failed | [FR-19-06-deleteInvalidUser.md](./screenshots/FR-19/FR-19-06-deleteInvalidUser.md) | BUG-FR19-002 | No valid user was deleted; retain the before/after list evidence. |
+
+**Gate C status:** Approved by the student after review; no corrections or
+missing cases were identified. FR-19 has six designed and executed cases:
+four passed and two failed with student-provided bug IDs.
 
 ## 5. FR-20 - Mobile product browsing and order history
 
@@ -130,14 +139,15 @@ See [Boundary-Value-Analysis-report.md](./main%20reports%20%28need%20md%20%2B%20
 | --- | ---: | ---: | ---: | ---: | ---: |
 | FR-05 | 6 | 6 | 6 | 0 | 0 |
 | FR-11 | 6 | 6 | 6 | 0 | 0 |
-| FR-19 | 0 | 0 | 0 | 0 | 0 |
+| FR-19 | 6 | 6 | 4 | 2 | 0 |
 | FR-20 subsection | 0 | 0 | 0 | 0 | 0 |
-| **Total** | **12** | **12** | **12** | **0** | **0** |
+| **Total** | **18** | **18** | **16** | **2** | **0** |
 
 ## 7. Bugs and traceability
 
-- Confirmed bugs: `0` for the executed FR-05 and FR-11 cases; no failed case
-  or student-confirmed bug was reported.
+- FR-05 and FR-11 had no failed cases. FR-19 has two failed cases linked to
+  `BUG-FR19-001` and `BUG-FR19-002`; their detailed records remain
+  student-owned in [bug-report.md](./bug-report.md).
 - Bug report: [bug-report.md](./bug-report.md)
 - Failed cases require real screenshot evidence and a bug ID where applicable.
 
@@ -146,5 +156,7 @@ See [Boundary-Value-Analysis-report.md](./main%20reports%20%28need%20md%20%2B%20
 - FR-05 loading and API error states remain unexecuted.
 - FR-11 maximum order count/pagination remains unresolved; no evidence was
   supplied for an upper cardinality boundary.
+- FR-19 execution used the supplied filenames and the student-provided
+  observations; the evidence images were not reinterpreted.
 - Device/OS, exact backend URL, and execution timestamps were not visible in
   the supplied screenshots.

@@ -128,7 +128,7 @@
 | ID | Type | Variable | Evidence-backed domain |
 | --- | --- | --- | --- |
 | FR19-V01 | State | Authentication/role | Admin; ordinary user; missing/invalid token. |
-| FR19-V02 | State | User-list cardinality | Zero; one; multiple users. |
+| FR19-V02 | State | Customer-user-list cardinality, excluding the logged-in admin baseline | Zero; one; multiple customer users. |
 | FR19-V03 | Input | Target user identity | Other user; current admin; nonexistent/malformed identifier. |
 | FR19-O01 | Output | User list/delete result | User data excluding password; successful deletion or protected/error result. |
 
@@ -136,26 +136,33 @@
 
 | EC ID | Variable | Valid/invalid | Condition/domain | Representative | Expected observable output | Evidence | Review |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| FR19-EC-01 | Auth/role | Valid | Authenticated admin | Admin token | User management is accessible. | E-006,E-008 | Pending |
-| FR19-EC-02 | Auth/role | Invalid | Ordinary-user token | User token | Admin operation is rejected. | E-006,E-007 | Pending |
-| FR19-EC-03 | Auth/role | Invalid | Missing/invalid token | No token / invalid token | Operation is rejected. | E-007 | Pending |
-| FR19-EC-04 | User count | Valid | Empty list | Dataset with zero users | Empty user-list state is observable; exact UI message unresolved. | E-006,E-008 | Pending |
-| FR19-EC-05 | User count | Valid | One or more users | Dataset with one/multiple users | Users are listed without password values. | E-006,E-007,E-008 | Pending |
-| FR19-EC-06 | Target identity | Valid | Other user's existing ID | Existing non-admin user ID | Target user is deleted and list refreshes. | E-006,E-008 | Pending |
-| FR19-EC-07 | Target identity | Invalid/protected | Current admin ID | Logged-in admin ID | Current administrator is not deleted. | E-006 | Pending |
-| FR19-EC-08 | Target identity | Invalid | Nonexistent or malformed ID | Verified absent/malformed ID | Error/no-op behavior must be verified; source does not establish it. | E-007 | Pending |
+| FR19-EC-01 | Auth/role | Valid | Authenticated admin | Admin token | User management is accessible. | E-006,E-008 | Approved |
+| FR19-EC-02 | Auth/role | Invalid | Ordinary-user token | User token | Admin operation is rejected. | E-006,E-007 | Approved |
+| FR19-EC-03 | Auth/role | Invalid | Missing/invalid token | No token / invalid token | Operation is rejected. | E-007 | Approved |
+| FR19-EC-04 | Customer-user count | Valid | Zero customer users, with admin baseline retained | Dataset with admin only | Admin baseline is listed; no customer user is listed. | E-006,E-008 | Approved |
+| FR19-EC-05 | Customer-user count | Valid | One or more customer users | Dataset with one/multiple customer users | Customer users are listed without password values. | E-006,E-007,E-008 | Approved |
+| FR19-EC-06 | Target identity | Valid | Other user's existing ID | Existing non-admin user ID | Target user is deleted and list refreshes. | E-006,E-008 | Approved |
+| FR19-EC-07 | Target identity | Invalid/protected | Current admin ID | Logged-in admin ID | Current administrator is not deleted. | E-006 | Approved |
+| FR19-EC-08 | Target identity | Invalid | Nonexistent or malformed ID | Verified absent/malformed ID | Error/no-op behavior must be verified; source does not establish it. | E-007 | Approved |
 
 ### Minimum domain test cases
 
 | ID | ECs covered | Representative data | Single-fault check | Expected output | Traceability |
 | --- | --- | --- | --- | --- | --- |
 | DT-FR19-01 | EC-01,EC-05 | Admin token, one/multiple users | Valid multi-cover | Users are listed and no password field is exposed. | FR-19/EC-01,05 |
-| DT-FR19-02 | EC-01,EC-04 | Admin token, empty user dataset | Valid multi-cover | Empty list state is shown. | FR-19/EC-01,04 |
+| DT-FR19-02 | EC-01,EC-04 | Admin token, zero customer users with admin baseline | Valid multi-cover | Admin baseline is shown and no customer user is listed. | FR-19/EC-01,04 |
 | DT-FR19-03 | EC-01,EC-06 | Admin token, other user's existing ID | Valid action | Other user is deleted and result is observable. | FR-19/EC-01,06 |
 | DT-FR19-04 | EC-02 | Ordinary-user token | One invalid class only | Admin operation is rejected. | FR-19/EC-02 |
 | DT-FR19-05 | EC-03 | Missing/invalid token | One invalid class only | Operation is rejected. | FR-19/EC-03 |
 | DT-FR19-06 | EC-01,EC-07 | Admin token, current admin ID | Protected target only | Current admin remains. | FR-19/EC-01,07 |
 | DT-FR19-07 | EC-08 | Admin token, invalid/nonexistent ID | One invalid class only | Verified error/no-op behavior is recorded. | FR-19/EC-08 |
+
+### Gate A review
+
+**Approved by the student after evidence reconciliation.** The student
+confirmed the FR-19 equivalence classes, representatives, and minimum domain
+tests, including the distinction between zero customer users and the retained
+admin baseline.
 
 ## 4. FR-20 - Mobile product browsing and order history
 
