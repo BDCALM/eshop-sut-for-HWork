@@ -125,13 +125,27 @@ subject to Gate A review.
 
 ### B. BVA
 
-See [Boundary-Value-Analysis-report.md](./main%20reports%20%28need%20md%20%2B%20pdf%29/Boundary-Value-Analysis-report.md), section 4.
+See [Boundary-Value-Analysis-report.md](./main%20reports%20%28need%20md%20%2B%20pdf%29/Boundary-Value-Analysis-report.md), section 6.
 
 ### C. Test cases and execution
 
 | ID | Objective/title (Action + Function + Condition) | Preconditions | Test data | Steps (≤15) | Expected | Actual | Status | Evidence | Bug ID | Cleanup |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| TC-FR20-MOB-001 | `[To be completed]` | `[To be completed]` | `[To be completed]` | `[Steps]` | `[Observable result]` | `[To be executed]` | `Designed` | `[Link/N/A]` | `[N/A]` | `[To be completed]` |
+| TC-FR20-MOB-001 | Display the mobile product list with an empty search | Mobile app is configured with a reachable product API. | Empty search `""`; nominal seeded products. | 1. Open the mobile app. 2. Observe the `Danh sách sản phẩm` screen. 3. Leave `Tìm kiếm...` empty. 4. Select `Tìm`. | The mobile product list is displayed and product cards are visible. | API returned HTTP 200 with 5 products; UI evidence pending. | API Passed; UI pending | Student script output 2026-10-20; N/A for screenshot | N/A | No data changed. |
+| TC-FR20-MOB-002 | Display matching mobile products for a one-character search | Mobile app is on the product list; product API is reachable. | One-character term `i`. | 1. Enter `i` in `Tìm kiếm...`. 2. Select `Tìm`. 3. Observe the result heading and product cards. | A non-empty search is performed; the result heading shows the search term and matching product cards are displayed. | API returned HTTP 200 with 2 products; UI evidence pending. | API Passed; UI pending | Student script output 2026-10-20; N/A for screenshot | N/A | Clear the search field or reload the app. |
+| TC-FR20-MOB-003 | Display the mobile empty state for a search with zero results | Mobile app is on the product list; product API is reachable. | Absent term `fr20-no-product-999999`. | 1. Enter `fr20-no-product-999999` in `Tìm kiếm...`. 2. Select `Tìm`. 3. Observe the product-list area. | No matching product card is displayed and the mobile empty-result state is observable. | API returned HTTP 200 with 0 products; UI evidence pending. | API Passed; UI pending | Student script output 2026-10-20; N/A for screenshot | N/A | Reload the app. |
+| TC-FR20-MOB-004 | Display exactly one matching mobile product for a one-result search | Mobile app is on the product list; a term with exactly one seeded match is known. | `iPhone 15 Pro Max`. | 1. Enter `iPhone 15 Pro Max` in `Tìm kiếm...`. 2. Select `Tìm`. 3. Count the product cards. | Exactly one matching product card is displayed. | API returned HTTP 200 with 1 product; UI evidence pending. | API Passed; UI pending | Student script output 2026-10-20; N/A for screenshot | N/A | Reload the app. |
+| TC-FR20-MOB-005 | Display multiple matching mobile products for a multi-result search | Mobile app is on the product list; a term with 2+ seeded matches is known. | `a`. | 1. Enter `a` in `Tìm kiếm...`. 2. Select `Tìm`. 3. Count the product cards. | Two or more matching product cards are displayed. | API returned HTTP 200 with 4 products; UI evidence pending. | API Passed; UI pending | Student script output 2026-10-20; N/A for screenshot | N/A | Reload the app. |
+| TC-FR20-MOB-006 | Display the mobile loading state while the product request is delayed | Mobile app can be run with a controlled delayed product API. | Delayed product request. | 1. Start the app with the controlled delayed request. 2. Observe the product screen while the request is pending. | `Đang tải...` is displayed while the product request is pending. | Mobile UI displayed `Đang tải...` in the product-list block. | Passed | [TC-FR20-MOB-006.png](./screenshots/FR-20/TC-FR20-MOB-006.png) | N/A | Restore the normal API URL and reload the app. |
+| TC-FR20-MOB-007 | Display the mobile error state when the product request fails | Mobile app can be run with an unavailable or failed product API. | Failed product request. | 1. Start the app with the controlled failed request. 2. Observe the product screen after the request fails. | A visible error state is displayed and the app does not present the failed request as a successful product result. | Mobile UI displayed `Failed to fetch` at the upper-left of the product-list block. | Passed | [TC-FR20-MOB-007.png](./screenshots/FR-20/TC-FR20-MOB-007.png) | N/A | Restore the normal API URL and reload the app. |
+| TC-FR20-MOB-008 | Display an empty mobile order history for an authenticated user with zero own orders | User credentials are available; the user has zero own orders; mobile API is reachable. | Valid user token; zero own orders. | 1. Authenticate using the supplied test account. 2. Select the profile greeting in the header. 3. Scroll to `Lịch sử đơn hàng`. | `Lịch sử đơn hàng` displays `Bạn chưa có đơn hàng nào.` and no order card. | API returned HTTP 200 with `userId=2`, `count=0` under the zero-order setup; a later two-order setup returned `INFO` for this zero-order partition. UI evidence pending. | API Passed; UI pending | Student script output 2026-10-20; N/A for screenshot | N/A | Select `Thoát` and clear the session. |
+| TC-FR20-MOB-009 | Display one own order in mobile order history for an authenticated user | User credentials are available; exactly one own order exists. | Valid user token; one own order. | 1. Authenticate as the test user. 2. Select the profile greeting. 3. Scroll to `Lịch sử đơn hàng`. 4. Inspect the order card. | One order card displays `Đơn #`, `Ngày đặt`, `Tổng tiền`, and `Trạng thái` with the correct translated status label. | With User ID 2 configured with exactly 1 order, API returned `PASS`, `userId=2`, `count=1`; UI evidence pending. A two-order setup correctly returned `INFO` for this partition. | API Passed; UI pending | Student script output 2026-10-20; N/A for screenshot | N/A | Restore or document the dataset after execution; select `Thoát`. |
+| TC-FR20-MOB-010 | Display multiple own orders and translated statuses in mobile order history | User credentials are available; the authenticated user has 2+ own orders with supported statuses. | Valid user token; multiple own orders. | 1. Authenticate as the test user. 2. Select the profile greeting. 3. Scroll to `Lịch sử đơn hàng`. 4. Inspect all order cards and status labels. | All and only the user's own orders are displayed; each card shows the required fields and supported Vietnamese status labels. | With User ID 2 configured with 2 orders, API returned `PASS`, `userId=2`, `count=2`; UI evidence pending. A one-order setup correctly returned `INFO` for this partition. | API Passed; UI pending | Student script output 2026-10-20; N/A for screenshot | N/A | Restore or document the dataset after execution; select `Thoát`. |
+| TC-FR20-MOB-011 | Hide another user's orders from the authenticated mobile order history | Two users exist; User B has at least one order; each account can be authenticated independently. | User A token; User B order data. | 1. Authenticate as User A. 2. Select the profile greeting. 3. Inspect `Lịch sử đơn hàng`. 4. Compare displayed order IDs with User B's known order IDs. | User B's order IDs are not displayed in User A's mobile history. | API returned HTTP 200 for User A/User B in both order-count setups; `sharedOrderIds=[]`; UI evidence pending. | API Passed; UI pending | Student script output 2026-10-20; N/A for screenshot | N/A | Select `Thoát`; no order data changed. |
+
+**Gate C status:** Approved by the student on 2026-10-20 with no
+corrections. The two manual request-state cases are now Passed from UI
+evidence; the API-only cases still await corresponding mobile UI evidence.
 
 ## 6. Execution summary
 
@@ -140,8 +154,8 @@ See [Boundary-Value-Analysis-report.md](./main%20reports%20%28need%20md%20%2B%20
 | FR-05 | 6 | 6 | 6 | 0 | 0 |
 | FR-11 | 6 | 6 | 6 | 0 | 0 |
 | FR-19 | 6 | 6 | 4 | 2 | 0 |
-| FR-20 subsection | 0 | 0 | 0 | 0 | 0 |
-| **Total** | **18** | **18** | **16** | **2** | **0** |
+| FR-20 subsection | 11 | 11 | 2 | 0 | 0 |
+| **Total** | **29** | **29** | **18** | **2** | **0** |
 
 ## 7. Bugs and traceability
 
@@ -158,5 +172,8 @@ See [Boundary-Value-Analysis-report.md](./main%20reports%20%28need%20md%20%2B%20
   supplied for an upper cardinality boundary.
 - FR-19 execution used the supplied filenames and the student-provided
   observations; the evidence images were not reinterpreted.
+- FR-20 has UI evidence for TC-FR20-MOB-006 and TC-FR20-MOB-007. The other
+  nine cases have API-only results and still need corresponding mobile UI
+  evidence before they can be counted as complete UI passes.
 - Device/OS, exact backend URL, and execution timestamps were not visible in
   the supplied screenshots.

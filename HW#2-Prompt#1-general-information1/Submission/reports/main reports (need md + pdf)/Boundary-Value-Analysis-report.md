@@ -6,8 +6,8 @@
 | --- | --- |
 | Student/group | `10` |
 | Date updated | `2026-10-19` |
-| Feature completed in this step | FR-05 and FR-11 sections |
-| Precondition | Gate A approved for FR-05 and FR-11 |
+| Feature completed in this step | FR-05, FR-11, and FR-20 sections |
+| Precondition | Gate A approved for FR-05, FR-11, and FR-20 |
 
 ## BVA rules applied
 
@@ -216,4 +216,75 @@ verification targets.
 | Every justified ordered domain has LB/UB/alpha | Approved | `Student approved on 2026-10-20; no corrections; 0/1/2+ user-list boundary documented` |
 | Unspecified limits are not invented | Approved | `Student approved on 2026-10-20; list size/pagination and user-ID range remain unresolved` |
 | One-variable-at-a-time constraint satisfied | Approved | `Student approved on 2026-10-20; each case varies one domain only` |
+| Gate B approved before Step C | Approved | `Student approved on 2026-10-20; no corrections` |
+
+## 6. FR-20 - Mobile product browsing and order history
+
+### Scope and evidence used
+
+FR-20 is limited to mobile product browsing/search and authenticated mobile
+order history. Mobile authentication, profile editing, cart, checkout, and
+order cancellation are out of scope for this BVA section.
+
+| Evidence ID | Source | Observation |
+| --- | --- | --- |
+| BVA-FR20-E-01 | Project `README.md`, FR-20 and product-listing requirements | Mobile includes product viewing and order history; product search distinguishes loading and empty-result states. |
+| BVA-FR20-E-02 | `frontend-mobile/App.js`, product loading/search logic | Empty search is submitted; non-empty search is URL-encoded; loading, product-list, empty-list, and error states are represented. |
+| BVA-FR20-E-03 | `frontend-mobile/App.js`, order-history logic | Authenticated order history is requested for the current token and parsed as an order list. |
+| BVA-FR20-E-04 | FR-05 and FR-11 approved BVA sections | Product result cardinality uses `0`, `1`, and `2+`; order-history cardinality uses `0`, `1`, and `2+`. |
+
+### BVA rules and boundary analysis
+
+The ordered mobile search boundary is the same observed empty/non-empty
+boundary as FR-05. The product result and order-history cardinalities reuse
+the approved `0/1/2+` classes from FR-05 and FR-11. Loading/error, token
+authentication, and ownership are categorical or security states rather than
+numeric boundaries.
+
+No maximum search length, maximum product-result count, maximum order count,
+pagination limit, or order-ID range is specified. These limits remain
+`Unresolved`; no artificial upper boundary is introduced.
+
+| BVA ID | Variable/domain | LB | UB | Alpha | Nominal | Boundary points | Expected observable output | Evidence | Review |
+| --- | --- | ---: | --- | ---: | --- | --- | --- | --- | --- |
+| BVA-FR20-01 | Mobile search text length | 0 characters | Unresolved | 1 character | Empty search `""` | 0, 1 | At 0, the mobile product list is requested/displayed. At 1, a non-empty search is sent and its result cardinality is observed. | BVA-FR20-E-01 through BVA-FR20-E-02 | Pending |
+| BVA-FR20-02 | Mobile product result count | 0 results | Unresolved for maximum result count | 1 result | One matching product | 0, 1, 2+ | 0 shows an empty state; 1 shows one matching product; 2+ shows multiple product cards. | BVA-FR20-E-01, BVA-FR20-E-02, BVA-FR20-E-04 | Pending |
+| BVA-FR20-03 | Mobile order-history count | 0 own orders | Unresolved for maximum order count | 1 own order | One own order | 0, 1, 2+ | 0 shows the empty history state; 1 shows one own order; 2+ shows all own orders with required fields/status labels. | BVA-FR20-E-01, BVA-FR20-E-03, BVA-FR20-E-04 | Pending |
+
+### Boundary Value Test Cases
+
+All cases vary one numeric/cardinality domain only. Authentication, API
+availability, and other data remain nominal unless the row explicitly
+identifies a state/security check.
+
+| Test ID | Variable varied | Input/controlled data | Other variables at nominal values | Expected observable result | Actual result | Status | Traceability |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| BVA-TC-FR20-01 | Mobile search text length | Empty search `""` (0 characters) | Product API available; nominal mobile product data | Mobile requests/displays the product list. | API returned HTTP 200 with 5 products; mobile UI still needs visual evidence. | API Passed; UI pending | FR20-EC-01, BVA-FR20-01; student script output 2026-10-20 |
+| BVA-TC-FR20-02 | Mobile search text length | One-character non-empty search term `i` | Product API available; same nominal product data | Mobile sends a non-empty search request and displays the returned result state. | API returned HTTP 200 with 2 products; mobile UI still needs visual evidence. | API Passed; UI pending | FR20-EC-02/03, BVA-FR20-01; student script output 2026-10-20 |
+| BVA-TC-FR20-03 | Mobile product result count | Search term `fr20-no-product-999999` producing 0 results | Nominal mobile request state | Empty product-result state is displayed and no matching product card is shown. | API returned HTTP 200 with 0 products; mobile empty-state UI still needs visual evidence. | API Passed; UI pending | FR20-EC-03, BVA-FR20-02; student script output 2026-10-20 |
+| BVA-TC-FR20-04 | Mobile product result count | Search term `iPhone 15 Pro Max` producing exactly 1 result | Nominal mobile request state | Exactly one matching product card is displayed. | API returned HTTP 200 with 1 product; mobile UI still needs visual evidence. | API Passed; UI pending | FR20-EC-02, BVA-FR20-02; student script output 2026-10-20 |
+| BVA-TC-FR20-05 | Mobile product result count | Search term `a` producing 2+ results | Nominal mobile request state | Multiple matching product cards are displayed. | API returned HTTP 200 with 4 products; mobile UI still needs visual evidence. | API Passed; UI pending | FR20-EC-02, BVA-FR20-02; student script output 2026-10-20 |
+| BVA-TC-FR20-09 | Mobile product request state | Controlled delayed product request | Nominal mobile product screen | `Đang tải...` is displayed while the product request is pending. | Mobile UI displayed `Đang tải...` in the product-list block. | Passed | FR20-EC-04, BVA-FR20-02; [TC-FR20-MOB-006.png](../screenshots/FR-20/TC-FR20-MOB-006.png) |
+| BVA-TC-FR20-10 | Mobile product request state | Controlled failed product request | Nominal mobile product screen | A visible error state is displayed after the request fails. | Mobile UI displayed `Failed to fetch` at the upper-left of the product-list block. | Passed | FR20-EC-04, BVA-FR20-02; [TC-FR20-MOB-007.png](../screenshots/FR-20/TC-FR20-MOB-007.png) |
+| BVA-TC-FR20-06 | Mobile order-history count | Authenticated user with 0 own orders | Valid token; order-history API available | Mobile displays the empty order-history state. | API returned HTTP 200 with `userId=2`, `count=0`; mobile UI still needs visual evidence. | API Passed; UI pending | FR20-EC-05/06, BVA-FR20-03; student script output 2026-10-20 |
+| BVA-TC-FR20-07 | Mobile order-history count | Authenticated user with exactly 1 own order | Valid token; order-history API available | Mobile displays one own order with its required fields and status label. | With User ID 2 configured with exactly 1 order, API returned `PASS`, `userId=2`, `count=1`; mobile UI still needs visual evidence. | API Passed; UI pending | FR20-EC-05/06, BVA-FR20-03; student script output 2026-10-20 |
+| BVA-TC-FR20-08 | Mobile order-history count | Authenticated user with 2+ own orders | Valid token; order-history API available | Mobile displays all own orders with their required fields and status labels. | With User ID 2 configured with 2 orders, API returned `PASS`, `userId=2`, `count=2`; mobile UI still needs visual evidence. | API Passed; UI pending | FR20-EC-05/06, BVA-FR20-03; student script output 2026-10-20 |
+
+### Boundary limitations and non-numeric states
+
+| Potential boundary/state | Status | Reason |
+| --- | --- | --- |
+| Maximum mobile search length | Unresolved | No maximum is specified or observed. |
+| Maximum product-result count/pagination | Unresolved | No upper result or pagination limit is specified. |
+| Maximum order count/pagination | Unresolved | No upper order-history limit is specified. |
+| Loading/error request state | State domain | Must be tested as a categorical request state, not a numeric boundary. |
+| Authentication and order ownership | State/security domain | Must be tested with valid/invalid token and separate-user data; no numeric boundary is created. |
+
+### Gate B review
+
+| Review item | Status | Student correction/confirmation |
+| --- | --- | --- |
+| Every justified ordered domain has LB/UB/alpha | Approved | `Student approved on 2026-10-20; mobile search, product-result, and order-history boundaries reviewed with no corrections` |
+| Unspecified limits are not invented | Approved | `Student approved on 2026-10-20; maximum lengths/counts and pagination remain unresolved` |
+| One-variable-at-a-time constraint satisfied | Approved | `Student approved on 2026-10-20; each proposed BVA case varies one boundary domain only` |
 | Gate B approved before Step C | Approved | `Student approved on 2026-10-20; no corrections` |
