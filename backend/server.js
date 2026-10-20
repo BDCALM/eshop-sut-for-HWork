@@ -19,6 +19,7 @@ const allowedOrigins = new Set(
     "http://localhost:8081",
     "http://localhost:19006",
     "https://orange-disco-9775gp4r5rv6c757g-5173.app.github.dev",
+    "https://orange-disco-9775gp4r5rv6c757g-5174.app.github.dev",
     "https://orange-disco-9775gp4r5rv6c757g-8081.app.github.dev",
     "https://orange-disco-9775gp4r5rv6c757g-19006.app.github.dev",
   ],
