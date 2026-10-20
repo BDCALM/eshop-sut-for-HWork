@@ -8,6 +8,7 @@ A README.md containing the
 | **4** | Feature D (Mobile, Domain + Boundary) | 15 |  |
 | **5** | Agent Skills | 10 |  |
 |  | **Total** | **100** |  |
+
 2. a test summary report: number of features; 
 3. Test case report ? 
 - number of test cases designed, executed, passed, failed, and not yet executed; 
