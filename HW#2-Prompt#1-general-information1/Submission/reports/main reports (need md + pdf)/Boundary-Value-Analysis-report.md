@@ -4,9 +4,9 @@
 
 | Field | Value |
 | --- | --- |
-| Student/group | `[To be completed]` |
+| Student/group | `10` |
 | SUT/version/commit | `[To be completed]` |
-| Date updated | `[YYYY-MM-DD]` |
+| Date updated | `2026-10-21` |
 | Precondition | Gate A reviewed and approved |
 
 ## Rules
@@ -21,7 +21,8 @@
 
 | ID | Variable/domain | LB | UB | Alpha | Nominal | Boundary points | Expected output | Evidence | Review |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| BVA-FR05-01 | `[Search length/result cardinality]` | `[Value/Unresolved]` | `[Value/Unresolved]` | `[Unit]` | `[Value]` | `[LB-a, LB, LB+a, UB-a, UB, UB+a]` | `[Output]` | `[E-xxx]` | `[Pending]` |
+| BVA-FR05-01 | Search value length | `0` characters | `Unresolved` | `1` character | `1` character | `0`, `1`, `2` characters; upper boundary remains unresolved | Empty search requests/displays the full product list; a non-empty value performs a search. | E-001,E-002; `FR05-01-default.png` | Evidence supplied; Gate B approved |
+| BVA-FR05-02 | Product result cardinality | `0` results | `2+` results | `1` result | `0`, `1`, `2` results | `0`, `1`, `2` results represent the zero, one, and multiple-result boundary partitions. | Empty state for `0`; one matching product for `1`; multiple matching products for `2+`. | E-001,E-002; `FR05-04-searchNoResult.png`, `FR05-05-searchOneResult.png`, `FR05-06-searchTwo+Result.png` | Evidence supplied; Gate B approved |
 
 ## 2. FR-11 - User order history
 
@@ -45,13 +46,19 @@
 
 | Test ID | Feature | Variable varied | Input | Other variables at nominal values | Expected | Actual | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| BVA-TC-001 | `[FR-xx]` | `[Variable]` | `[Value]` | `[Nominal data]` | `[Observable result]` | `[To be executed]` | `Not yet executed` |
+| BVA-TC-FR05-01 | FR-05 | Search value length | `""` (0 characters) | Nominal product data; no other variable varied | Full product list is requested/displayed. | `FR05-01-default.png` | Evidence supplied; execution result to record in Step C |
+| BVA-TC-FR05-02 | FR-05 | Search value length | One-character matching fragment | Nominal product data; no other variable varied | Matching product result is displayed. | `FR05-03-searchOneChar.png` | Evidence supplied; execution result to record in Step C |
+| BVA-TC-FR05-03 | FR-05 | Search value length | Two-character matching fragment | Nominal product data; no other variable varied | Matching product result is displayed; this is the `LB + 1` probe. | `[Mapping to supplied filename to confirm]` | Evidence supplied; mapping to confirm |
+| BVA-TC-FR05-04 | FR-05 | Product result cardinality | Verified absent fragment (`0` results) | Valid non-empty search; request succeeds | Empty result state is displayed. | `FR05-04-searchNoResult.png` | Evidence supplied; execution result to record in Step C |
+| BVA-TC-FR05-05 | FR-05 | Product result cardinality | Verified fragment yielding exactly `1` result | Valid non-empty search; request succeeds | Exactly one matching product is displayed. | `FR05-05-searchOneResult.png` | Evidence supplied; execution result to record in Step C |
+| BVA-TC-FR05-06 | FR-05 | Product result cardinality | Verified fragment yielding `2+` results | Valid non-empty search; request succeeds | Multiple matching products are displayed. | `FR05-06-searchTwo+Result.png` | Evidence supplied; execution result to record in Step C |
+| BVA-TC-FR05-07 | FR-05 | Search value length | 257-character search value | Valid product data; no other variable varied | Observe acceptance, truncation, rejection, or error. No pass/fail oracle is assigned until a maximum-length requirement is evidenced. | `BVA-TC-FR05-07.png` | Exploratory evidence supplied; unresolved oracle |
 
 ## Gate B review
 
 | Review item | Status | Student correction/confirmation |
 | --- | --- | --- |
-| Every ordered domain has evidence | `[Pending]` | `[To be completed]` |
-| LB/UB/alpha are justified | `[Pending]` | `[To be completed]` |
-| One-variable-at-a-time constraint satisfied | `[Pending]` | `[To be completed]` |
-| Gate B approved before Step C | `[Pending]` | `[To be completed]` |
+| Every ordered domain has evidence | Approved | Search length has a known lower boundary; maximum length is unresolved. Result cardinality is evidence-backed as `0`, `1`, and `2+`. |
+| LB/UB/alpha are justified | Approved | `alpha = 1` character/result; no unsupported upper search-length limit is invented. The 257-character probe remains exploratory. |
+| One-variable-at-a-time constraint satisfied | Approved | Each BVA case varies either search length or result cardinality while other data remains nominal. |
+| Gate B approved before Step C | Approved | Student approved Gate B on 2026-10-21; no corrections requested. |

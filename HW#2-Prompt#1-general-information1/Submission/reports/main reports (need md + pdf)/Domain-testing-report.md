@@ -55,12 +55,12 @@
 
 | EC ID | Variable | Valid/invalid | Condition/domain | Representative | Expected observable output | Evidence | Review |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| FR05-EC-01 | Search value | Valid | Empty search | `""` | All available products are requested/displayed. | E-001,E-002 | Pending |
-| FR05-EC-02 | Search value | Valid | Non-empty text matching one or more names | A verified product-name fragment | Matching products are returned/displayed. | E-001,E-002 | Pending |
-| FR05-EC-03 | Search value | Valid | Non-empty text matching no product | Verified absent name fragment | Empty result is observable; exact message remains unresolved. | E-001,E-002 | Pending |
-| FR05-EC-04 | Product/request state | Valid state | Loading request | Controlled delayed request | Loading indicator/state is observable where implemented. | E-001,E-003 | Pending |
-| FR05-EC-05 | Product/request state | Valid state | Request/database error | Controlled error response | Error state is observable. | E-001,E-002,E-003 | Pending |
-| FR05-EC-06 | Search value | Invalid/unresolved | Unsupported length/characters | `[Value after constraint is confirmed]` | Cannot define an oracle until a UI/API constraint is verified. | E-002 | Pending |
+| FR05-EC-01 | Search value | Valid | Empty search | `""` | All available products are requested/displayed. | E-001,E-002 | Approved |
+| FR05-EC-02 | Search value | Valid | Non-empty text matching one or more names | A verified product-name fragment | Matching products are returned/displayed. | E-001,E-002 | Approved |
+| FR05-EC-03 | Search value | Valid | Non-empty text matching no product | Verified absent name fragment | Empty result is observable; exact message remains unresolved. | E-001,E-002 | Approved |
+| FR05-EC-04 | Product/request state | Valid state | Loading request | Controlled delayed request | Loading indicator/state is observable where implemented. | E-001,E-003 | Approved |
+| FR05-EC-05 | Product/request state | Valid state | Request/database error | Controlled error response | Error state is observable. | E-001,E-002,E-003 | Approved |
+| FR05-EC-06 | Search value | Unresolved | Unsupported length/characters | `[Constraint not established]` | No boundary or invalid oracle is defined until a UI/API constraint is verified. | E-002 | Unresolved |
 
 ### Minimum domain test cases
 
