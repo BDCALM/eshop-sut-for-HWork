@@ -50,7 +50,7 @@ hoàn chỉnh, từ phân tích domain đến thiết kế và thực thi test c
 
 | Feature | YouTube link |
 | --- | --- |
-| FR-05 | _Chưa cập nhật_ |
+| FR-05 | https://youtu.be/jlwLuDKltQQ |
 
 ### 1.5 Tài liệu tham khảo
 
