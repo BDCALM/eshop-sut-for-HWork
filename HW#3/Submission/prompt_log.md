@@ -127,15 +127,59 @@ Các mục chưa thực thi được ghi Not run, không tự suy đoán Pass/Fa
 **Changed:** No
 
 
-# Entry log  5 - - 10/11/2026
+# Entry log  5 - 12:20 - 10/11/2026
 
-**Model used:**
-**Prompt:**
-**AI's Answer:**
-**Rejected:**
-**Changed:**
+**Model used:** copilot
+**Prompt:** "Bạn hãy tạo giúp tôi các git commit log trong file Git-Commit-Log.txt giúp tôi nhé.
+các commit log sẽ bao gồm tóm tắt các mục bên dưới:
+1. hoàn thành giai đoạn 1 ở todo.md "* **Task 1 (GUI Checklist):** Chọn **ít nhất 1 màn hình chính** (VD: Trang chủ, Giỏ hàng, hoặc Admin Dashboard). *Khuyến nghị chọn nhiều màn hình để dễ dàng tạo đủ 40+ items*.
 
-# Entry log  - 10/11/2026
+
+* **Task 2 (Usability):** Chọn **1 luồng người dùng (end-to-end flow)** xuyên suốt. VD: *Đăng ký -> Tìm sản phẩm -> Thêm vào giỏ hàng -> Thanh toán bằng mã giảm giá*."
+2. Thiết kế Checklist (chưa rà soát các mục AI bỏ sót và chưa kiểm tra đầu ra)
+
+còn các file khác được thêm/sửa thì bạn chỉ cần nói chung chung là được"
+**AI's Answer:** "
+Updated todo list
+
+Mình sẽ xem nội dung `Git-Commit-Log.txt` hiện tại và lịch sử commit thực tế để ghi log không mâu thuẫn với repository. Sau đó mình sẽ bổ sung hai mốc bạn yêu cầu: hoàn thành Giai đoạn 1 với phạm vi Task 1/Task 2, và thiết kế checklist ban đầu nhưng chưa rà soát điểm mù của AI/chưa kiểm tra đầu ra; các thay đổi khác sẽ được tổng hợp ngắn gọn.
+
+Ran terminal command:  printf '%s\n' '--- recent commits ---'; git --no-pager log --oneline --decorate -12; printf '%s\n' '--- status ---'; git status --short
+
+Read 
+
+File log hiện đang trống; repository đã có các commit gần đây nhưng chưa có commit riêng cho hai mốc HW#3 mà bạn nêu. Mình sẽ kiểm tra nhanh phạm vi của hai commit gần nhất để ghi phần lịch sử hiện có chính xác, sau đó thêm các mục HW#3 dưới dạng mốc tài liệu, không bịa hash commit chưa tồn tại.
+
+Ran terminal command:  git --no-pager show --stat --oneline --summary 04cb0e1 && printf '%s\n' '---' && git --no-pager show --stat --oneline --summary fa79b36
+
+Phạm vi ghi log sẽ gồm lịch sử commit đã có và hai mốc HW#3 đang thực hiện. Mốc Giai đoạn 1 sẽ ghi rõ phạm vi đã chọn nhưng chưa đồng nghĩa đã chạy test; mốc checklist sẽ ghi đúng trạng thái “bản nháp ban đầu, chưa rà soát điểm mù AI và chưa kiểm tra đầu ra”. Mình sẽ tạo nội dung vào file đang trống.
+
+Created 
+
+File log đã được tạo với lịch sử commit thực tế và hai mốc HW#3 chưa có hash commit. Mình sẽ kiểm tra nhanh các mục bắt buộc, trạng thái “chưa rà soát/chưa kiểm tra đầu ra” và định dạng file trước khi kết thúc.
+
+Ran terminal command:  FILE='HW#3/Submission/Git-Commit-Log.txt'; printf '%s\n' '--- required entries ---'; grep -n -E 'Giai doan 1|Task 1|Task 2|Thiet ke checklist|chua ra soat|chua kiem tra dau ra' "$FILE"; printf '%s\n' '--- file check ---'; wc -l "$FILE"; git status --short -- "$FILE"
+
+Đã cập nhật Git-Commit-Log.txt với:
+
+- Lịch sử 3 commit thực tế gần nhất.
+- Giai đoạn 1:
+  - Task 1: Web Admin FR-15 và FR-16.
+  - Task 2: Luồng đăng ký/đăng nhập → tìm sản phẩm → thêm giỏ hàng → thanh toán bằng coupon.
+- Mốc thiết kế checklist GUI 40 mục.
+- Ghi rõ checklist hiện mới là bản ban đầu, chưa rà soát điểm AI bỏ sót và chưa kiểm tra đầu ra.
+- Ghi chú rằng hai mốc HW#3 chưa có hash vì chưa được commit thực tế.
+
+Đã kiểm tra file có đầy đủ các mục bắt buộc.
+
+Created 2 todos
+
+Made changes."
+
+**Rejected:** No
+**Changed:** No
+
+# Entry log 6 - 10/11/2026
 
 **Model used:**
 **Prompt:**
