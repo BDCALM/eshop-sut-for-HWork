@@ -35,7 +35,7 @@
 
 ## Commit HW#3 da tao
 
-- `e65cf06` - `docs(hw03): add GUI checklist and usability artifacts`
+- `9fb0af6` - `docs(hw03): add GUI checklist and usability artifacts`
    - Commit cac tai lieu va artefact HW#3 dang co trong repository, bao gom pham vi test, checklist FR-15/FR-16, tai lieu Task 2, prompt log va roadmap.
 - Cac file khac duoc them/sua trong qua trinh chuan bi HW#3 duoc tong hop chung, khong liet ke chi tiet tung file trong log nay.
 - Khi thuc thi checklist, can cap nhat cot ket qua, ghi bang chung/anh chup, tao bug report cho muc Fail va cap nhat log commit theo tung giai doan.
