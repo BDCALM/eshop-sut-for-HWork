@@ -285,4 +285,104 @@ Tại bước Checkout, người dùng có thể nhập mã giảm giá. Hệ th
 
 ---
 
+---
+
+## 10. Chạy EShop local trong GitHub Codespaces
+
+Khi chạy EShop trong Codespaces, frontend truy cập backend qua URL forwarded
+của port `3000`, không phải qua `localhost` của máy người dùng. URL có dạng:
+
+```text
+https://<codespace-name>-3000.app.github.dev/api
+```
+
+Web và admin đọc URL backend từ `VITE_API_URL`; mobile đọc từ
+`EXPO_PUBLIC_API_URL`. Các biến này phải được đặt trong file `.env.local` của
+từng frontend. Sau khi thay đổi `.env.local`, cần khởi động lại Vite hoặc Expo
+vì biến môi trường được nạp khi tiến trình bắt đầu.
+
+### Trình tự khởi động khuyến nghị
+
+Mở các terminal riêng và chạy backend trước:
+
+```bash
+cd backend
+npm install
+node server.js
+```
+
+Sau đó chạy frontend tương ứng:
+
+```bash
+cd frontend-web
+npm install
+npm run dev
+```
+
+```bash
+cd frontend-admin
+npm install
+npm run dev
+```
+
+Admin dùng port `5174`; web dùng port `5173`. Mobile có thể chạy bằng:
+
+```bash
+cd frontend-mobile
+npm install
+npx expo start
+```
+
+Không chạy `node database.js` trong quy trình thông thường. Lệnh này chỉ dùng
+khi cần seed hoặc reset dữ liệu và có thể làm thay đổi dữ liệu kiểm thử.
+
+### Các lỗi thường gặp trong Codespaces
+
+- **`502 Bad Gateway` từ URL port `3000`:** backend có thể đã dừng, port
+  forwarding có thể đang stale, hoặc relay Codespaces chưa kết nối tới process.
+  Kiểm tra local trước:
+
+  ```bash
+  curl http://127.0.0.1:3000/api/products
+  ```
+
+  Nếu local trả `200` nhưng URL `https://<codespace-name>-3000.app.github.dev`
+  trả `502`, route Express và frontend thường không phải nguyên nhân. Kiểm tra
+  process `node server.js`, sau đó mở tab **Ports**, chuyển port `3000` sang
+  **Public**, hoặc tắt/mở lại forwarding của port.
+
+- **Process backend đã thoát:** terminal có thể hiển thị exit code `130` khi
+  tiến trình bị dừng bằng `Ctrl+C` hoặc terminal bị đóng. Khởi động lại bằng
+  `node server.js` và giữ terminal đó hoạt động.
+
+- **Frontend hiển thị trắng hoặc không có dữ liệu:** kiểm tra `.env.local`,
+  đảm bảo URL có hậu tố `/api`, ví dụ:
+
+  ```text
+  VITE_API_URL=https://<codespace-name>-3000.app.github.dev/api
+  ```
+
+  Sau đó restart frontend. Mở Developer Tools của trình duyệt để phân biệt
+  lỗi `Failed to fetch`, `502`, lỗi CORS, hoặc lỗi JavaScript trong giao diện.
+
+- **Lỗi CORS:** origin của frontend phải nằm trong `FRONTEND_ORIGINS` hoặc
+  trong danh sách Codespaces fallback của backend. Khi đổi tên Codespace, cần
+  cập nhật origin theo port frontend mới (`5173`, `5174`, `8081` hoặc `19006`)
+  rồi khởi động lại backend.
+
+- **URL frontend không mở được từ bên ngoài:** port `5173` hoặc `5174` có thể
+  đang ở chế độ `private`. Chuyển port tương ứng sang `public` trong tab
+  **Ports** nếu cần truy cập bằng trình duyệt ngoài Codespace.
+
+### Kiểm tra nhanh kết nối backend
+
+```bash
+curl -i http://127.0.0.1:3000/api/products
+curl -i https://<codespace-name>-3000.app.github.dev/api/products
+```
+
+Kết quả local `200` nhưng forwarded `502` là dấu hiệu của vấn đề port relay.
+Kết quả cả hai đều `200` nhưng giao diện không có dữ liệu thì tiếp tục kiểm tra
+`.env.local`, CORS và Console/Network của trình duyệt.
+
 _Tài liệu này phục vụ cho mục đích học tập và thực hành Kiểm thử Phần mềm. Phiên bản: 2.0 — Cập nhật: 2026-05-14._
