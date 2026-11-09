@@ -1,0 +1,41 @@
+# Git Commit Log - HW#3 GUI Testing & Usability
+
+## Lich su commit da co
+
+1. `f8d649c` - `Initial commit for Homework#3`
+   - Khoi tao pham vi va cau truc ban dau cho Homework #3.
+   - Bao gom cac tai lieu nen, skill va thu muc phuc vu kiem thu GUI/Usability.
+
+2. `fa79b36` - `set up after use new codespace`
+   - Cap nhat hostname Codespaces moi cho backend CORS va cac frontend.
+   - Bo sung/cap nhat cac tai lieu HW#3, roadmap va cac mau ho so AI.
+   - Cap nhat cac file cau hinh va dependency lien quan o muc tong quat.
+
+3. `04cb0e1` - `.`
+   - Bo sung `AGENTS.md` voi quy tac lam viec cho SUT EShop.
+   - Cap nhat `README.md` voi huong dan chay EShop va xu ly loi GitHub Codespaces relay/port forwarding.
+   - Cap nhat mot so package lock va tep he thong lien quan.
+
+## Cac moc cong viec HW#3 dang ghi nhan
+
+4. Giai doan 1 - Xac dinh moi truong va pham vi test
+   - Hoan thanh buoc chuan bi trong `HW#3/todo.md`.
+   - Task 1: chon phan he Web Admin, tap trung vao man hinh `Quan ly San pham (FR-15)` va chuc nang `Import San pham tu CSV (FR-16)`. Hai khu vuc nay duoc chon de co the tao checklist GUI tu 40 muc tro len.
+   - Task 2: chon luong nguoi dung end-to-end de danh gia Usability: dang ky/dang nhap -> tim san pham -> them vao gio hang -> thanh toan co the ap dung ma giam gia.
+   - Cac file cau hinh, tai lieu huong dan chay va ghi chu moi truong duoc cap nhat o muc tong quat.
+   - Trang thai: da chon pham vi; chua thuc thi day du cac buoc test GUI/Cross-platform/Usability.
+
+5. Thiet ke checklist GUI ban dau cho FR-15 va FR-16
+   - Tao `HW#3/Process/task1/GUI-checklist-FR15-FR16.md` voi 40 muc checklist.
+   - Bao phu bon khia canh: IA-01 General UI standards, IA-02 Forms, IA-03 Navigation va IA-04 Feedback/state.
+   - Noi dung tap trung vao them, sua, xoa san pham; file CSV, preview, header, du lieu loi, import thanh cong/that bai, responsive va trang thai request.
+   - Checklist duoc doi chieu voi `SKILL.md`, cac tai lieu tham chieu GUI va ma nguon `frontend-admin/src/App.jsx`.
+   - Day moi la ban checklist AI/ban dau: chua ra soat cac muc AI bo sot, chua kiem tra dau ra tren cac nen tang va tat ca muc dang o trang thai `Not run`.
+   - Trang thai: da tao ban nhap; chua thuc thi va chua chot ket qua Pass/Fail.
+
+## Commit HW#3 da tao
+
+- `e65cf06` - `docs(hw03): add GUI checklist and usability artifacts`
+   - Commit cac tai lieu va artefact HW#3 dang co trong repository, bao gom pham vi test, checklist FR-15/FR-16, tai lieu Task 2, prompt log va roadmap.
+- Cac file khac duoc them/sua trong qua trinh chuan bi HW#3 duoc tong hop chung, khong liet ke chi tiet tung file trong log nay.
+- Khi thuc thi checklist, can cap nhat cot ket qua, ghi bang chung/anh chup, tao bug report cho muc Fail va cap nhat log commit theo tung giai doan.
