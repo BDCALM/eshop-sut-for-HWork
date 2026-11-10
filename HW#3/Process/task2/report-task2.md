@@ -6,8 +6,12 @@ Bắt buộc có trong báo cáo nộp bài (che 4 số giữa của SĐT):
 
 | P# | Họ và Tên | Nghề nghiệp / Vai trò | Thông tin liên lạc (SĐT/Zalo) |
 | --- | --- | --- | --- |
-| P1 | Nguyễn Văn A | Sinh viên Kinh tế | 0903****89 |
+| P1 | Tăng Nhật Đăng | Sinh viên Cơ khí | 0948626648 |
 | P2 | Trần Thị B | Nhân viên văn phòng | 0987****12 |
+| P3 | Trần Thị B | Nhân viên văn phòng | 0987****12 |
+| P4 | Trần Thị B | Nhân viên văn phòng | 0987****12 |
+| P5 | Trần Thị B | Nhân viên văn phòng | 0987****12 |
+| P6 | Trần Thị B | Nhân viên văn phòng | 0987****12 |
 | *(Ghi chú: P1 chạy phiên Pilot để tinh chỉnh thời gian/kịch bản. Lấy kết quả chính thức từ P2 đến P8).* |  |  |  |
 
 **B. Bảng Ghi Quan sát (Lập cho từng người / từng task)**
