@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -5,7 +7,7 @@ const db = require("./database");
 const jwt = require("jsonwebtoken");
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 const SECRET_KEY = "super_secret_key_that_should_not_be_here";
 
 const configuredOrigins = process.env.FRONTEND_ORIGINS
