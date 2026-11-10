@@ -386,3 +386,99 @@ Kết quả cả hai đều `200` nhưng giao diện không có dữ liệu thì
 `.env.local`, CORS và Console/Network của trình duyệt.
 
 _Tài liệu này phục vụ cho mục đích học tập và thực hành Kiểm thử Phần mềm. Phiên bản: 2.0 — Cập nhật: 2026-05-14._
+
+## 11. Setup local trên Windows
+
+Phần này dành cho máy Windows chạy PowerShell. Cần Node.js `20.19+` hoặc
+`22.12+` và npm.
+
+### 11.1. Tạo file environment
+
+Mở PowerShell tại thư mục dự án:
+
+```powershell
+cd C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork
+
+if (-not (Test-Path backend\.env)) { Copy-Item backend\.env.example backend\.env }
+if (-not (Test-Path frontend-web\.env.local)) { Copy-Item frontend-web\.env.example frontend-web\.env.local }
+if (-not (Test-Path frontend-admin\.env.local)) { Copy-Item frontend-admin\.env.example frontend-admin\.env.local }
+if (-not (Test-Path frontend-mobile\.env.local)) { Copy-Item frontend-mobile\.env.example frontend-mobile\.env.local }
+```
+
+Các giá trị mặc định:
+
+```dotenv
+# backend/.env
+PORT=3000
+FRONTEND_ORIGINS=http://localhost:5173,http://localhost:5174,http://localhost:8081,http://localhost:19006
+
+# frontend-web/.env.local và frontend-admin/.env.local
+VITE_API_URL=http://localhost:3000/api
+
+# frontend-mobile/.env.local, dùng cho Android Emulator
+EXPO_PUBLIC_API_URL=http://10.0.2.2:3000/api
+```
+
+Các file `.env` và `.env.local` là cấu hình local, đã được Git ignore và không
+nên commit.
+
+### 11.2. Cài dependency và chạy backend
+
+Backend nằm trong thư mục `backend`, không nằm ở thư mục gốc. Chạy:
+
+```powershell
+cd C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork\backend
+npm install
+node server.js
+```
+
+Khi thành công, terminal hiển thị `Server is running on http://localhost:3000`.
+Giữ terminal này mở.
+
+`server.js` sẽ nạp `database.js`, khởi tạo và seed SQLite. Không chạy
+`node database.js` từ thư mục gốc. Nếu cần chạy file đó riêng, phải dùng
+`cd backend` trước; tuy nhiên thao tác này có thể reset dữ liệu seed, nên quy
+trình thông thường chỉ cần `node server.js`.
+
+### 11.3. Chạy web và admin
+
+Mở terminal PowerShell riêng cho mỗi ứng dụng:
+
+```powershell
+cd C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork\frontend-web
+npm install
+npm run dev
+```
+
+```powershell
+cd C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork\frontend-admin
+npm install
+npm run dev
+```
+
+Mở web tại `http://localhost:5173/` và admin tại `http://localhost:5174/`.
+Tài khoản admin là `admin@eshop.com` / `Admin123!`.
+
+### 11.4. Chạy mobile
+
+```powershell
+cd C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork\frontend-mobile
+npm install
+npx expo start
+```
+
+Android Emulator dùng `10.0.2.2`. Với điện thoại thật chạy Expo Go, thay địa
+chỉ trong `frontend-mobile\.env.local` bằng IPv4 LAN của máy tính, ví dụ:
+`EXPO_PUBLIC_API_URL=http://192.168.1.25:3000/api`. Điện thoại và máy tính phải
+cùng Wi-Fi; sau khi sửa environment cần khởi động lại Expo.
+
+### 11.5. Lỗi thường gặp
+
+- `Cannot find module 'dotenv'`: chạy `npm install` trong đúng thư mục
+  `backend`, không chạy ở `Downloads\down` hoặc thư mục gốc khác.
+- `Cannot find module ...\database.js`: file nằm tại `backend\database.js`.
+  Không chạy `node database.js` ở thư mục gốc.
+- Không kết nối được API: kiểm tra backend còn chạy ở cổng `3000`, frontend có
+  URL kết thúc bằng `/api`, và khởi động lại frontend sau khi sửa `.env.local`.
+- Điện thoại không kết nối được: không dùng `localhost`; dùng IPv4 LAN, cùng
+  Wi-Fi và cho phép Node.js qua Windows Firewall mạng Private.

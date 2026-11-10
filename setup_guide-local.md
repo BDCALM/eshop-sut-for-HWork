@@ -8,10 +8,11 @@ Hướng dẫn này dành cho máy Windows dùng PowerShell, không dùng GitHub
 - (Mobile) Android Studio/Android Emulator hoặc điện thoại cài Expo Go.
 - Điện thoại thật và máy tính cần kết nối cùng mạng Wi-Fi.
 
-Mở PowerShell tại thư mục dự án `eshop-sut-for-HWork`:
+Mở PowerShell tại thư mục dự án `eshop-sut-for-HWork` (thay đường dẫn nếu dự án
+ở vị trí khác):
 
 ```powershell
-cd D:\Downloads\cuaDuong\eshop-sut-for-HWork
+cd C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork
 ```
 
 ## 1. Cấu hình và chạy backend
@@ -41,13 +42,17 @@ node server.js
 
 Giữ cửa sổ này mở. Backend sẽ báo đang chạy trên cổng 3000.
 
-> `backend\database.js` khởi tạo và seed lại SQLite khi backend được nạp. Không cần chạy `node database.js` riêng; việc seed lại sẽ xóa dữ liệu hiện có trong database.
+> `server.js` tự nạp `database.js` để khởi tạo và seed SQLite. Không cần chạy
+> `node database.js` riêng trong quy trình thông thường. Lệnh `node database.js`
+> ở thư mục gốc sẽ lỗi vì file nằm trong `backend`; chạy riêng cũng có thể seed
+> lại và xóa dữ liệu kiểm thử hiện có.
 
 ## 2. Cấu hình và chạy web
 
 Mở một cửa sổ PowerShell mới, tại thư mục dự án:
 
 ```powershell
+cd C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork
 if (-not (Test-Path frontend-web\.env.local)) { Copy-Item frontend-web\.env.example frontend-web\.env.local }
 cd frontend-web
 npm install
@@ -67,7 +72,7 @@ Mở URL Vite hiển thị trên terminal (mặc định `http://localhost:5173/
 Mở cửa sổ PowerShell mới:
 
 ```powershell
-cd D:\Downloads\cuaDuong\eshop-sut-for-HWork
+cd C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork
 if (-not (Test-Path frontend-admin\.env.local)) { Copy-Item frontend-admin\.env.example frontend-admin\.env.local }
 cd frontend-admin
 npm install
@@ -86,7 +91,7 @@ Tài khoản admin có sẵn trong seed database:
 Tạo file môi trường:
 
 ```powershell
-cd D:\Downloads\cuaDuong\eshop-sut-for-HWork
+cd C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork
 if (-not (Test-Path frontend-mobile\.env.local)) { Copy-Item frontend-mobile\.env.example frontend-mobile\.env.local }
 ```
 
@@ -118,3 +123,43 @@ Mỗi ứng dụng chạy trong một terminal riêng; giữ terminal mở khi s
 | Mobile | `npx expo start` | Expo Go / Emulator |
 
 Các file `.env`, `.env.local` không nên đưa lên Git. Mẫu `.env.example` được lưu trong dự án để tham khảo và tạo lại cấu hình local khi cần.
+
+## Xử lý lỗi khi setup
+
+### `Cannot find module 'dotenv'`
+
+Lỗi này xuất hiện khi dependency backend chưa được cài hoặc npm được chạy ở
+sai thư mục. Chạy lại:
+
+```powershell
+cd C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork\backend
+npm install
+node server.js
+```
+
+### `Cannot find module ...\database.js`
+
+`database.js` nằm trong `backend`, không nằm ở thư mục gốc. Không dùng
+`node database.js` trong quy trình thông thường; `node server.js` đã tự gọi phần
+khởi tạo database. Nếu cần chạy riêng để reset/seed, dùng:
+
+```powershell
+cd C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork\backend
+node database.js
+```
+
+Lưu ý: seed database có thể xóa dữ liệu kiểm thử hiện có.
+
+### Frontend không gọi được API
+
+1. Kiểm tra backend đang chạy tại `http://localhost:3000`.
+2. Web/admin phải dùng `VITE_API_URL=http://localhost:3000/api`.
+3. Sau khi sửa `.env.local`, dừng và chạy lại `npm run dev`.
+4. Nếu đổi cổng frontend, thêm origin mới vào `backend\.env` trong
+	`FRONTEND_ORIGINS`, rồi khởi động lại backend.
+
+### Mobile không gọi được API
+
+Android Emulator dùng `http://10.0.2.2:3000/api`. Điện thoại thật dùng IPv4
+LAN của máy tính, không dùng `localhost` hoặc `127.0.0.1`. Hai thiết bị phải
+cùng Wi-Fi và Windows Firewall phải cho phép Node.js trên mạng Private.
