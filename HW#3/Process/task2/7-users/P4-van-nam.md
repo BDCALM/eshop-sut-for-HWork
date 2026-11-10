@@ -1,0 +1,35 @@
+Họ và Tên: Võ Văn Nam
+SDT/Zalo: 0974****19
+Email: 22120222@student.hcmus.edu.vn
+Sinh viên:  Kỹ thuật phần mềm (HCMUS)
+Thời gian thực hiện: 1'50
+
+**A. Thang đo SUS (System Usability Scale) bằng Tiếng Việt**
+Đưa cho người tham gia đánh giá theo thang điểm từ 1 (Rất không đồng ý) đến 5 (Rất đồng ý):
+
+1. Tôi nghĩ mình sẽ muốn dùng hệ thống này thường xuyên. 3/5
+2. Tôi thấy hệ thống phức tạp không cần thiết. 2/5
+3. Tôi thấy hệ thống dễ dùng. 3/5
+4. Tôi nghĩ mình cần sự hỗ trợ của người có kỹ thuật để dùng được hệ thống. 1/5
+5. Tôi thấy các chức năng được tích hợp tốt. 1/5
+6. Tôi thấy hệ thống có quá nhiều điểm không nhất quán. 3/5 
+7. Tôi nghĩ hầu hết mọi người sẽ học cách dùng hệ thống này rất nhanh. 1/5
+8. Tôi thấy hệ thống rất rườm rà khi dùng. 5/5
+9. Tôi cảm thấy rất tự tin khi dùng hệ thống. 1/5
+10. Tôi cần học nhiều thứ trước khi có thể dùng hệ thống này. 4/5
+
+
+
+**B. Câu hỏi phỏng vấn mở (Probe Questions)**
+Dựa trên 4 tiêu chí bắt buộc của đề bài (độ rõ ràng, phục hồi lỗi, tốc độ, mức độ tin tưởng), hãy hỏi người tham gia sau khi họ làm xong:
+
+* **Độ rõ ràng (Clarity):** Bạn thấy giao diện lúc báo lỗi tải file CSV (hoặc thông báo thành công) có rõ ràng và dễ hiểu để biết mình cần làm gì tiếp theo không?
+Thấy khá rõ ràng, dễ hiểu.
+* **Phục hồi lỗi (Error Recovery):** Trong quá trình làm, nếu lỡ bấm nhầm (ví dụ thao tác xóa danh mục), bạn thấy hệ thống có cho phép bạn dễ dàng nhận ra cảnh báo và quay lại không?
+Không, xóa không confirm block (dialog).
+
+* **Tốc độ (Speed):** Bạn đánh giá thế nào về tốc độ hoàn thành các công việc quản lý kho này so với kỳ vọng của bạn? Có thao tác nào làm bạn thấy tốn quá nhiều bước không?
+Nút import ở vị trí không dễ sử dụng. Danh sách sản phẩm khó tìm. Nút "Sửa" không focus vào nơi cần chỉnh sửa khi được chọn.
+
+* **Sự tin tưởng (Trust):** Bạn có cảm thấy tin tưởng hệ thống này sẽ lưu trữ đúng các thay đổi giá tiền hoặc dữ liệu hàng loạt bạn vừa tải lên không? Vì sao?
+Không bởi vì sau khi sửa giá tiền thì không thấy giá tiền được lưu. Mà phải tải lại trang thì mới thấy giá được cập nhật.
