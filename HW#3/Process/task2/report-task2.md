@@ -26,8 +26,9 @@ Dùng để vừa quan sát vừa note lại lúc xem video:
 | P4 | T2: Tìm & Sửa giá | Thành công | 01:50 | 0 | | Không có video |
 | P5 | T1: Import CSV | Thành công | 01:18 | 0 | Mất thời gian để tìm nút Import sản phẩm | Không có video |
 | P5 | T2: Tìm & Sửa giá | Có trợ giúp | 03:50 | 1 | Mất thời gian để biết kéo thanh cuộn xuống để tìm sản phẩm mới thêm và để sửa sản phẩm đó | Không có video |
-| P6 | T1: Import CSV | Thành công | 00:31 | 0 | | Không có video |
-| P6 | T2: Tìm & Sửa giá | Thành công | 01:30 | 0 | | Không có video |
+| P6 | T1: Import CSV | Thất bại | 00:31 | 0 | Cố tình import file .py thay vì .csv| Không có video |
+| P6 | T1: Import CSV | Thành công | 00:51 | 0 | | Không có video |
+| P6 | T2: Tìm & Sửa giá | Có trợ giúp | 02:30 | 1 | Lúng túng không hiểu tại sao bấm nút "Sửa" nhưng màn hình không có phản ứng. "Ủa sao "Sửa" mà không hiện gì cả" | Không có video |
 | P7 | T1: Import CSV | Thành công | 00:37 | 0 | | Không có video |
 | P7 | T2: Tìm & Sửa giá | Thành công | 01:40 | 0 | | Không có video |
 
@@ -41,3 +42,9 @@ Sau khi chạy đủ 7 người, hãy gom các lỗi lặp lại thành một b�
 | UX-02 | "Sửa" sản phẩm, không focus vào nơi được sửa | 7/7 người gặp | Heuristic 4 (Nhất quán & Chuẩn) | 4 | Thêm phần tự động cuộn lên sản phẩm được chỉnh sửa ngay sau khi bấm "Sửa". |
 | UX-03 | Xóa danh mục không có thông báo xác nhận | 7/7 người gặp | Heuristic 3 (Kiểm soát và tự do cho người dùng) và 5 (Ngăn ngừa lỗi) | 4 | Bổ sung Popup Confirm "Bạn có chắc chắn muốn xóa danh mục này không?" trước khi thực thi lệnh xóa. |
 | UX-04 | Hoàn tác sản phẩm/danh mục vừa được xóa | 6/7 người gặp | Heuristic 3 (Kiểm soát và tự do cho người dùng) và 5 (Ngăn ngừa lỗi) | 4 | Bổ sung Popup "Hoàn tác" trong vòng 5s (sau đó biến mất) hoặc một nút "Hoàn tác" |
+| UX-05 | Import một file gồm nhiều dòng bị lỗi, thông báo nhiều dòng gây tràn màn hình | 1/7 người gặp | Heuristic 4 (Nhất quán & Chuẩn)  | 2 | Nên tạo thanh cuộn khi có nhiều dòng bị lỗi do import |
+
+
+
+
+Minh chứng UX-05: ![ux05](..\Submission\reports\assets\task2\UX-05.png)

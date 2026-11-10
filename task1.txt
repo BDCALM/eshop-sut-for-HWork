@@ -1,0 +1,31 @@
+Pass, Fail hoặc Blocked
+
+UX/UI Bug checklist: 
+- Từ GUI-FR15-13, Giao diện "Thêm sản phẩm", ngoài phần dien URL anh, thi phai co them phan "Upload anh tu may tinh" để tang tính trải nghiệm và tiện lợi cho người dung.
+- Từ GUI-FR15-10, Giao diện để điền giá tiền sản phẩm là không phù hợp. Đây là UX anti-pattern và không phù hợp trong các trường hợp giá trị được điền có biên  do giá trị lớn.
++ Lỗi thay đổi giá trị ngoài ý muốn (Accidental Scroll Trap):
+
++ Khi người dùng đang focus vào ô hoặc vô tình rê chuột trúng ô input trong lúc cuộn trang để duyệt form, trình duyệt sẽ chặn cuộn trang và thay đổi giá trị số bên trong. Người dùng thường không để ý và submit form với dữ liệu bị sai lệch âm thầm.
+
++ Cụm mũi tên tăng/giảm mặc định của trình duyệt ở góc phải có diện tích bấm quá bé, khó thao tác chính xác bằng chuột và hoàn toàn vô dụng trên thiết bị cảm ứng.
+
+
+Nơi thực hiện test: Chrome stable, Desktop (local machine)
+GUI-FR15-01 - Pass
+GUI-FR15-02 - Pass
+GUI-FR15-03 - Pass
+GUI-FR15-04 - Pass
+GUI-FR15-05 - Fail, Giao diện không có anh thay thế khi không upload anh cua san pham (Minh chung: eshop-sut-for-HWork\HW#3\Submission\reports\assets\task1\GUI-FR15-05.png)
+GUI-FR15-06 - Pass
+GUI-FR15-07 - Pass
+GUI-FR15-08 - Fail, Tạo thanh cuộn ngang khi them sản phẩm mới với "Tên SP" rất dài (Minh chung: eshop-sut-for-HWork\HW#3\Submission\reports\assets\task1\GUI-FR15-08.png)
+GUI-FR15-09 - Fail, Ghi chú: Nên có một text box là "Danh mục" ở phía trên nơi chọn danh mục (Minh chung: eshop-sut-for-HWork\HW#3\Submission\reports\assets\task1\GUI-FR15-09.png).
+GUI-FR15-10 - Pass
+GUI-FR15-11- Fail, Giao diện cho phép nhập giá trị âm, giá trị bang 0. (Minh chung: eshop-sut-for-HWork\HW#3\Submission\reports\assets\task1\GUI-FR15-11.png).
+
+GUI-FR15-12 - Fail, Ghi chú: Fail do giao diện không giới hạn do dai cua tên sản phẩm.(Minh chung: eshop-sut-for-HWork\HW#3\Submission\reports\assets\task1\GUI-FR15-12.png).
+
+GUI-FR15-13 - Fail, ghi chú: Bất kể URL hợp lệ hay không thì anh không hiện ra. (Minh chung: eshop-sut-for-HWork\HW#3\Submission\reports\assets\task1\GUI-FR15-12.png).
+
+
+
