@@ -124,7 +124,7 @@ Các mục chưa thực thi được ghi Not run, không tự suy đoán Pass/Fa
 "
 ```
 **Rejected:** No
-**Changed:** No
+**Changed:** Change ở Check list cuối cùng (GUI-FR16-16), chỉnh sửa kích thước kiểm tra 768x1024 sang 768x800 (bởi vì màn hình của tôi chỉ kéo dài tối đa xuống 823 thay vì 1024)
 
 
 # Entry log  5 - 12:20 - 10/11/2026
@@ -181,19 +181,146 @@ Made changes."
 
 # Entry log 6 - 12:24- 10/11/2026
 
-**Model used:**
-**Prompt:**
-**AI's Answer:**
-**Rejected:**
-**Changed:**
+**Model used:** Copilit
+**Prompt:** 
+"Bạn hãy giúp tôi điền file "GUI-checklist-FR15-FR16.md" dựa theo những gì tôi đã ghi chú trong task1.txt nhé..
+Trong quá trình check tôi có phát hiện ra một số lỗi khác, nếu có thể thì bạn hãy thêm vào trong GUI checklist xem như là đóng góp của tôi mà AI không phát hiện ra nhé, bạn có thể dự đoán lỗi vì sao AI không phát hiện ra (tôi sẽ là người kiểm tra lại và duyệt). 
 
-# Entry log  - 10/11/2026
+---
+Trước tiên bạn cần đọc file AGENTS.md và file SKILL.md trước nhé, bạn cần tuân thủ theo 2 file này. Sau đó mới thực hiện task chính mà tôi giao ở trên nhé"
 
-**Model used:**
-**Prompt:**
 **AI's Answer:**
-**Rejected:**
-**Changed:**
+```text
+Đã điền hoàn chỉnh GUI-checklist-FR15-FR16.md dựa trên task1.txt.
+
+Đã cập nhật:
+
+40 kết quả kiểm thử:
+24 Pass
+16 Fail
+Bổ sung ghi chú và đường dẫn minh chứng cho từng lỗi.
+Sửa đường dẫn minh chứng FR16-07 về file thực tế GUI-FR16-07-1.png.
+Thêm phần đóng góp UX của bạn:
+Upload ảnh từ máy tính.
+Vấn đề accidental scroll với ô giá.
+Xóa liên tiếp khó thao tác.
+Thiếu vùng cuộn/phân trang.
+Thiếu chức năng tìm kiếm/lọc sản phẩm.
+Thêm các giả thuyết lỗi do AI suy ra từ mã nguồn, đều đánh dấu Not run để bạn kiểm tra và duyệt trước.
+Giải thích vì sao các lỗi này dễ bị AI bỏ sót.
+Đã kiểm tra thành công: không có lỗi whitespace trong file checklist và toàn bộ đường dẫn minh chứng đều tồn tại.
+```
+**Rejected:** No
+**Changed:** No
+
+# Entry log  7 - 12:55 - 10/11/2026
+
+**Model used:** Auto copilt
+**Prompt:** "
+Bạn hãy giúp tôi viết "GUI-checklist-report.md" dựa theo "GUI-checklist-FR15-FR16.md" nhé.
+
+2. Bạn hãy giúp tôi viết "report-task2.md" bằng cách lấy thông tin từ 7 người ở "7-users". Cũng như là đánh giá thông tin còn thiếu để viết "usability-evaluation-report.md""
+**AI's Answer:** "Updated todo list
+
+Mình sẽ tổng hợp theo đúng nguồn hiện có: checklist FR15/FR16 cho báo cáo GUI, bảy hồ sơ người dùng cho `report-task2.md`, rồi rà các khoảng trống dữ liệu trước khi viết `usability-evaluation-report.md`. Mình sẽ không tự bịa số liệu hoặc trích lời; chỗ nào thiếu video, thời lượng, kết quả hay bằng chứng sẽ được đánh dấu rõ để bạn bổ sung.
+
+Read 
+
+Read 
+
+Read , lines 1 to 40
+
+Read 
+
+Read 
+
+Hai file báo cáo chính đang rỗng, còn `report-task2.md` hiện mới là bản nháp tổng hợp và có một số số liệu cần kiểm tra lại với hồ sơ từng người. Mình sẽ đọc đủ bảy file P1–P7 trước, đặc biệt đối chiếu thời gian, kết quả task và trích lời, rồi mới chỉnh các báo cáo để không giữ lại số liệu mâu thuẫn.
+
+Read 
+
+Read 
+
+Read 
+
+Read 
+
+Read 
+
+Read 
+
+Read 
+
+Bảy hồ sơ người dùng chỉ chứa SUS và phỏng vấn mở, không chứa bảng task-by-task/video; vì vậy báo cáo usability cần tách “dữ liệu có thể kết luận” khỏi “dữ liệu còn thiếu”. Mình sẽ giữ các quan sát task đã có trong bản nháp `report-task2.md` như dữ liệu do nhóm ghi nhận, nhưng đánh dấu cần đối chiếu nguồn; đồng thời tính SUS từ bảy phiếu và xây báo cáo tổng hợp dựa trên các trích dẫn thực tế.
+
+Ran terminal command: $scores = @(
+@(1,3,1,5,5,2,5,3,1,3),
+@(2,3,1,4,3,3,1,5,3,3),
+@(1,4,2,1,3,4,2,4,4,1),
+@(3,2,3,1,1,3,1,5,1,4),
+@(1,3,3,4,3,4,3,3,2,4),
+@(3,2,3,5,5,5,5,2,4,1),
+@(1,2,2,3,3,4,3,4,3,2)
+); $sus = foreach ($row in $scores) { $sum=0; for ($i=0; $i -lt 10; $i++) { if (($i + 1) % 2 -eq 1) { $sum += $row[$i] - 1 } else { $sum += 5 - $row[$i] } }; [math]::Round($sum * 2.5, 2) }; $sus; Write-Output "Mean SUS: $([math]::Round(($sus | Measure-Object -Average).Average, 2))"; Write-Output "Median SUS: $((($sus | Sort-Object)[3]))"
+
+Mình đã tính SUS theo chuẩn: điểm từng người lần lượt là `42.5, 30, 45, 35, 35, 62.5, 42.5`, trung bình `41.79/100`, trung vị `42.5`. Đây là mức thấp, nhưng mình sẽ ghi rõ mẫu chỉ có 7 người và dữ liệu task/video chưa đầy đủ nên không suy rộng thống kê. Tiếp theo mình tạo ba báo cáo với phần phương pháp, kết quả, pain points và giới hạn bằng chứng.
+
+Generating patch (113 lines) in 
+
+
+```
+
+```
+
+
+Generating patch (3 lines) in 
+
+Ran terminal command: if (Test-Path 'C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork\HW#3\Process\task2\report-task2.md') { throw 'Old report-task2.md still exists' }; Write-Output 'Draft report removed; replacement is ready to be written.'
+
+Báo cáo GUI đã được viết. Với `report-task2.md`, mình phát hiện dữ liệu hiện có không đủ để chứng minh toàn bộ bảng task: bảy file chỉ có SUS/phỏng vấn, không có log task/video; đồng thời mẫu ghi “P2–P8” nhưng thư mục chỉ có P1–P7. Bản mới sẽ ghi rõ điểm này, vẫn tổng hợp đầy đủ dữ liệu có thật và không biến phần thiếu thành số liệu giả.
+
+Created 
+
+Created 3 todos
+
+Generating patch (3 lines) in 
+
+Ran terminal command: if (Test-Path 'C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork\HW#3\Submission\reports\mainReports(md+pdf)\usability-evaluation-report.md') { throw 'Old empty usability report still exists' }; Write-Output 'Empty usability report removed; replacement is ready to be written.'
+
+`report-task2.md` đã được viết lại với 7 người, điểm SUS, tổng hợp bốn tiêu chí phỏng vấn, pain points và mục dữ liệu còn thiếu. Mình cũng giữ phần task observation nhưng gắn cảnh báo nguồn vì các dòng đó không xuất hiện trong bảy hồ sơ được cung cấp; giờ mình viết báo cáo đánh giá cuối cùng dựa trên cả usability data và GUI findings.
+
+Created 
+
+Ba tài liệu đã được viết: báo cáo GUI, bản tổng hợp task2 có kiểm soát nguồn, và usability evaluation. Mình đang chạy kiểm tra cuối về Markdown, số liệu SUS, các file/link nội bộ và rà lỗi trình bày nhỏ trước khi hoàn tất.
+
+Ran terminal command: Set-Location 'C:\Users\CYBER\Downloads\down\eshop-sut-for-HWork'; git diff --check -- 'HW#3/Submission/reports/mainReports(md+pdf)/GUI-checklist-report.md' 'HW#3/Process/task2/report-task2.md' 'HW#3/Submission/reports/mainReports(md+pdf)/usability-evaluation-report.md'; $files = @('HW#3\Submission\reports\mainReports(md+pdf)\GUI-checklist-report.md','HW#3\Process\task2\report-task2.md','HW#3\Submission\reports\mainReports(md+pdf)\usability-evaluation-report.md'); foreach ($file in $files) { if (-not (Test-Path $file)) { throw "Missing $file" }; $text = Get-Content $file -Raw; if ($text.Length -lt 500) { throw "Too short: $file" } }; $sus = Select-String -Path 'HW#3\Process\task2\report-task2.md' -Pattern '41\.79|42\.5|62\.5'; if ($sus.Count -lt 3) { throw 'SUS summary missing' }; Write-Output 'All three reports exist, contain substantive content, and pass diff validation.'
+
+Đã hoàn thành 3 tài liệu:
+
+- GUI-checklist-report.md/`GUI-checklist-report.md`)
+  - Tổng hợp 40 test case: 24 Pass, 16 Fail.
+  - Phân tích riêng FR15, FR16, lỗi chính, UX bổ sung và giới hạn kiểm thử.
+
+- report-task2.md
+  - Tổng hợp 7 người P1–P7.
+  - Tính SUS từng người, trung bình `41.79/100`, trung vị `42.5`.
+  - Phân tích Clarity, Error Recovery, Speed, Trust.
+  - Tổng hợp pain points UX-01 đến UX-05.
+  - Ghi rõ các dữ liệu còn thiếu: P8, video, timestamp, viewport, task log và xác nhận P1 pilot.
+
+- usability-evaluation-report.md/`usability-evaluation-report.md`)
+  - Đánh giá usability tổng thể.
+  - Phân tích T1 Import CSV và T2 Tìm/Sửa giá.
+  - Xếp hạng severity và ưu tiên xử lý.
+  - Đưa ra khuyến nghị P0/P1/P2.
+  - Nêu rõ giới hạn bằng chứng và dữ liệu cần bổ sung.
+
+Đã kiểm tra cả ba file: tồn tại, có nội dung đầy đủ và không có lỗi whitespace Markdown.
+
+Completed: *Write GUI checklist report* (1/3)
+
+Made changes."
+**Rejected:** No
+**Changed:** No
 
 # Entry log  - 10/11/2026
 

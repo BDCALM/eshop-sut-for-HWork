@@ -35,6 +35,13 @@
 
 ## Commit HW#3 da tao
 
+- `e802123` - `docs(hw03): complete GUI checklist and Task 1 evidence`
+   - Chot ket qua checklist GUI FR-15/FR-16 voi 40 test case, bang chung va cac muc Fail.
+   - Bo sung evidence screenshots/video references, bug report va ghi chu Task 1.
+- `TBD` - `docs(hw03): add usability evaluation reports for Task 2`
+   - Tong hop du lieu 7 nguoi tham gia, SUS, phan tich Clarity/Error Recovery/Speed/Trust.
+   - Bo sung bao cao GUI checklist, bao cao usability va pain points UX-01 den UX-05.
+   - Hash se duoc dien sau khi commit Task 2; khong amend de giu dung yeu cau chi co 2 commit.
 - `9fb0af6` - `docs(hw03): add GUI checklist and usability artifacts`
    - Commit cac tai lieu va artefact HW#3 dang co trong repository, bao gom pham vi test, checklist FR-15/FR-16, tai lieu Task 2, prompt log va roadmap.
 - Cac file khac duoc them/sua trong qua trinh chuan bi HW#3 duoc tong hop chung, khong liet ke chi tiet tung file trong log nay.
