@@ -22,12 +22,9 @@
 
 1. **Thiết kế Checklist (Sử dụng AI):**
 * Prompt AI tạo một checklist ban đầu. -> Xong
-- Chưa thực hiện rà soát 
 * Rà soát và thêm các mục AI bỏ sót (VD: Accessibility, Dark mode, RTL layout, hoặc các logic nghiệp vụ đặc thù như format tiền tệ ₫).
-
--> Cần kiểm tra các file đầu ra ở folder task2
 * Yêu cầu đầu ra: **File Excel/Markdown Checklist với hơn 40 mục**, bao phủ 4 khía cạnh: Giao diện chung (IA-01), Form (IA-02), Điều hướng (IA-03), Trạng thái/Phản hồi (IA-04). Cần ghi rõ lý do vì sao AI bỏ sót các mục bạn tự thêm vào.
-
+-> Đã Hoàn thành task 1
 
 
 
