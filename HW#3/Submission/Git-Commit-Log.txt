@@ -58,3 +58,5 @@
 3. **Cap nhat Git commit log**
    - Commit message: `docs(hw03): record Task 3 and report commit hashes`
    - Ghi lai hash va pham vi cua hai commit tren sau khi Git tao commit that.
+git commit -m "docs: ADd test summary report"    
+[local 35eb39f] docs: ADd test summary report
