@@ -46,3 +46,15 @@
    - Commit cac tai lieu va artefact HW#3 dang co trong repository, bao gom pham vi test, checklist FR-15/FR-16, tai lieu Task 2, prompt log va roadmap.
 - Cac file khac duoc them/sua trong qua trinh chuan bi HW#3 duoc tong hop chung, khong liet ke chi tiet tung file trong log nay.
 - Khi thuc thi checklist, can cap nhat cot ket qua, ghi bang chung/anh chup, tao bug report cho muc Fail va cap nhat log commit theo tung giai doan.
+
+## Cac commit cap nhat moi
+
+1. `3cf3518` - `docs(hw03): standardize Task 3 cross-browser evidence`
+   - Chuan hoa ten 41 tep minh chung trong `HW#3/Submission/reports/assets/task3/firefox/` va `HW#3/Submission/reports/assets/task3/google-chrome/` bang tien to `GUI-FR`; giu nguyen hai file `README.md`.
+
+2. `15aa80b` - `docs(hw03): summarize GUI, usability, bug, and AI reports`
+   - Cap nhat README, AI Audit/Critique, GUI checklist va GUI checklist report; them cac ban PDF AI Audit, AI Critique, GUI checklist, GUI checklist report va usability evaluation.
+
+3. **Cap nhat Git commit log**
+   - Commit message: `docs(hw03): record Task 3 and report commit hashes`
+   - Ghi lai hash va pham vi cua hai commit tren sau khi Git tao commit that.
