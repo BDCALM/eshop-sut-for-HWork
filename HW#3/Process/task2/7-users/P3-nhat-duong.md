@@ -1,5 +1,5 @@
-Họ và Tên: Nguyễn Văn Hải
-Zalo: 0905****09
+Họ và Tên: Trần Nhật Dương
+Zalo: 0914****20
 Sinh viên: Khoa học máy tính (HCMUS)
 Thời gian thực hiện: 2'10''
 

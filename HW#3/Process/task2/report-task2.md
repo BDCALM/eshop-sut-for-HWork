@@ -22,7 +22,7 @@ bảng báo cáo để giảm dữ liệu cá nhân không cần thiết.
 |---|---|---|---|
 | P1 | Tăng Nhật Đăng | Sinh viên Cơ khí, ĐHBK - ĐHQG TP.HCM | 0948****48 |
 | P2 | Dương Hoàng Phúc | Sinh viên Công nghệ thông tin, ĐH Nông Lâm | 0374****42 |
-| P3 | Trần Nhật Dương | Sinh viên Khoa học Máy tính, HCMUS | 0905****09 |
+| P3 | Trần Nhật Dương | Sinh viên Khoa học Máy tính, HCMUS | 0914****20 |
 | P4 | Võ Văn Nam | Sinh viên Kỹ thuật phần mềm, HCMUS | 0974****19 |
 | P5 | Nguyễn Văn Bá Khôi | Sinh viên Điện tử Viễn thông, HCMUS | 0393****00 |
 | P6 | Viên Đăng Khoa | Sinh viên Hệ thống thông tin, UIT | 0889****23 |
