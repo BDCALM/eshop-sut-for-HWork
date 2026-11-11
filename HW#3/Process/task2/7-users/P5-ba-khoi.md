@@ -3,6 +3,7 @@ SDT/Zalo: 0393****00
 Email: 2520003201@student.hcmus.edu.vn
 Sinh viên: Điện tử Viễn thông (HCMUS)
 Thời gian thực hiện: 3'50''
+Link video: https://youtu.be/bZZPJyC-P4k?si=3Cfap-y2VVdNakfc
 
 **A. Thang đo SUS (System Usability Scale) bằng Tiếng Việt**
 Đưa cho người tham gia đánh giá theo thang điểm từ 1 (Rất không đồng ý) đến 5 (Rất đồng ý):

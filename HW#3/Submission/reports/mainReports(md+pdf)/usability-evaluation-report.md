@@ -50,9 +50,21 @@ Dương.
   + Viewport: 1280x800
   + Thiết bị: Laptop Dell G15 5515, OS: Windows 11 Version 25H2 (Build 26200.9711)
   + URL/build: http://localhost:5174 
-- Chưa có video hoặc timestamp cho phần lớn phiên.
+- Hồ sơ P1, P5, P6 và P7 có link video phỏng vấn; P7 còn có hai link góp ý bổ
+  sung. P2-P4 chưa có link video.
+- Hồ sơ chưa ghi timecode hoặc xác nhận các video bao gồm toàn bộ thao tác T1/T2;
+  vì vậy không xem link phỏng vấn là bằng chứng đầy đủ cho log task.
 - Bản kế hoạch cũ nhắc P2-P8 và P1 pilot, nhưng thư mục hiện chỉ có P1-P7. (
   P1 không phải là pilot)
+
+Link video hiện có:
+
+| P# | Video |
+|---|---|
+| P1 | [Phỏng vấn](https://youtu.be/XnK9s-bV-Uo?si=ljqck9RapOlsG1t4) |
+| P5 | [Phỏng vấn](https://youtu.be/bZZPJyC-P4k?si=3Cfap-y2VVdNakfc) |
+| P6 | [Phỏng vấn](https://youtu.be/JsFcyFmqHvo?si=5lgyUBYtk5zozTsA) |
+| P7 | [Phỏng vấn](https://youtu.be/AnMUDrTQDqc?si=1PUmHcUYlKIMA9a9); [Góp ý 1](https://youtu.be/Iar0auHzu7o?si=5o1WfU8W9c3AQxRM); [Góp ý 2](https://youtu.be/LOttCmflJsw?si=m1HPHMj-qEvSco1x) |
 
 ## 4. Kết quả SUS
 
@@ -185,7 +197,8 @@ cấu trúc trước khi so sánh giữa nhóm người dùng hoặc đưa ra k�
 - Bổ sung số lần trợ giúp, số lỗi thao tác và kết quả thành công/thất bại có
   nguồn ghi rõ.
 - Bổ sung browser version, viewport, thiết bị, URL/build và ngày test.
-- Bổ sung video/timestamp hoặc ghi chú quan sát có người xác nhận.
+- Bổ sung timecode hoặc ghi chú quan sát có người xác nhận; xác minh video nào
+  ghi toàn bộ task T1/T2 thay vì chỉ phỏng vấn. P2-P4 hiện chưa có link video.
 - Bổ sung SEQ sau từng task nếu cần đo độ dễ hoàn thành.
 - Đối chiếu lại tần suất UX-01..UX-05 với raw notes trước khi khẳng định là
   3/7, 7/7, 6/7 hoặc 1/7.

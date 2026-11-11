@@ -18,15 +18,15 @@
 Số điện thoại đã được che bốn chữ số ở giữa theo yêu cầu. Email không đưa vào
 bảng báo cáo để giảm dữ liệu cá nhân không cần thiết.
 
-| P# | Họ và tên | Nghề nghiệp / Vai trò | Thông tin liên lạc |
-|---|---|---|---|
-| P1 | Tăng Nhật Đăng | Sinh viên Cơ khí, ĐHBK - ĐHQG TP.HCM | 0948****48 |
-| P2 | Dương Hoàng Phúc | Sinh viên Công nghệ thông tin, ĐH Nông Lâm | 0374****42 |
-| P3 | Trần Nhật Dương | Sinh viên Khoa học Máy tính, HCMUS | 0914****20 |
-| P4 | Võ Văn Nam | Sinh viên Kỹ thuật phần mềm, HCMUS | 0974****19 |
-| P5 | Nguyễn Văn Bá Khôi | Sinh viên Điện tử Viễn thông, HCMUS | 0393****00 |
-| P6 | Viên Đăng Khoa | Sinh viên Hệ thống thông tin, UIT | 0889****23 |
-| P7 | Nguyễn Hải Dương | Sinh viên Công nghệ thông tin, FPT University | 0792****88 |
+| P# | Họ và tên | Nghề nghiệp / Vai trò | Thông tin liên lạc | Video |
+|---|---|---|---|---|
+| P1 | Tăng Nhật Đăng | Sinh viên Cơ khí, ĐHBK - ĐHQG TP.HCM | 0948****48 | [Phỏng vấn](https://youtu.be/XnK9s-bV-Uo?si=ljqck9RapOlsG1t4) |
+| P2 | Dương Hoàng Phúc | Sinh viên Công nghệ thông tin, ĐH Nông Lâm | 0374****42 | Chưa có link |
+| P3 | Trần Nhật Dương | Sinh viên Khoa học Máy tính, HCMUS | 0914****20 | Chưa có link |
+| P4 | Võ Văn Nam | Sinh viên Kỹ thuật phần mềm, HCMUS | 0974****19 | Chưa có link |
+| P5 | Nguyễn Văn Bá Khôi | Sinh viên Điện tử Viễn thông, HCMUS | 0393****00 | [Phỏng vấn](https://youtu.be/bZZPJyC-P4k?si=3Cfap-y2VVdNakfc) |
+| P6 | Viên Đăng Khoa | Sinh viên Hệ thống thông tin, UIT | 0889****23 | [Phỏng vấn](https://youtu.be/JsFcyFmqHvo?si=5lgyUBYtk5zozTsA) |
+| P7 | Nguyễn Hải Dương | Sinh viên Công nghệ thông tin, FPT University | 0792****88 | [Phỏng vấn](https://youtu.be/AnMUDrTQDqc?si=1PUmHcUYlKIMA9a9); [Góp ý 1](https://youtu.be/Iar0auHzu7o?si=5o1WfU8W9c3AQxRM); [Góp ý 2](https://youtu.be/LOttCmflJsw?si=m1HPHMj-qEvSco1x) |
 
 ## 3. Điểm SUS
 
@@ -96,10 +96,11 @@ Nguyên nhân lặp lại là sau khi sửa giá, giao diện chưa phản ánh 
 
 ## 5. Bảng quan sát task
 
-Bảng dưới đây là dữ liệu task đã có trong bản ghi tổng hợp trước đó. Các file
-P1-P7 hiện chỉ chứa SUS và phỏng vấn mở, không chứa log task/video tương ứng;
-do đó cần xác nhận người ghi và bổ sung mốc video trước khi dùng làm bằng chứng
-chính thức.
+Bảng dưới đây là dữ liệu task đã có trong bản ghi tổng hợp trước đó. Các hồ sơ
+P1, P5-P7 hiện có link video phỏng vấn; P2-P4 chưa có link. Hồ sơ không ghi
+timecode hoặc xác nhận video bao gồm toàn bộ thao tác task, nên cần đối chiếu
+nguồn ghi và bổ sung mốc video trước khi dùng các quan sát trong bảng làm bằng
+chứng chính thức.
 
 | P# | Nhiệm vụ | Kết quả | Thời gian | Lỗi thao tác | Quan sát |
 |---|---|---|---:|---:|---|
@@ -146,7 +147,9 @@ chính thức.
 3. Bổ sung viewport, trình duyệt, thiết bị, URL/build và ngày/giờ test.
 4. Bổ sung task script, tiêu chí thành công/thất bại và thời gian bắt đầu-kết
    thúc cho từng task.
-5. Bổ sung video hoặc timestamp; hiện phần lớn hồ sơ ghi không có video.
+5. Đã bổ sung link video phỏng vấn cho P1, P5, P6 và P7 ở bảng người tham gia.
+   P2-P4 chưa có link; cần bổ sung timecode và xác nhận video nào ghi lại task
+   (không chỉ phần phỏng vấn) trước khi dùng để xác minh bảng quan sát.
 6. Xác nhận bảng quan sát task ở mục 5 vì các giá trị này không xuất hiện trong
    bảy hồ sơ SUS/phỏng vấn được cung cấp.
 7. Nếu cần kết luận usability mạnh hơn, bổ sung SEQ sau từng task, tỷ lệ hoàn

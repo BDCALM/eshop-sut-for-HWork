@@ -213,7 +213,7 @@ Giải thích vì sao các lỗi này dễ bị AI bỏ sót.
 **Rejected:** No
 **Changed:** No
 
-# Entry log  7 - 12:55 - 10/11/2026
+# Entry log  7 - 00:55 - 11/11/2026
 
 **Model used:** Auto copilt
 **Prompt:** "
@@ -322,13 +322,192 @@ Made changes."
 **Rejected:** No
 **Changed:** No
 
-# Entry log  - 10/11/2026
+# Entry log 8 - 11:36 - 11/11/2026
 
-**Model used:**
-**Prompt:**
+**Model used:** Copilot
+**Prompt:** "Tôi đã cập nhật link video phỏng vấn ở trong 4 users trong folder 7-users.
+Bạn hãy cập nhật file report-task2.md sau đó cập nhật trong file usability-evaluation-report.md nữa nhé"
 **AI's Answer:**
-**Rejected:**
-**Changed:**
+"
+```text
+Mình sẽ đối chiếu nội dung bốn hồ sơ người tham gia với hai báo cáo, xác định chính xác các liên kết video mới và cập nhật chỗ dẫn/ghi nhận tương ứng, giữ nguyên các phần không liên quan.
+
+Read 
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Process\\task2\\7-users"
+}
+
+Read 
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Process\\task2\\7-users\\P6-dang-khoa.md"
+}
+
+Read 
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Process\\task2\\7-users\\P1-nhat-dang.md"
+}
+
+Read 
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Process\\task2\\7-users\\P5-ba-khoi.md"
+}
+
+Read 
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Process\\task2\\7-users\\P7-hai-duong.md"
+}
+
+Read 
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Process\\task2\\report-task2.md"
+}
+
+Read 
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Submission\\reports\\mainReports(md+pdf)\\usability-evaluation-report.md"
+}
+
+Read , lines 1 to 90
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Process\\task2\\report-task2.md",
+  "view_range": [
+    1,
+    90
+  ]
+}
+
+Read , lines 91 to 180
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Process\\task2\\report-task2.md",
+  "view_range": [
+    91,
+    180
+  ]
+}
+
+Read , lines 1 to 100
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Submission\\reports\\mainReports(md+pdf)\\usability-evaluation-report.md",
+  "view_range": [
+    1,
+    100
+  ]
+}
+
+Read , lines 101 to 210
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Submission\\reports\\mainReports(md+pdf)\\usability-evaluation-report.md",
+  "view_range": [
+    101,
+    210
+  ]
+}
+
+Search for `youtube|youtu\.be|video|phỏng vấn|SUS|P[1-7]|7-users|task2`
+
+Mình đã xác nhận có link phỏng vấn ở P1, P5, P6 và P7; P7 còn có hai video góp ý bổ sung. Mình sẽ đưa các link vào bảng người tham gia ở báo cáo task 2 và cập nhật báo cáo tổng, đồng thời phân biệt rõ video phỏng vấn với video ghi toàn bộ thao tác task vì hồ sơ chưa có timecode để xác nhận điều đó.
+
+Edit , 
+
+Read , lines 12 to 42
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Process\\task2\\report-task2.md",
+  "view_range": [
+    12,
+    42
+  ]
+}
+
+Read , lines 78 to 95
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Process\\task2\\report-task2.md",
+  "view_range": [
+    78,
+    95
+  ]
+}
+
+Read , lines 142 to 165
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Process\\task2\\report-task2.md",
+  "view_range": [
+    142,
+    165
+  ]
+}
+
+Read , lines 24 to 65
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Submission\\reports\\mainReports(md+pdf)\\usability-evaluation-report.md",
+  "view_range": [
+    24,
+    65
+  ]
+}
+
+Read , lines 175 to 200
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Submission\\reports\\mainReports(md+pdf)\\usability-evaluation-report.md",
+  "view_range": [
+    175,
+    200
+  ]
+}
+
+Search for `https://youtu\.be/`
+
+Search for `video|Video|timestamp|timecode`
+
+Read , lines 48 to 66
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Submission\\reports\\mainReports(md+pdf)\\usability-evaluation-report.md",
+  "view_range": [
+    48,
+    66
+  ]
+}
+
+Read , lines 192 to 205
+Completed with input: {
+  "path": "D:\\Downloads\\cuaDuong\\eshop-sut-for-HWork\\HW#3\\Submission\\reports\\mainReports(md+pdf)\\usability-evaluation-report.md",
+  "view_range": [
+    192,
+    205
+  ]
+}
+
+Ran terminal command: @'
+from pathlib import Path
+import re
+root = Path(r'D:\Downloads\cuaDuong\eshop-sut-for-HWork')
+users = root / 'HW#3' / 'Process' / 'task2' / '7-users'
+source_files = ['P1-nhat-dang.md', 'P5-ba-khoi.md', 'P6-dang-khoa.md', 'P7-hai-duong.md']
+targets = [
+    root / 'HW#3' / 'Process' / 'task2' / 'report-task2.md',
+    root / 'HW#3' / 'Submission' / 'reports' / 'mainReports(md+pdf)' / 'usability-evaluation-report.md',
+]
+expected = set()
+for name in source_files:
+    text = (users / name).read_text(encoding='utf-8')
+    expected.update(re.findall(r'https://youtu\.be/[^\s)]+', text))
+for target in targets:
+    text = target.read_text(encoding='utf-8')
+    missing = expected - set(re.findall(r'https://youtu\.be/[^)]+', text))
+    if missing:
+        raise SystemExit(f'Missing source links in {target.name}: {sorted(missing)}')
+    print(f'PASS: all {len(expected)} interview/feedback links included in {target.name}')
+'@ | python -
+
+Đã cập nhật cả hai báo cáo:
+
+- `report-task2.md`: thêm bảng link video cho P1–P7, ghi rõ P1/P5/P6/P7 có video và P7 có thêm hai video góp ý; làm rõ chưa có timecode để đối chiếu video với thao tác task.
+- `usability-evaluation-report.md`: thêm các link tương ứng và cập nhật phần độ đầy đủ dữ liệu.
+
+Đã kiểm tra, cả sáu link video từ hồ sơ đều xuất hiện trong hai báo cáo.
+```
+"
+**Rejected:** No
+**Changed:** No
 
 # Entry log  - 10/11/2026
 

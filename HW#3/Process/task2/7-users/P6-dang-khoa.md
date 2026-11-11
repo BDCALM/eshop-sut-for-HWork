@@ -3,7 +3,7 @@ SDT/Zalo: 0889****23
 Email: 24520847@gm.uit.edu.vn
 Sinh viên: Hệ thống thông tin (trường Đại học Công nghệ thông tin - ĐHQG TP.HCM)
 Thời gian thực hiện: 2'30
-
+Link video: https://youtu.be/JsFcyFmqHvo?si=5lgyUBYtk5zozTsA
 **A. Thang đo SUS (System Usability Scale) bằng Tiếng Việt**
 Đưa cho người tham gia đánh giá theo thang điểm từ 1 (Rất không đồng ý) đến 5 (Rất đồng ý):
 

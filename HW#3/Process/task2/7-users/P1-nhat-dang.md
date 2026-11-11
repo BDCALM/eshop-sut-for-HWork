@@ -3,6 +3,7 @@ SDT/Zalo: 0948****48
 Email: tangnhatdang777@gmail.com
 Sinh viên: Cơ khí (trường Đại học Bách Khoa - ĐHQG - TP.HCM)
 Thời gian thực hiện: 2'40''
+Link video: https://youtu.be/XnK9s-bV-Uo?si=ljqck9RapOlsG1t4
 
 **A. Thang đo SUS (System Usability Scale) bằng Tiếng Việt**
 Đưa cho người tham gia đánh giá theo thang điểm từ 1 (Rất không đồng ý) đến 5 (Rất đồng ý):

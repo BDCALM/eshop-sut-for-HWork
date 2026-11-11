@@ -2,6 +2,10 @@ Họ và Tên: Nguyễn Hải Dương
 SDT/Zalo: 0792****88
 Sinh viên: Công nghệ thông tin (FPT University)
 Thời gian thực hiện: 2'20
+Link video: https://youtu.be/AnMUDrTQDqc?si=1PUmHcUYlKIMA9a9
+Video Hải Dương góp ý: 
+1. https://youtu.be/Iar0auHzu7o?si=5o1WfU8W9c3AQxRM
+2. https://youtu.be/LOttCmflJsw?si=m1HPHMj-qEvSco1x
 
 **A. Thang đo SUS (System Usability Scale) bằng Tiếng Việt**
 Đưa cho người tham gia đánh giá theo thang điểm từ 1 (Rất không đồng ý) đến 5 (Rất đồng ý):
