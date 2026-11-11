@@ -1,6 +1,6 @@
 Họ và Tên: Nguyễn Văn Hải
 Zalo: 0905****09
-Sinh viên: Kỹ thuật phần mềm (HCMUS)
+Sinh viên: Khoa học máy tính (HCMUS)
 Thời gian thực hiện: 2'10''
 
 **A. Thang đo SUS (System Usability Scale) bằng Tiếng Việt**

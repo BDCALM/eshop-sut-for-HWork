@@ -40,7 +40,7 @@ cho toàn bộ người dùng.
 
 ## 3. Người tham gia và độ đầy đủ dữ liệu
 
-Có 7 hồ sơ: P1 Tăng Nhật Đăng, P2 Dương Hoàng Phúc, P3 Nguyễn Văn Hải,
+Có 7 hồ sơ: P1 Tăng Nhật Đăng, P2 Dương Hoàng Phúc, P3 Trần Nhật Dương,
 P4 Võ Văn Nam, P5 Nguyễn Văn Bá Khôi, P6 Viên Đăng Khoa và P7 Nguyễn Hải
 Dương.
 
