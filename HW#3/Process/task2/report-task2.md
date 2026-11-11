@@ -6,11 +6,13 @@
 - Người tham gia có hồ sơ trong thư mục `7-users`: P1 đến P7.
 - Công cụ đo: SUS 10 câu hỏi, thang 1-5, và phỏng vấn mở về Clarity,
   Error Recovery, Speed và Trust.
-- Môi trường được khai báo trong các hồ sơ: không có thông tin đầy đủ về phiên
-  bản trình duyệt, viewport, thiết bị hoặc URL/build.
+- Môi trường được khai báo trong các hồ sơ: 
+  + Thông tin trình duyệt: Google Chrome Official build (157.0.8103.40)
+  + Viewport: 1280x800
+  + Thiết bị: Laptop Dell G15 5515, OS: Windows 11 Version 25H2 (Build 26200.9711)
+  + URL/build: http://localhost:5174 
 - P1 được bản nháp trước đó ghi là pilot, nhưng hồ sơ P1 vẫn được cung cấp và
   được tính trong thống kê mô tả dưới đây. Cần xác nhận lại trước khi nộp.
-
 ## 2. Danh sách người tham gia
 
 Số điện thoại đã được che bốn chữ số ở giữa theo yêu cầu. Email không đưa vào

@@ -45,10 +45,14 @@ P4 Võ Văn Nam, P5 Nguyễn Văn Bá Khôi, P6 Viên Đăng Khoa và P7 Nguyễ
 Dương.
 
 - Hồ sơ có vai trò/ngành học và thời lượng tổng phiên.
-- Hồ sơ không ghi đầy đủ browser, viewport, thiết bị, URL/build và ngày test.
+- Môi trường được khai báo trong các hồ sơ: 
+  + Thông tin trình duyệt: Google Chrome Official build (157.0.8103.40)
+  + Viewport: 1280x800
+  + Thiết bị: Laptop Dell G15 5515, OS: Windows 11 Version 25H2 (Build 26200.9711)
+  + URL/build: http://localhost:5174 
 - Chưa có video hoặc timestamp cho phần lớn phiên.
-- Bản kế hoạch cũ nhắc P2-P8 và P1 pilot, nhưng thư mục hiện chỉ có P1-P7.
-  Cần xác nhận P1 có được tính hay không và P8 có bị thiếu hay không.
+- Bản kế hoạch cũ nhắc P2-P8 và P1 pilot, nhưng thư mục hiện chỉ có P1-P7. (
+  P1 không phải là pilot)
 
 ## 4. Kết quả SUS
 
