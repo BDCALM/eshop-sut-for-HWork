@@ -1,58 +1,67 @@
 
-## 1 Tóm tắt bài nộp kiểm thử (Testing Submission Summary)
+## 1. Tóm tắt bài nộp kiểm thử (Testing Submission Summary)
 
 ### 1.1 Bảng tự đánh giá (Self-Assessment)
 
 | STT | Tiêu chí | Điểm tối đa | Điểm tự đánh giá |
 | --- | --- | ---: | ---: |
-| 1 | Feature A — Domain và Boundary | 25 | 25 |
-| 2 | Feature B — Domain và Boundary | 25 | 25 |
-| 3 | Feature C — Domain và Boundary | 25 | 25 |
-| 4 | Feature D — Mobile, Domain và Boundary | 15 | 10 |
-| 5 | Agent Skills | 10 | 8 |
-|  | **Tổng cộng** | **100** | 93 |
+| 1 | Task 1 — GUI Checklist (design + execution + bug report) | 30 | 30 |
+| 2 | Task 2 — Usability Evaluation (task scenario + 7 sessions + analysis) | 40 | 35 |
+| 3 | Task 3 — Cross-Browser / Cross-Platform (≥ 3 platforms) | 20 | 13.33 |
+| 4 | Agent Skills | 10 | 10 |
+|  | **Tổng cộng** | **100** | 88.33 |
 
-### 1.2 Phạm vi feature đã kiểm thử
+### 1.2 Tóm tắt báo cáo GUI Checklist
 
-| Pool | Feature | Phạm vi |
-| --- | --- | --- |
-| A | FR-05 — Product listing and search | Xem danh sách và tìm kiếm sản phẩm |
-| B | FR-11 — User order history | Xem lịch sử đơn hàng của người dùng |
-| C | FR-19 — Admin user management | Quản lý người dùng bằng tài khoản Admin |
-| D | FR-20 — Mobile application | Duyệt sản phẩm và xem lịch sử đơn hàng trên Mobile |
+Báo cáo GUI tập trung vào Web Admin, gồm quản lý sản phẩm (FR-15) và import
+sản phẩm từ CSV (FR-16). Trong 40 test case, có **24 Pass, 16 Fail**, tỷ lệ
+Pass **60%**. Kiểm thử được thực hiện trên máy Windows local bằng Firefox và
+Google Chrome; các ảnh minh chứng được phân theo trình duyệt trong thư mục
+`reports/assets/task3/`. Các viewport responsive được kiểm tra gồm 320x640,
+768x800 và 1280x800.
 
-**Số feature được kiểm thử:** 4
+Các vấn đề nổi bật gồm validation giá và dữ liệu CSV chưa đầy đủ, lỗi hiển thị
+ảnh, cập nhật state sau khi sửa sản phẩm và bố cục import bị che/tràn ở viewport
+nhỏ. Báo cáo cũng nêu rõ các phát hiện bổ sung cần phân biệt với 40 test case
+gốc.
 
-### 1.3 Tóm tắt test case
+Chi tiết: [GUI-checklist-report.md](<./reports/mainReports(md+pdf)/GUI-checklist-report.md>)
+và [GUI-checklist-FR15-FR16.md](<./reports/mainReports(md+pdf)/GUI-checklist-FR15-FR16.md>).
 
-| Feature | Đã thiết kế | Đã thực thi | Passed | Failed | Chưa thực thi |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| FR-05 | 6 | 6 | 6 | 0 | 0 |
-| FR-11 | 6 | 6 | 6 | 0 | 0 |
-| FR-19 | 6 | 6 | 4 | 2 | 0 |
-| FR-20 | 11 | 11 | _Theo bằng chứng UI/API_ | 0 | _Cần đối chiếu UI_ |
-| **Tổng cộng** | **29** | **29** | _Cập nhật sau khi chốt phân loại FR-20_ | **2** | _Cập nhật sau khi chốt phân loại FR-20_ |
+### 1.3 Tóm tắt Usability Evaluation
 
-> **Lưu ý:** Với FR-20, kết quả API chứng minh hành vi của endpoint nhưng không
-> tự động thay thế bằng chứng hiển thị trên giao diện Mobile. Vì vậy, kết quả
-> cuối cùng cần phân biệt rõ `API Passed`, `UI Passed`, `INFO` và `UI pending`
-> theo báo cáo test case.
+Đánh giá usability Web Admin tập trung vào hai nhiệm vụ: import CSV (T1) và
+tìm/sửa giá sản phẩm (T2). Dữ liệu gồm **7 hồ sơ P1–P7**; SUS trung bình là
+**41,79/100**, trung vị **42,5/100**. Đây là kết quả mô tả của mẫu nhỏ, không
+đại diện cho toàn bộ người dùng.
 
-**Số bug đã xác nhận:** 2
+Pain point đáng chú ý: khó nhận biết/tìm nút Import (**3/7**), khó hiểu vị trí
+chỉnh sửa sau khi bấm Sửa (**7/7**), thiếu xác nhận khi xóa (**7/7**) và thiếu
+Undo/restore (**6/7**). Báo cáo ghi rõ giới hạn nguồn: một số hồ sơ chưa có
+video, và video hiện có chưa được xác nhận là bản ghi đầy đủ các thao tác task.
 
-- `BUG-FR19-001` — Admin có thể xóa chính tài khoản đang đăng nhập.
-- `BUG-FR19-002` — User ID không hợp lệ trả về thông báo xóa thành công.
+Chi tiết: [usability-evaluation-report.md](<./reports/mainReports(md+pdf)/usability-evaluation-report.md>)
+và [report-task2.md](../Process/task2/report-task2.md).
 
-### 1.4 Demo video
+### 1.4 Tóm tắt Bug Report
 
-Các video cần thể hiện end-to-end cách sử dụng Agent Skills trên một feature
-hoàn chỉnh, từ phân tích domain đến thiết kế và thực thi test case.
+Bug report tổng hợp **20 mục**: **9 lỗi FR-15**, **6 lỗi FR-16** và **5 pain
+point usability (UX-01–UX-05)**. Các lỗi GUI/chức năng tập trung vào validation,
+phản hồi lỗi, xử lý CSV, cập nhật dữ liệu sản phẩm và responsive layout. Các
+pain point usability được ghi riêng, kèm tần suất quan sát, mức độ severity và
+liên kết GitHub Issue để phân biệt chúng với lỗi chức năng.
+
+Chi tiết: [bug-report.md](./reports/bug-report.md).
+
+### 1.5 Demo video
+
+Video demo cách sử dụng Agent Skills
 
 | Feature | YouTube link |
 | --- | --- |
-| FR-05 | https://youtu.be/jlwLuDKltQQ |
+| SKILL.md | https://youtu.be/-AHqU5JWlpc?si=4gPo8ZwpDlHUP6wk |
 
-### 1.5 Tài liệu tham khảo
+### 1.6 Tài liệu tham khảo
 
 - [ISTQB Foundation Level Syllabus](https://www.istqb.org/certifications/certified-tester-foundation-level)
 - Hardman, P. (2025). _A Post-AI Learning Taxonomy._

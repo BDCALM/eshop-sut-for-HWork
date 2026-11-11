@@ -1,0 +1,7 @@
+## AI Critique
+
+Trong HW#03, AI hỗ trợ đắc lực nhất trong việc định dạng yêu cầu thành checklist cấu trúc, tạo mẫu báo cáo và viết tóm tắt. Nó giúp chỉ ra các rủi ro logic giao diện thông thường và tính toán kết quả SUS. Tuy nhiên, đầu ra của AI cần được kiểm chứng. Trong bản nháp khả dụng ban đầu, AI đã tự suy diễn các quan sát tác vụ khiến chúng trông hoàn chỉnh hơn so với dữ liệu gốc thực tế từ 7 tệp người tham gia. Việc này đòi hỏi em phải đối chiếu lại bằng chứng và liên kết video một cách thủ công.
+
+AI cũng bộc lộ hạn chế khi đánh giá UI về mặt thị giác và ngữ cảnh. Checklist có thể liệt kê các nút bấm, nhưng không thể biết chúng có dễ nhìn thấy hay khoảng cách có hợp lý hay không. Dù AI có thể lập luận về xác thực CSV, con người vẫn phải tự kiểm thử thực tế các trường hợp lỗi dữ liệu. Hơn nữa, những phản hồi chân thực về độ rõ ràng hay tốc độ phải đến từ người dùng thật; AI không được phép bịa đặt thông tin này.
+
+Tóm lại, hãy dùng AI như một trợ lý phân tích và viết nháp, không phải là chân lý kiểm thử. Trách nhiệm của em là cung cấp dữ liệu gốc, trực tiếp thực thi kiểm thử và phỏng vấn, xác minh mọi số liệu và hoàn thiện báo cáo. Con người đóng vai trò then chốt khi kết quả phụ thuộc vào thị giác, hành vi thực tế hoặc những bằng chứng AI không thể tự thu thập.

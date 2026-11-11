@@ -4,7 +4,8 @@
 
 - Phạm vi: phân hệ Web Admin, màn hình `Quản lý Sản phẩm` và chức năng `Import sản phẩm từ CSV`.
 - Đối chiếu: README.md, giao diện `frontend-admin/src/App.jsx`, và checklist GUI trong `gui-usability-testing-skills/references/gui-checklist.md`.
-- Môi trường thực thi đã ghi nhận: Chrome stable, desktop local machine; các viewport responsive được ghi riêng ở GUI-FR16-16.
+- Môi trường thực thi: Firefox và Google Chrome trên máy Windows local; các viewport responsive trong checklist được ghi riêng ở GUI-FR16-16.
+- Kiểm thử bổ sung trên cả Firefox và Google Chrome được minh chứng bằng ảnh/tệp trong `HW#3/Submission/reports/assets/task3/firefox/` và `HW#3/Submission/reports/assets/task3/google-chrome/`. README trong mỗi thư mục ghi viewport minh chứng là 1200x600.
 - Kết quả trong bảng phản ánh quan sát tại lần test này. Các mục “cần retest” và giả thuyết bổ sung không được tính là Fail cho đến khi có bằng chứng.
 
 | Mã mục (ID) | Tiêu chí kiểm tra (Test Condition) | Khía cạnh giao diện | Môi trường test | Kết quả mong đợi | Kết quả thực tế (Pass/Fail) | Ghi chú |
@@ -49,6 +50,17 @@
 | GUI-FR16-14 | Import bị lỗi do API, mất mạng hoặc token hết hạn. | IA-04: Feedback / state | Chrome stable / desktop local | Panel hiện lỗi thân thiện, không bị treo `Đang import...`, và không báo thành công giả. | Pass | Đã kiểm tra phản hồi lỗi API. Bằng chứng: `HW#3/Submission/reports/assets/task1/GUI-FR16-14.png`. |
 | GUI-FR16-15 | Sau khi import xong, chuyển sang tab khác rồi quay lại `Sản phẩm`. | IA-03: Navigation | Chrome stable / desktop local | Bảng sản phẩm được tải lại và hiện dữ liệu mới; preview/kết quả không làm vỡ layout. | Pass | Đã kiểm tra sau import và chuyển tab. |
 | GUI-FR16-16 | Mở màn hình import ở viewport 320x640, 768x800 và 1280x800. | IA-01: General UI standards | Chrome stable / 320x640; 768x800; 1280x800 | Panel, control file, preview và nút import không bị cắt; có thể cuộn dọc và ngang có chủ ý. | Fail | 320x640: vùng thao tác chính bị navigation che. 768x800: nút Import tràn sang phải. Bằng chứng: `HW#3/Submission/reports/assets/task1/GUI-FR16-16-320-640.png` và `HW#3/Submission/reports/assets/task1/GUI-FR16-16-768-800.png`. |
+
+## Kiểm thử bổ sung trên Firefox và Google Chrome
+
+- Giao diện đã được kiểm tra bổ sung trên cả Firefox và Google Chrome ở máy
+  Windows local; minh chứng được phân theo trình duyệt trong thư mục
+  [firefox](../assets/task3/firefox/) và
+  [google-chrome](../assets/task3/google-chrome/).
+- README của mỗi thư mục ghi nhận viewport minh chứng là 1200x600.
+- Tên ảnh và tệp minh chứng dùng tiền tố `GUI-FR` theo mã yêu cầu tương ứng.
+  Đây là bằng chứng kiểm thử bổ sung, không làm thay đổi số lượng hay kết quả
+  40 test case đã thống kê trong checklist.
 
 ## Phát hiện bổ sung từ người thực hiện và đề xuất retest
 

@@ -11,7 +11,7 @@ vào màn hình `Quản lý Sản phẩm` và chức năng `Import sản phẩm 
 | Pass | 24 |
 | Fail | 16 |
 | Tỷ lệ Pass | 60% |
-| Môi trường chính | Chrome stable, desktop local machine |
+| Môi trường chính | Firefox và Google Chrome, máy Windows local |
 | Viewport responsive | 320x640, 768x800, 1280x800 |
 
 Các mục `RETEST-*` trong checklist là các phát hiện bổ sung đã được kiểm tra
@@ -23,7 +23,14 @@ lại và xác nhận là Fail, nhưng không cộng thêm vào 40 test case g�
 - Đối chiếu với yêu cầu FR-15, FR-16 trong README/SRS.
 - Kiểm tra GUI checklist theo các nhóm: bố cục, form, validation, feedback,
   navigation và responsive.
-- Kiểm tra thực tế trên Chrome stable ở máy local.
+- Kiểm tra thực tế trên Firefox và Google Chrome ở máy Windows local.
+- Minh chứng kiểm thử bổ sung theo trình duyệt được lưu tại
+  `HW#3/Submission/reports/assets/task3/firefox/` và
+  `HW#3/Submission/reports/assets/task3/google-chrome/`; README trong mỗi thư
+  mục ghi viewport 1200x600. Ảnh/tệp trong hai thư mục này được đặt tiền tố
+  `GUI-FR`.
+- Minh chứng đa trình duyệt là phần bổ sung, không cộng thêm vào 40 test case
+  đã thống kê.
 - Đối chiếu bằng chứng trong thư mục
   `HW#3/Submission/reports/assets/task1/`.
 - Các phát hiện suy ra từ mã nguồn được tách thành `RETEST-*`; chỉ chuyển sang
@@ -103,7 +110,9 @@ Các đề xuất sau không tự động được xem là vi phạm FR nếu SR
 - Checklist chi tiết: [GUI-checklist-FR15-FR16.md](../../Process/task1/GUI-checklist-FR15-FR16.md).
 - Bug reports: [bug-report.md](../bug-report.md).
 - Ảnh/video/text evidence: `HW#3/Submission/reports/assets/task1/`.
-- Kết quả phản ánh Chrome stable trên máy local; chưa đủ để kết luận cho mọi
-  trình duyệt, hệ điều hành hoặc thiết bị thật.
+- Ảnh minh chứng kiểm thử trên Firefox và Google Chrome: thư mục
+  `HW#3/Submission/reports/assets/task3/` (chia theo trình duyệt).
+- Kết quả phản ánh kiểm thử trên Firefox và Google Chrome ở máy Windows local;
+  chưa đủ để kết luận cho mọi trình duyệt, hệ điều hành hoặc thiết bị thật.
 - Một số phát hiện UX là đề xuất cải tiến, cần đối chiếu lại với SRS trước khi
   phân loại thành bug bắt buộc sửa.
