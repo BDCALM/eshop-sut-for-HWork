@@ -10,3 +10,4 @@ Format `commit hash` - `Initial commit for Homework#4`
 3. `837b9e2` - `Document FR05 bugs and GitHub issue workflow (3 SUT bugs, evidence paths, GitHub CLI script)`
 4. `462cf3f` - `Package FR05 HTML report evidence (public report folder, metadata injection, report README)`
 5. `00de5c6` - `Rewrite gap analysis and add reusable gap-analysis template; organize Playwright evidence by feature`
+6. `[pending]` - `Align Playwright output path with Submission/reports/playwright-html/FR05`
