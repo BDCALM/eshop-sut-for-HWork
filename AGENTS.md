@@ -3,6 +3,7 @@
 Read this file before changing the EShop codebase. This repository is a
 System Under Test (SUT) for software-testing coursework. Some defects are
 intentional and are evidence for test cases, bug reports, and audits.
+- Write prompt log (with in its format (summarize the "prompt" and "AI Answer" briefly)) in  "HW4\Submission\prompt_log.md" 
 
 ## 1. Project structure and stack
 

@@ -7,7 +7,7 @@
 - [ ] Chỉnh sửa file `playwright.config.ts`:
   - Cấu hình chạy trên 3 trình duyệt (Chromium, Firefox, WebKit).
   - Cấu hình Playwright HTML Reporter.
-  - Cài đặt tiêm Metadata "Run by: <Mã_Số_Sinh_Viên>" và Timestamp vào title/metadata của HTML Report.
+  - Cài đặt tiêm Metadata "Run by: 23120242" và Timestamp vào title/metadata của HTML Report.
 - [ ] Khởi chạy SUT (EShop) local: Backend API (`port 3000`), Frontend Web (`port 5173`), Frontend Admin (`port 5174`).
 - [x] Chốt danh sách 3 tính năng sẽ test: FR-05 (Tìm kiếm), FR-11 (Lịch sử đơn hàng), FR-19 (Quản lý user).
 
