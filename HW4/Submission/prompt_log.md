@@ -151,3 +151,11 @@ Vậy khi được yêu cầu quay video để demo cách sử dụng file SKILL
 **AI's Answer:** Cập nhật test case FR11-TC09 trong FR11-data.json và bổ sung assertion ràng buộc phủ định theo SRS trong FR11.spec.js (kiểm tra đơn hàng ở trạng thái shipping không được hiển thị nút 'Hủy đơn'). Thực thi kiểm thử trên 3 trình duyệt: 33 passed, 3 failed (TC09 fail trên cả Chromium, Firefox, WebKit do lỗi cố ý của SUT). Sao lưu đầy đủ minh chứng lỗi (error-context.md, test-failed-1.png, video.webm) vào `Submission/reports/playwright-html-minhchung/FR11/data/`. Soạn thảo báo cáo chi tiết trong `gap-analysis.md` và `bug-report.md` (BUG-FR11-001) nêu rõ thiếu sót của AI ban đầu khi chỉ viết shallow assertion và vai trò của human review trong việc phát hiện lỗi.
 **Rejected:** nothing
 **Changed:** Bổ sung `shouldNotAllowCancel` và assertion phủ định vào `FR11.spec.js` và `FR11-data.json`; cập nhật `gap-analysis.md` và `bug-report.md`.
+
+# Entry log - 18/11/2026 - FR-05 GitHub issue links update & BUG-FR11-001 issue preparation
+
+**Model used:** Gemini 3.8 Flash (High)
+**Prompt:** "Vậy bạn giúp tôi tạo issue dành cho BUG-FR11-001 nhé. Đối với bug này bạn chỉ cần tạo nội dung của issue, tôi sẽ tự tạo thủ công. Và cập nhật các link issues dành cho các bug ở eshop-sut-for-HWork\HW4\Submission\reports\bug-report.md nhé: 1. [FR-05] Percent wildcard returns all products instead of literal search (#23), 2. [FR-05] Search query is rendered as HTML instead of escaped text (#22), 3. [FR-05] Missing empty state when product search returns zero results (#21)"
+**AI's Answer:** Cập nhật chính xác 3 đường link GitHub Issues (#21, #22, #23) vào các mục BUG-FR05-001, BUG-FR05-002, BUG-FR05-003 trong file `HW4/Submission/reports/bug-report.md`. Soạn thảo chi tiết toàn bộ nội dung mẫu (Title, Body Markdown, Reproduction steps, Expected/Actual results, Evidence paths, Suspected code) cho issue `BUG-FR11-001` và tạo file hỗ trợ `HW4/0.workingProcess/task1/FR11/github-issue-BUG-FR11-001.md` để sinh viên dễ dàng sao chép khi tạo issue thủ công trên GitHub.
+**Rejected:** nothing
+**Changed:** Cập nhật 3 liên kết issue thật của FR-05 trong `bug-report.md`; tạo file mẫu nội dung issue `github-issue-BUG-FR11-001.md` trong thư mục working process của FR11.

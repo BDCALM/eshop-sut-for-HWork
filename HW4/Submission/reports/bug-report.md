@@ -16,7 +16,7 @@ The 15 failed browser runs are reported as three distinct defects, not 15 separa
 
 ## BUG-FR05-001 - Missing empty state for zero search results
 
-**GitHub Issue:** [BUG-FR05-001 - GitHub issue URL to be filled after creation](https://github.com/BDCALM/eshop-sut-for-HWork/issues/REPLACE-BUG-FR05-001)
+**GitHub Issue:** [#21 - [FR-05] Missing empty state when product search returns zero results](https://github.com/BDCALM/eshop-sut-for-HWork/issues/21)
 
 ### Summary
 
@@ -76,7 +76,7 @@ Users cannot clearly distinguish a completed search with zero results from a bro
 
 ## BUG-FR05-002 - Search query is rendered as HTML instead of escaped text
 
-**GitHub Issue:** [BUG-FR05-002 - GitHub issue URL to be filled after creation](https://github.com/BDCALM/eshop-sut-for-HWork/issues/REPLACE-BUG-FR05-002)
+**GitHub Issue:** [#22 - [FR-05] Search query is rendered as HTML instead of escaped text](https://github.com/BDCALM/eshop-sut-for-HWork/issues/22)
 
 ### Summary
 
@@ -140,7 +140,7 @@ User input is inserted into the DOM through an unsafe rendering path. Depending 
 
 ## BUG-FR05-003 - SQL wildcard is not treated as a literal search character
 
-**GitHub Issue:** [BUG-FR05-003 - GitHub issue URL to be filled after creation](https://github.com/BDCALM/eshop-sut-for-HWork/issues/REPLACE-BUG-FR05-003)
+**GitHub Issue:** [#23 - [FR-05] Percent wildcard returns all products instead of literal search](https://github.com/BDCALM/eshop-sut-for-HWork/issues/23)
 
 ### Summary
 
