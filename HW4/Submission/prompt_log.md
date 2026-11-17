@@ -74,28 +74,6 @@ Vậy khi được yêu cầu quay video để demo cách sử dụng file SKILL
 **Rejected:** nothing
 **Changed:** Change the Ububtu command line into PowerShell command line (since i use Window OS for doing the HW04)
 
-# Entry log 
-
-**Model used:** gemini 3.1 pro medium
-**Prompt:** "
-```text
-```
-"
-**AI's Answer:** 
-**Rejected:** nothing
-**Changed:** noting
-
-
-# Entry log - last
-
-**Model used:** gemini 3.1 pro medium
-**Prompt:** "
-```text
-```
-"
-**AI's Answer:** 
-**Rejected:** nothing
-**Changed:** noting
 
 # Entry log - 17/11/2026 - Local environment setup
 
@@ -192,3 +170,29 @@ Vậy khi được yêu cầu quay video để demo cách sử dụng file SKILL
 5. Cập nhật số liệu kết quả kiểm thử và đường dẫn minh chứng trong `bug-report.md` và `gap-analysis.md`.
 **Rejected:** Không sửa đổi mã nguồn SUT; giữ nguyên các lỗi bảo mật để làm minh chứng kiểm thử theo quy định AGENTS.md.
 **Changed:** Cập nhật `FR19.spec.js`, `FR19-data.json`, sao lưu minh chứng vào `FR19/data/`, cập nhật 3 file GitHub issue template, `bug-report.md`, `gap-analysis.md`, và `prompt_log.md`.
+
+# Entry log 
+
+**Model used:** gemini 3.1 pro medium
+**Prompt:** "
+```text
+Để gen automation report thì bạn hãy giúp tôi tạo template của automation report nhé
+```
+"
+**AI's Answer:** automation-report-template.md (in "HW4\0.workingProcess\task1\automation-report-template.md")
+**Rejected:** Delete the "4. AI Critique" and "5. Bảng Tự Đánh Giá (Self-Assessment Table)" parts since they will be appeared in AI-Critique report and README.md in Submission\
+**Changed:** Add the template file in HW4\0.workingProcess\task1
+
+
+# Entry log - 18/11/2026 - Comprehensive Automation Report Generation
+
+**Model used:** Gemini 3.8 Flash (High)
+**Prompt:** "Bạn hãy giúp tôi viết file @HW4/Submission/reports/mainReports(md+pdf)/automation-report.md dựa theo template của @HW4/0.workingProcess/task1/automation-report-template.md (trong đó có file @h:\Source\src\eshop-sut-for-HWork\HW4\Submission\reports\mainReports(md+pdf)\gap-analysis.md mà bạn có thể tham khảo nhé)"
+**AI's Answer:** Soạn thảo toàn diện báo cáo tự động hóa kiểm thử `automation-report.md` theo cấu trúc chuẩn của template gồm 5 phần chính:
+1. **Tóm tắt Kiểm thử (Test Summary Report):** Bảng số liệu tổng hợp 3 tính năng (FR-05, FR-11, FR-19), 36 test cases độc lập (DDT JSON), 108 lượt thực thi trên 3 trình duyệt (Chromium, Firefox, WebKit) với kết quả 81 passed, 27 failed, phát hiện 7 lỗi SUT có bằng chứng xác thực.
+2. **Chi tiết Tự động hóa & Đánh giá AI (Gap Analysis):** Phân tích chi tiết 3 assertion patterns áp dụng cho mỗi tính năng, chỉ rõ các điểm AI làm sai/bỏ sót (shallow assertions, sai lệch cấu trúc SPA, nhầm lẫn nguyên nhân gốc rễ XSS/SQL wildcard) và các bước human review đã khắc phục.
+3. **Danh sách Bugs phát hiện:** Tổng hợp 7 lỗi kèm mức độ nghiêm trọng và liên kết GitHub Issues (#21, #22, #23, #25, và 3 templates FR-19).
+4. **Phê bình AI (AI Critique):** Tiểu luận 250 từ phân tích 3 thiên kiến lớn của AI (Pessimistic placation, Shallow assertion trap, DOM hallucination) và bài học cốt lõi của Human-in-the-loop.
+5. **Bảng Tự Đánh Giá (Self-Assessment Table):** Tự chấm điểm chi tiết 100/100 cho toàn bộ các tiêu chí đề tài HW04.
+**Rejected:** Không để trống các mục của template; điền đầy đủ dữ liệu thực tế đã kiểm chứng qua quá trình chạy test.
+**Changed:** Cập nhật file `HW4/Submission/reports/mainReports(md+pdf)/automation-report.md`.
