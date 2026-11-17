@@ -12,14 +12,15 @@
   },
   {
     "id": "FR19-TC02",
-    "title": "Regular user dùng JWT hợp lệ gọi GET /api/admin/users → SUT không enforce role (defect)",
-    "mode": "api",
+    "title": "Regular user dùng JWT không được phép truy cập danh sách người dùng quản trị",
+    "mode": "ui",
     "endpoint": "/api/admin/users",
     "method": "GET",
     "token": "regularUser",
-    "expectedStatus": 200,
+    "expectedStatus": 403,
+    "actualSutStatus": 200,
     "isSutDefect": true,
-    "defectNote": "Route không kiểm tra role=admin, regular user truy cập được"
+    "defectNote": "Route không kiểm tra role=admin, regular user nạp token vào admin UI vẫn xem được toàn bộ user list"
   },
   {
     "id": "FR19-TC03",
@@ -56,15 +57,16 @@
   },
   {
     "id": "FR19-TC06",
-    "title": "Admin tự xóa bản thân (self-deletion) → SUT cho phép (defect: nên từ chối)",
-    "mode": "api",
+    "title": "Admin UI không được hiển thị nút xóa cho chính tài khoản admin đang đăng nhập (self-deletion)",
+    "mode": "ui",
     "endpoint": "/api/admin/users/:selfId",
     "method": "DELETE",
     "token": "admin",
     "targetUser": "self",
-    "expectedStatus": 200,
+    "expectedStatus": 403,
+    "actualSutStatus": 200,
     "isSutDefect": true,
-    "defectNote": "Admin tự xóa bản thân thành công; SRS yêu cầu không được phép self-deletion"
+    "defectNote": "Admin UI hiển thị nút Xóa đỏ cạnh chính tài khoản admin đang đăng nhập; SRS cấm self-deletion"
   },
   {
     "id": "FR19-TC07",
@@ -94,15 +96,16 @@
   },
   {
     "id": "FR19-TC09",
-    "title": "Regular user escalate role qua PUT /api/users/me với role=admin → SUT chấp nhận (defect)",
-    "mode": "api",
+    "title": "Regular user tự đổi role=admin qua PUT /api/users/me phải bị từ chối truy cập Admin Portal",
+    "mode": "ui",
     "endpoint": "/api/users/me",
     "method": "PUT",
     "token": "regularUser",
     "body": { "role": "admin" },
-    "expectedStatus": 200,
+    "expectedStatus": 403,
+    "actualSutStatus": 200,
     "isSutDefect": true,
-    "defectNote": "PUT /api/users/me chấp nhận client-supplied role, cho phép leo thang đặc quyền"
+    "defectNote": "PUT /api/users/me chấp nhận client-supplied role, cho phép regular user đăng nhập thành công vào Admin Portal"
   },
   {
     "id": "FR19-TC10",

@@ -71,19 +71,34 @@ test.describe('FR-19: Quản lý người dùng (Admin)', () => {
   });
 
   // ── TC02: Regular user gọi admin route ───────────────────────────────────
-  test('[FR19-TC02] Regular user dùng JWT hợp lệ gọi GET /api/admin/users → SUT không enforce role (defect)', async ({ request: apiContext }) => {
+  test('[FR19-TC02] Regular user dùng JWT không được phép truy cập danh sách người dùng quản trị', async ({ page, request: apiContext }) => {
     const tc = testData.find(t => t.id === 'FR19-TC02');
 
     const regularToken = await loginByApi(apiContext, REGULAR_EMAIL, REGULAR_PASS);
     expect(regularToken, 'Regular user phải đăng nhập được').not.toBeNull();
 
-    // Assertion Pattern 3: HTTP status (SUT defect — expect 200 khi lẽ ra phải 403)
-    const res = await apiContext.get(`${API_BASE}${tc.endpoint}`, {
-      headers: { Authorization: `Bearer ${regularToken}` },
-    });
-    // SUT defect: returns 200 instead of 403
-    expect(res.status(), `${tc.id} - SUT không enforce role; trả về ${res.status()} thay vì 403`).toBe(tc.expectedStatus);
-    console.log(`[DEFECT] ${tc.defectNote}`);
+    // Giả lập người dùng thường nạp token vào admin portal và truy cập
+    await page.goto(`${ADMIN_UI}/login`);
+    await page.evaluate((tok) => {
+      localStorage.setItem('adminToken', tok);
+    }, regularToken);
+    await page.goto(`${ADMIN_UI}/`);
+    await page.waitForLoadState('networkidle');
+
+    // Chuyển sang tab Người dùng
+    const userTab = page.locator('li', { hasText: 'Người dùng' }).first();
+    if (await userTab.isVisible({ timeout: 3000 }).catch(() => false)) {
+      await userTab.click();
+      await page.waitForTimeout(500);
+    }
+
+    // Assertion Pattern 1 (SRS Rule - Security Boundary):
+    // Regular user token KHÔNG được phép truy cập hoặc hiển thị bảng quản lý người dùng
+    // SUT defect: SUT không kiểm tra vai trò admin ở /api/admin/users, trả về 200 nên bảng danh sách hiển thị đầy đủ
+    await expect(
+      page.getByRole('table'),
+      `${tc.id} - Regular user không được phép thấy bảng quản trị người dùng (BUG-FR19-001)`
+    ).not.toBeVisible({ timeout: 5000 });
   });
 
   // ── TC03: Admin xem danh sách users ──────────────────────────────────────
@@ -149,31 +164,33 @@ test.describe('FR-19: Quản lý người dùng (Admin)', () => {
   });
 
   // ── TC06: Admin self-deletion (SUT defect) ───────────────────────────────
-  test('[FR19-TC06] Admin tự xóa bản thân (self-deletion) → SUT cho phép (defect)', async ({ request: apiContext }) => {
+  test('[FR19-TC06] Admin UI không được hiển thị nút xóa cho chính tài khoản admin đang đăng nhập (self-deletion)', async ({ page }) => {
     const tc = testData.find(t => t.id === 'FR19-TC06');
 
-    // Dùng temp admin-clone: đăng ký, escalate role, rồi xóa chính user đó
-    // Để tránh xóa admin gốc, tạo một temp user và escalate role bằng SUT defect TC09
-    const tempUser = await createTempUser(apiContext);
-    expect(tempUser.id).toBeTruthy();
+    // Đăng nhập admin qua UI
+    await page.goto(`${ADMIN_UI}/login`);
+    await page.getByPlaceholder(/email/i).fill(ADMIN_EMAIL);
+    await page.getByPlaceholder(/password|mật khẩu/i).fill(ADMIN_PASS);
+    await page.getByRole('button', { name: /login|đăng nhập/i }).click();
 
-    // Escalate role của tempUser lên admin (sử dụng SUT defect PUT /api/users/me)
-    const escalateRes = await apiContext.put(`${API_BASE}/api/users/me`, {
-      headers: { Authorization: `Bearer ${tempUser.token}` },
-      data: { name: 'TempAdmin', role: 'admin' },
-    });
-    expect(escalateRes.status()).toBe(200);
+    await expect(page).toHaveURL(/localhost:5174/);
+    await page.waitForLoadState('networkidle');
 
-    // Đăng nhập lại để lấy token mới (role đã được thay đổi trong DB)
-    // Lấy token của temp user (role hiện là admin trong DB)
-    // Thực hiện xóa chính mình (self-deletion)
-    const selfDeleteRes = await apiContext.delete(`${API_BASE}/api/admin/users/${tempUser.id}`, {
-      headers: { Authorization: `Bearer ${tempUser.token}` },
-    });
+    // Chuyển sang tab Người dùng
+    await page.locator('li', { hasText: 'Người dùng' }).first().click();
+    await page.waitForTimeout(500);
 
-    // Assertion Pattern 3: SUT trả 200 (defect — lẽ ra nên 403/400)
-    expect(selfDeleteRes.status(), `${tc.id} - SUT cho phép self-deletion (defect)`).toBe(tc.expectedStatus);
-    console.log(`[DEFECT] ${tc.defectNote}`);
+    // Tìm dòng của tài khoản admin đang đăng nhập
+    const adminRow = page.locator('tbody tr').filter({ hasText: ADMIN_EMAIL });
+    await expect(adminRow, `${tc.id} - Tài khoản admin phải hiển thị trong bảng`).toBeVisible({ timeout: 5000 });
+
+    // Assertion Pattern 1 (SRS Rule - Self-deletion Protection):
+    // SRS yêu cầu hệ thống không được cho phép admin tự xóa chính mình. Nút xóa trên dòng của admin phải bị ẩn.
+    // SUT defect: SUT vẫn hiển thị nút "Xóa" màu đỏ cạnh tài khoản admin -> phát sinh lỗi
+    await expect(
+      adminRow.getByRole('button', { name: 'Xóa' }),
+      `${tc.id} - Admin không được phép có nút tự xóa tài khoản của chính mình (BUG-FR19-002)`
+    ).not.toBeVisible();
   });
 
   // ── TC07: Xóa user không tồn tại ─────────────────────────────────────────
@@ -216,31 +233,35 @@ test.describe('FR-19: Quản lý người dùng (Admin)', () => {
   });
 
   // ── TC09: Role escalation via PUT /api/users/me (SUT defect) ─────────────
-  test('[FR19-TC09] Regular user escalate role qua PUT /api/users/me → SUT chấp nhận (defect)', async ({ request: apiContext }) => {
+  test('[FR19-TC09] Regular user tự đổi role=admin qua PUT /api/users/me phải bị từ chối truy cập Admin Portal', async ({ page, request: apiContext }) => {
     const tc = testData.find(t => t.id === 'FR19-TC09');
 
-    // Tạo fresh regular user
+    // Tạo regular user tạm
     const tempUser = await createTempUser(apiContext);
     expect(tempUser.token, 'Temp user phải có token').toBeTruthy();
 
-    // Thử PUT với role=admin
-    const putRes = await apiContext.put(`${API_BASE}/api/users/me`, {
+    // Thử gửi PUT /api/users/me kèm role: 'admin'
+    await apiContext.put(`${API_BASE}/api/users/me`, {
       headers: { Authorization: `Bearer ${tempUser.token}` },
-      data: { name: 'HackerAdmin', role: 'admin' },
+      data: { name: 'EscalatedUser', role: 'admin' },
     });
 
-    // Assertion Pattern 3: HTTP status (SUT defect — chấp nhận role escalation)
-    expect(putRes.status(), `${tc.id} - SUT chấp nhận role escalation (defect)`).toBe(tc.expectedStatus);
+    // Thử đăng nhập vào Admin UI (http://localhost:5174/login) với tài khoản vừa gửi role=admin
+    await page.goto(`${ADMIN_UI}/login`);
+    await page.getByPlaceholder(/email/i).fill(tempUser.email);
+    await page.getByPlaceholder(/password|mật khẩu/i).fill('TempPass1!');
+    await page.getByRole('button', { name: /login|đăng nhập/i }).click();
+    await page.waitForTimeout(1000);
 
-    // Xác nhận role thực sự đã thay đổi trong DB
-    const profileRes = await apiContext.get(`${API_BASE}/api/users/me`, {
-      headers: { Authorization: `Bearer ${tempUser.token}` },
-    });
-    const profile = await profileRes.json();
-    expect(profile.role, `${tc.id} - Role phải đã bị thay đổi thành 'admin' (defect confirmed)`).toBe('admin');
-    console.log(`[DEFECT] ${tc.defectNote}`);
+    // Assertion Pattern 1 (SRS Rule - Privilege Escalation Prevention):
+    // Người dùng thông thường KHÔNG được phép đăng nhập thành công vào Admin Portal sau khi tự gửi role=admin.
+    // SUT defect: SUT chấp nhận role escalation nên user đăng nhập thành công và nhìn thấy giao diện Admin (listitem Người dùng)
+    await expect(
+      page.locator('li', { hasText: 'Người dùng' }).first(),
+      `${tc.id} - Regular user không được phép đăng nhập vào trang quản trị sau khi tự đổi role (BUG-FR19-003)`
+    ).not.toBeVisible({ timeout: 5000 });
 
-    // Cleanup: xóa user tạm (dùng admin gốc)
+    // Cleanup: xóa user tạm
     const adminToken = await loginByApi(apiContext, ADMIN_EMAIL, ADMIN_PASS);
     if (tempUser.id && adminToken) {
       await apiContext.delete(`${API_BASE}/api/admin/users/${tempUser.id}`, {
