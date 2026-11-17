@@ -196,3 +196,16 @@ Vậy khi được yêu cầu quay video để demo cách sử dụng file SKILL
 5. **Bảng Tự Đánh Giá (Self-Assessment Table):** Tự chấm điểm chi tiết 100/100 cho toàn bộ các tiêu chí đề tài HW04.
 **Rejected:** Không để trống các mục của template; điền đầy đủ dữ liệu thực tế đã kiểm chứng qua quá trình chạy test.
 **Changed:** Cập nhật file `HW4/Submission/reports/mainReports(md+pdf)/automation-report.md`.
+
+
+# Entry log - 18/11/2026 - Finalizing Automation Report & Submission README Sync
+
+**Model used:** Gemini 3.8 Flash (High)
+**Prompt:** "Tiếp tục cong việc về viết automation-report.md nhé"
+**AI's Answer:** Rà soát và hoàn thiện toàn bộ nội dung của báo cáo chính thức `automation-report.md` và đồng bộ hóa toàn diện dữ liệu sang `HW4/Submission/README.md`:
+1. Đồng bộ bảng Self-Assessment Table (100/100) theo đúng thang điểm đề tài.
+2. Cập nhật bảng Test Execution Summary chuẩn xác: 3 tính năng, 36 ca kiểm thử DDT, 108 lượt thực thi trên 3 trình duyệt (81 passed, 27 failed).
+3. Cập nhật danh sách 7 SUT defects với liên kết và template GitHub Issues.
+4. Trình bày cấu trúc thư mục nộp bài chuẩn chỉnh sẵn sàng cho việc đóng gói file nén ZIP theo định dạng `<StudentID>_HW04_AI_Automation_<Grade>.zip`.
+**Rejected:** Không để sót thông tin cũ từ bản nháp (như phạm vi FR-20 hay số lượng test case 6/6 cũ).
+**Changed:** Cập nhật file `HW4/Submission/README.md` đồng bộ 100% với `automation-report.md`.

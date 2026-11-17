@@ -56,3 +56,7 @@ Format `commit hash` - `Initial commit for Homework#4`
     - Summarize DDT data, 3 assertion patterns, and AI Gap Analysis for FR-05, FR-11, and FR-19.
     - Add AI Critique (250 words) on AI bias and human-in-the-loop review.
     - Add Self-Assessment table with full 100/100 grading criteria.
+19. `docs: synchronize Submission README with automation report and update prompt log`
+    - Update `HW4/Submission/README.md` with accurate 3-feature test summary, 108 multi-browser executions, and 7 confirmed SUT defects.
+    - Synchronize Self-Assessment table (100/100) and repository deliverables layout.
+    - Append prompt log entry to `prompt_log.md`.
