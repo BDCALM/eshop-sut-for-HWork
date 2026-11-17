@@ -196,6 +196,78 @@ Search results do not represent the user's literal query. The same implementatio
 
 ---
 
+## BUG-FR11-001 - User can cancel order while in shipping state via Profile UI
+
+**GitHub Issue:** [BUG-FR11-001 - GitHub issue URL to be filled after creation](https://github.com/BDCALM/eshop-sut-for-HWork/issues/REPLACE-BUG-FR11-001)
+
+### Summary
+
+The user profile order history view displays an active "Hủy đơn" (Cancel Order) button for orders that are currently in the `shipping` ("Đang giao") state, allowing standard users to cancel orders during transit in direct violation of the System Requirements Specification.
+
+### Environment
+
+- Backend: `http://localhost:3000`
+- Web frontend: `http://localhost:5173`
+- Browsers reproduced: Chromium, Firefox, WebKit
+- Test date: 2026-11-18
+- Student ID: 23120242
+
+### Preconditions
+
+1. Backend API and Web frontend are running locally.
+2. User is registered, authenticated, and has placed an order.
+3. Order status has been transitioned to `shipping` ("Đang giao") by Admin.
+4. User navigates to `http://localhost:5173/profile`.
+
+### Steps to reproduce
+
+1. Log in with a standard customer account.
+2. Navigate to `/profile` (or click user greeting).
+3. Locate the order having status badge `Đang giao`.
+4. Observe the `Thao tác` column.
+5. Click the `Hủy đơn` button.
+
+### Test cases
+
+- `FR11-TC09`: `Dịch trạng thái shipping sang tiếng Việt và không hiển thị nút hủy đơn cho đơn đang giao`
+
+### Expected result
+
+According to `README.md` (FR-10 & FR-11):
+*"Khi đơn hàng đã ở trạng thái shipping, User không được phép tự hủy — chỉ Admin mới có thể thao tác."*
+The user interface must NOT display the `Hủy đơn` button for orders in the `shipping` state (or must disable it with an informative tooltip).
+
+### Actual result
+
+The order row displays an active red button `<button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs">Hủy đơn</button>`. The user can click it to send a cancel request.
+
+### Impact
+
+- Violates core business rules and state machine integrity.
+- Customers can cancel orders that are already handed over to delivery partners, resulting in lost inventory, return shipping fees, and logistics chaos.
+
+### Severity / Priority
+
+- Severity: High (Business logic violation / financial & logistic risk)
+- Priority: High
+
+### Evidence
+
+- Chromium evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR11/data/FR11-FR11-TC09-Dịch-trạng--ea031-t-hủy-đơn-cho-đơn-đang-giao-chromium/`
+- Files: `error-context.md`, `test-failed-1.png`, and `video.webm`
+- Firefox evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR11/data/FR11-FR11-TC09-Dịch-trạng--ea031-t-hủy-đơn-cho-đơn-đang-giao-firefox/`
+- WebKit evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR11/data/FR11-FR11-TC09-Dịch-trạng--ea031-t-hủy-đơn-cho-đơn-đang-giao-webkit/`
+
+### Suspected implementation area
+
+1. **Frontend (`frontend-web/src/pages/Profile.jsx` lines 200-208):**
+   Condition `{o.status !== "delivered" && o.status !== "canceled" && ( <button onClick={() => cancelOrder(o.id)}>Hủy đơn</button> )}` erroneously permits cancellation for `shipping`.
+   Fix: Condition should be `{o.status === "pending" || o.status === "confirmed"}`.
+2. **Backend (`backend/server.js` lines 356-359):**
+   `if (order.status === "delivered" || order.status === "canceled")` fails to reject cancellations when `order.status === "shipping"`.
+
+---
+
 ## Notes for GitHub issue screenshots
 
 The evidence folders above are preserved for traceability. After each issue is created, upload the corresponding `test-failed-1.png` to that GitHub Issue by drag-and-drop or GitHub's image attachment flow, then replace the issue URL placeholders above with the actual URLs.

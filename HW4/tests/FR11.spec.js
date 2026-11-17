@@ -136,5 +136,12 @@ for (const testCase of testCases) {
     if (testCase.expectedStatusLabel) {
       await expect(page.getByText(testCase.expectedStatusLabel, { exact: true })).toBeVisible();
     }
+
+    // Assertion Pattern 1: Visibility/state assertion (SRS Constraint - README.md FR-10 & FR-11)
+    // "Khi đơn hàng đã ở trạng thái shipping, User không được phép tự hủy — chỉ Admin mới có thể thao tác."
+    if (testCase.shouldNotAllowCancel) {
+      const shippingRow = page.locator('tbody tr').filter({ hasText: testCase.expectedStatusLabel });
+      await expect(shippingRow.getByRole('button', { name: 'Hủy đơn' })).not.toBeVisible();
+    }
   });
 }

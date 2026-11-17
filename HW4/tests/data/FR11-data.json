@@ -49,10 +49,11 @@
   },
   {
     "id": "FR11-TC09",
-    "title": "Dịch trạng thái shipping sang tiếng Việt",
+    "title": "Dịch trạng thái shipping sang tiếng Việt và không hiển thị nút hủy đơn cho đơn đang giao",
     "mode": "authenticated",
     "orderStatuses": ["shipping"],
-    "expectedStatusLabel": "Đang giao"
+    "expectedStatusLabel": "Đang giao",
+    "shouldNotAllowCancel": true
   },
   {
     "id": "FR11-TC10",
