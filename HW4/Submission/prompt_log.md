@@ -121,10 +121,17 @@ Vậy khi được yêu cầu quay video để demo cách sử dụng file SKILL
 **Rejected:** nothing
 **Changed:** Distinguished missing empty state, unsafe HTML rendering, and unescaped SQL wildcard handling; documented screenshot upload placeholders and GitHub issue URL placeholders.
 
-# Entry log - 17/11/2026 - Public HTML report packaging
+# Entry log - 18/11/2026 - Public HTML report packaging
 
 **Model used:** GitHub Copilot
 **Prompt:** "Giảng viên cần nộp public GitHub repository link gồm scripts, data files và HTML reports. Có nên tạo folder trong HW4/Submission/reports không và làm thế nào xuất report Playwright thành HTML?"
 **AI's Answer:** Đặt report tại `HW4/Submission/reports/playwright-html`, giữ scripts/data ở `HW4/tests`, cấu hình HTML reporter, và thêm metadata post-processor để report hiển thị Student ID cùng ISO timestamp.
 **Rejected:** nothing
 **Changed:** Updated `playwright.config.ts`, added `report-metadata-reporter.js` and `Submission/reports/README.md`, generated the multi-browser FR05 HTML report, and verified the visible metadata.
+
+# Entry log - 18/11/2026 - FR-05 GitHub issue creation
+**Model used:** GitHub Copilot
+**Prompt:** "Bạn hãy giúp tôi tạo các github issue cho dự án repository `eshop-sut-for-HWork`. Mỗi issue cần được kèm theo ảnh minh hoạ từ báo cáo Playwright FR05."
+**AI's Answer:** Created three FR-05 GitHub issues for the confirmed defects and embedded the matching tracked Chromium evidence image in each issue.
+**Rejected:** nothing
+**Changed:** Created issues #21, #22, and #23 and linked the TC06, TC10, and TC12 PNG evidence images.
