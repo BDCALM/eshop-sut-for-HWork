@@ -50,9 +50,9 @@
 
 ## Giai đoạn 5: Viết Báo Cáo (Documentation)
 - [ ] **AI Audit Report:** Điền form khai báo theo mẫu (Liệt kê công cụ, ngày giờ, prompt đã dùng, kết quả AI trả về). (Lấy từ log sinh ra ở Step 4 của SKILLS.md).
-- [ ] **AI Critique (200-300 từ):** Phê bình AI (AI đã sai ở đâu, bias gì, thiếu sót gì, tại sao nó trượt lỗi, bài học hợp tác với AI).
-- [ ] **Git Commit Log:** Xuất lịch sử commit ra một file text (Yêu cầu >= 8 commits thay đổi file test script).
-- [ ] **Test Summary Report (Báo cáo tóm tắt):**
+- [x] **AI Critique (200-300 từ):** Phê bình AI (AI đã sai ở đâu, bias gì, thiếu sót gì, tại sao nó trượt lỗi, bài học hợp tác với AI) - Đã viết trong `automation-report.md` mục 4.
+- [x] **Git Commit Log:** Xuất lịch sử commit ra một file text (Yêu cầu >= 8 commits thay đổi file test script) - Đã lưu tại `Git-Commit-Log.txt`.
+- [x] **Test Summary Report (Báo cáo tóm tắt):**
   - Tóm tắt số tính năng, số lượng test case (automated, executed, passed, failed).
   - Số lần chạy trình duyệt (>= 9).
   - Số lượng bugs tìm thấy.
