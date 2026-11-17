@@ -1,0 +1,143 @@
+[
+  {
+    "id": "FR19-TC01",
+    "title": "Truy cập trang admin user list khi chưa đăng nhập → bị từ chối hoặc redirect",
+    "mode": "api",
+    "endpoint": "/api/admin/users",
+    "method": "GET",
+    "token": null,
+    "expectedStatus": 401,
+    "expectedContains": null,
+    "isSutDefect": false
+  },
+  {
+    "id": "FR19-TC02",
+    "title": "Regular user dùng JWT hợp lệ gọi GET /api/admin/users → SUT không enforce role (defect)",
+    "mode": "api",
+    "endpoint": "/api/admin/users",
+    "method": "GET",
+    "token": "regularUser",
+    "expectedStatus": 200,
+    "isSutDefect": true,
+    "defectNote": "Route không kiểm tra role=admin, regular user truy cập được"
+  },
+  {
+    "id": "FR19-TC03",
+    "title": "Admin đăng nhập và xem danh sách người dùng → trả về mảng users",
+    "mode": "api",
+    "endpoint": "/api/admin/users",
+    "method": "GET",
+    "token": "admin",
+    "expectedStatus": 200,
+    "expectedContainsArray": true,
+    "isSutDefect": false
+  },
+  {
+    "id": "FR19-TC04",
+    "title": "Admin xem danh sách có đủ các trường id, name, email, role",
+    "mode": "api",
+    "endpoint": "/api/admin/users",
+    "method": "GET",
+    "token": "admin",
+    "expectedStatus": 200,
+    "expectedFields": ["id", "name", "email", "role"],
+    "isSutDefect": false
+  },
+  {
+    "id": "FR19-TC05",
+    "title": "Admin xóa user hợp lệ (không phải admin) → thành công",
+    "mode": "api",
+    "endpoint": "/api/admin/users/:targetId",
+    "method": "DELETE",
+    "token": "admin",
+    "targetUser": "dynamicRegular",
+    "expectedStatus": 200,
+    "isSutDefect": false
+  },
+  {
+    "id": "FR19-TC06",
+    "title": "Admin tự xóa bản thân (self-deletion) → SUT cho phép (defect: nên từ chối)",
+    "mode": "api",
+    "endpoint": "/api/admin/users/:selfId",
+    "method": "DELETE",
+    "token": "admin",
+    "targetUser": "self",
+    "expectedStatus": 200,
+    "isSutDefect": true,
+    "defectNote": "Admin tự xóa bản thân thành công; SRS yêu cầu không được phép self-deletion"
+  },
+  {
+    "id": "FR19-TC07",
+    "title": "Admin xóa user với ID không tồn tại → SUT trả 200 thay vì 404 (defect)",
+    "mode": "api",
+    "endpoint": "/api/admin/users/999999",
+    "method": "DELETE",
+    "token": "admin",
+    "targetUser": "nonexistent",
+    "expectedStatus": 404,
+    "actualSutStatus": 200,
+    "isSutDefect": true,
+    "defectNote": "DELETE /api/admin/users/999999 trả HTTP 200 với message 'User deleted' dù ID không tồn tại — false success"
+  },
+  {
+    "id": "FR19-TC08",
+    "title": "Admin xóa user với ID không hợp lệ (chuỗi chữ) → SUT trả 200 thay vì 400 (defect)",
+    "mode": "api",
+    "endpoint": "/api/admin/users/invalid-id-abc",
+    "method": "DELETE",
+    "token": "admin",
+    "targetUser": "invalidId",
+    "expectedStatus": 400,
+    "actualSutStatus": 200,
+    "isSutDefect": true,
+    "defectNote": "DELETE với ID không phải số trả HTTP 200 thay vì 400/404 (false success)"
+  },
+  {
+    "id": "FR19-TC09",
+    "title": "Regular user escalate role qua PUT /api/users/me với role=admin → SUT chấp nhận (defect)",
+    "mode": "api",
+    "endpoint": "/api/users/me",
+    "method": "PUT",
+    "token": "regularUser",
+    "body": { "role": "admin" },
+    "expectedStatus": 200,
+    "isSutDefect": true,
+    "defectNote": "PUT /api/users/me chấp nhận client-supplied role, cho phép leo thang đặc quyền"
+  },
+  {
+    "id": "FR19-TC10",
+    "title": "PUT /api/users/me không có token → trả về 401 Unauthorized",
+    "mode": "api",
+    "endpoint": "/api/users/me",
+    "method": "PUT",
+    "token": null,
+    "body": { "name": "Hacker" },
+    "expectedStatus": 401,
+    "isSutDefect": false
+  },
+  {
+    "id": "FR19-TC11",
+    "title": "Admin UI: Trang quản lý user hiển thị danh sách với các cột cần thiết",
+    "mode": "ui",
+    "url": "http://localhost:5174",
+    "token": "admin",
+    "loginEmail": "admin@eshop.com",
+    "loginPassword": "Admin123!",
+    "navigationTarget": "users",
+    "expectedHeading": "Quản lý người dùng",
+    "expectedColumns": ["ID", "Tên", "Email", "Vai trò"],
+    "isSutDefect": false
+  },
+  {
+    "id": "FR19-TC12",
+    "title": "Admin UI: Xóa user → user biến mất khỏi danh sách",
+    "mode": "ui",
+    "url": "http://localhost:5174",
+    "loginEmail": "admin@eshop.com",
+    "loginPassword": "Admin123!",
+    "navigationTarget": "users",
+    "targetUser": "dynamicRegular",
+    "expectedGone": true,
+    "isSutDefect": false
+  }
+]

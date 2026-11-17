@@ -16,7 +16,7 @@ export default defineConfig({
   reporter: [
     ['html', {
       open: 'never',
-      outputFolder: 'Submission/reports/playwright-html-minhchung/FR11',
+      outputFolder: 'Submission/reports/playwright-html-minhchung/FR19',
       title: `Run by: ${studentId} | ${runTimestamp}`,
     }],
     ['./Submission/reports/playwright-html-minhchung/script-report-metadata-reporter.js'],
