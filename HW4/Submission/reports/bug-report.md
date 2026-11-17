@@ -435,6 +435,8 @@ UI displays active "Xóa" button for the admin account. All three API cases retu
 
 **GitHub Issue:** [REPLACE-BUG-FR19-003]
 
+> **Architectural & Scope Note:** While `PUT /api/users/me` functionally belongs to **FR-04 (User Profile)** and security requirement **SEC-06 (Role-Based Access Control)**, this defect is analyzed and reported under FR-19 as a chained privilege escalation vulnerability (precondition attack vector) allowing standard users to breach the Admin Portal security perimeter.
+
 ### Summary
 
 The `PUT /api/users/me` endpoint reads a `role` field from the request body and writes it directly to the database. Any authenticated user can escalate their own role to `admin` without any authorization check, allowing them to log into the Admin Portal.

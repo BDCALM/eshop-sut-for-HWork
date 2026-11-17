@@ -97,6 +97,7 @@ Báo cáo tổng hợp kết quả tự động hóa kiểm thử cho Hệ thố
        - **TC06:** Bắt buộc không được hiển thị nút "Xóa" bên cạnh chính tài khoản admin đang đăng nhập (chống tự sát tài khoản).
        - **TC09:** Bắt buộc tài khoản tự đổi role=admin qua API phải bị từ chối truy cập vào Admin Portal.
     3. Cả 3 ca kiểm thử trên thất bại chính xác trên cả 3 trình duyệt (9 failed runs), tự động sinh đầy đủ screenshot, video và error-context phục vụ báo cáo.
+    4. *Lưu ý về phạm vi kiến trúc:* Lỗi `BUG-FR19-003` xuất phát từ API `PUT /api/users/me` thuộc module FR-04 (Hồ sơ cá nhân) và SEC-06 (Phân quyền RBAC). Lỗi này được tích hợp vào kịch bản kiểm thử FR-19 dưới dạng một lỗ hổng chuỗi (chained vulnerability / precondition attack vector) nhằm kiểm chứng hàng rào phòng thủ bảo mật của trang Admin User Management khi có người dùng leo thang đặc quyền trái phép.
 
 ---
 

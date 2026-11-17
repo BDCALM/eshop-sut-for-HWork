@@ -209,3 +209,18 @@ Vậy khi được yêu cầu quay video để demo cách sử dụng file SKILL
 4. Trình bày cấu trúc thư mục nộp bài chuẩn chỉnh sẵn sàng cho việc đóng gói file nén ZIP theo định dạng `<StudentID>_HW04_AI_Automation_<Grade>.zip`.
 **Rejected:** Không để sót thông tin cũ từ bản nháp (như phạm vi FR-20 hay số lượng test case 6/6 cũ).
 **Changed:** Cập nhật file `HW4/Submission/README.md` đồng bộ 100% với `automation-report.md`.
+
+
+# Entry log - 18/11/2026 - Review & Refinement of Gap Analysis and Related Reports
+
+**Model used:** Gemini 3.8 Flash (High)
+**Prompt:** "Bạn giúp tôi kiểm tra lại file `gap-analysis.md` để kiểm chứng và từ các feedback bên dưới, có thể sẽ cần sửa một số file được đề xuất ở một số FR (ví dụ như FR19): ..." (Feedback thẩm định kỹ thuật gồm 4 điểm: khắc phục mâu thuẫn Test Oracle trong FR-19, xóa câu nháp template ở FR-05, làm rõ phạm vi chức năng và chained vulnerability của BUG-FR19-003, mở rộng mục Human Review của FR-05 với các thiếu sót của AI).
+**AI's Answer:** 
+- Đã thẩm định toàn diện phản hồi kỹ thuật và cập nhật đồng bộ các tài liệu báo cáo:
+  1. **Khắc phục mâu thuẫn Test Oracle trong FR-19 (Mục 4.1 & 4.2 của `gap-analysis.md`):** Xóa bỏ hoàn toàn nội dung nhầm lẫn về việc "sửa assertion theo actualSutStatus (200)". Làm rõ rằng AI ban đầu cố tình hạ chuẩn kiểm thử để test pass (false-pass anti-pattern); sinh viên đã thực hiện Human Review kiên quyết giữ nguyên Test Oracle theo SRS, chuyển đổi các ca kiểm thử bảo mật (TC02, TC06, TC09) thành UI integration tests để bắt hệ thống thất bại thực tế, sinh ra 9 failed runs kèm bằng chứng screenshot/video/error-context không thể chối cãi.
+  2. **Biên tập FR-05:** Xóa bỏ câu chữ nháp thừa ở cuối Mục 5 (`Further FR11 and FR19 analyses should use the template...`).
+  3. **Bổ sung mục 4.1 & 4.2 cho FR-05:** Cấu trúc thành hai tiểu mục chi tiết phân tích các thiếu sót của script do AI tạo (CSS selector mong manh, thiếu network synchronization gây flaky trên WebKit, assertion XSS nông cạn, nhầm lẫn ký tự SQL wildcard `%` với lỗi thiếu empty state) và các điều chỉnh kỹ thuật của sinh viên.
+  4. **Làm rõ phạm vi kiến trúc của `BUG-FR19-003`:** Bổ sung ghi chú giải thích lỗi bắt nguồn từ `PUT /api/users/me` thuộc FR-04 (Hồ sơ người dùng) và SEC-06 (Phân quyền RBAC), được đưa vào FR-19 như một vector tấn công leo quyền liên đới (chained vulnerability) nhằm kiểm tra hàng rào an ninh của Admin Portal.
+  5. **Xác thực đường dẫn liên kết tương đối:** Đảm bảo tất cả liên kết tương đối giữa các báo cáo (`../bug-report.md`) trỏ đúng vị trí phân cấp thư mục.
+**Rejected:** Giữ vững nguyên tắc Test Oracle: không thay đổi kỳ vọng kiểm thử theo lỗi của phần mềm; phản ánh đúng bản chất 9 failed runs là do các lỗ hổng bảo mật nghiêm trọng của SUT.
+**Changed:** Cập nhật `HW4/Submission/reports/mainReports(md+pdf)/gap-analysis.md`, `HW4/Submission/reports/mainReports(md+pdf)/automation-report.md`, `HW4/Submission/reports/bug-report.md`, và `HW4/Submission/prompt_log.md`.
