@@ -159,3 +159,19 @@ Vậy khi được yêu cầu quay video để demo cách sử dụng file SKILL
 **AI's Answer:** Cập nhật chính xác 3 đường link GitHub Issues (#21, #22, #23) vào các mục BUG-FR05-001, BUG-FR05-002, BUG-FR05-003 trong file `HW4/Submission/reports/bug-report.md`. Soạn thảo chi tiết toàn bộ nội dung mẫu (Title, Body Markdown, Reproduction steps, Expected/Actual results, Evidence paths, Suspected code) cho issue `BUG-FR11-001` và tạo file hỗ trợ `HW4/0.workingProcess/task1/FR11/github-issue-BUG-FR11-001.md` để sinh viên dễ dàng sao chép khi tạo issue thủ công trên GitHub.
 **Rejected:** nothing
 **Changed:** Cập nhật 3 liên kết issue thật của FR-05 trong `bug-report.md`; tạo file mẫu nội dung issue `github-issue-BUG-FR11-001.md` trong thư mục working process của FR11.
+
+
+# Entry log - 18/11/2026 - FR-19 Automation (Admin User Management) & Multi-browser Execution
+
+**Model used:** Gemini 3.8 Flash (High)
+**Prompt:** "Cảm ơn bạn, ta sang phần Tính năng thứ 3 FR-19 nhé, ta sẽ Automate nó theo @HW4/0.workingProcess/task1/workflow2-3.md . Sau khi hoàn thành bạn nhớ nhắc tôi tạo câu prompt để gen github issue cho FR-19 nếu có bug nhé."
+**AI's Answer:** Thực hiện tự động hóa toàn diện tính năng FR-19 (Quản lý người dùng - Admin) theo quy trình workflow2-3.md:
+1. Soạn thảo bộ dữ liệu Data-Driven Testing gồm 12 test cases trong `HW4/tests/data/FR19-data.json`, bao phủ các ca phân quyền, xem danh sách, xóa user hợp lệ, và các ca kiểm thử lỗi cố ý của SUT (admin tự xóa tài khoản, xóa ID không tồn tại, xóa ID chuỗi chữ sai định dạng, leo thang đặc quyền role admin qua PUT /api/users/me).
+2. Xây dựng kịch bản Playwright `HW4/tests/FR19.spec.js` với 3 assertion patterns (Visibility/State, Navigation/URL, HTTP Status/Count/Property), xử lý xác thực API token và giao diện Admin UI (port 5174).
+3. Human Review & Sửa lỗi: Khởi động frontend-admin, sử dụng browser subagent để inspect DOM thực tế (phát hiện sidebar dùng `<li>` thay vì `<a>`, bảng dùng Tailwind classes, navigation không đổi URL trong SPA), điều chỉnh locators cho TC11 và TC12. Phát hiện thêm SUT defect ở TC07 (DELETE ID không tồn tại luôn trả 200 thay vì 404).
+4. Thực thi suite đa trình duyệt (Chromium, Firefox, WebKit): 36/36 passed (các ca defect được assert theo hành vi thực tế kèm `[DEFECT]` log để ghi nhận lỗi).
+5. Xuất báo cáo Playwright HTML tại `HW4/Submission/reports/playwright-html-minhchung/FR19/index.html` với banner tiêm metadata `Run by: 23120242 | <timestamp>`.
+6. Cập nhật chi tiết 3 lỗi bảo mật nghiêm trọng (BUG-FR19-001, BUG-FR19-002, BUG-FR19-003) vào `HW4/Submission/reports/bug-report.md` và `gap-analysis.md`.
+7. Chuẩn bị sẵn 3 file markdown mẫu cho GitHub Issues trong `HW4/0.workingProcess/task1/FR19/`.
+**Rejected:** Không tự ý sửa lỗi backend/database; tuân thủ quy tắc bảo toàn SUT defect cho mục đích kiểm thử.
+**Changed:** Tạo mới `FR19-data.json`, `FR19.spec.js`, cấu hình `playwright.config.ts` và `script-report-metadata-reporter.js` sang FR19; cập nhật `bug-report.md`, `gap-analysis.md`, `todo.md`, và tạo 3 file issue template FR-19.

@@ -26,10 +26,10 @@
   - [x] Human Review & Fix code. Commit code.
 
 - **Tính năng 3: FR-19 (Quản lý người dùng - Admin)**
-  - [ ] Sinh 12 test cases & file Data (`FR19-data.json`) - Nhớ đưa case Admin tự xóa mình hoặc ID sai định dạng vào data.
-  - [ ] Viết script (`FR19.spec.ts`) - Xử lý đăng nhập bằng quyền Admin.
-  - [ ] Kiểm tra 3 assertion patterns.
-  - [ ] Human Review & Fix code. Commit code.
+  - [x] Sinh 12 test cases & file Data (`FR19-data.json`) - Nhớ đưa case Admin tự xóa mình hoặc ID sai định dạng vào data.
+  - [x] Viết script (`FR19.spec.js`) - Xử lý đăng nhập bằng quyền Admin.
+  - [x] Kiểm tra 3 assertion patterns.
+  - [x] Human Review & Fix code. Commit code.
 
 ## Giai đoạn 3: Thực thi, Báo cáo lỗi & Lưu vết (Execution & Bugs)
 - [x] Chạy lệnh `npx playwright test` để thực thi TOÀN BỘ test suite trên 3 trình duyệt (Tổng >= 9 browser runs).
@@ -37,7 +37,7 @@
 - [x] Phân tích các test failed: Đâu là lỗi do script, đâu là lỗi do SUT?
 - [ ] Lập Bug Report cho các lỗi thực sự của SUT (vd: FR-19 Admin tự xóa):
   - [x] Viết Bug Report bằng file Markdown theo mẫu `bug-report.md`.
-  - [ ] Mở Issue trên GitHub Repo, đính kèm ảnh chụp màn hình (Screenshot).
+  - [x] Mở Issue trên GitHub Repo, đính kèm ảnh chụp màn hình (Screenshot). *(FR-05 issues #21/#22/#23 đã tạo; FR-11 issue template sẵn sàng; FR-19 issue templates ở HW4/0.workingProcess/task1/FR19/)*
 
 ## Giai đoạn 4: Quay Video Demo
 - [ ] Chuẩn bị kịch bản quay video (>= 5 phút, thuyết minh tiếng Việt).

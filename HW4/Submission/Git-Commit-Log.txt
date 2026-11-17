@@ -26,3 +26,12 @@ Format `commit hash` - `Initial commit for Homework#4`
 11. `3c7849f` - `docs: link FR05 GitHub issues in bug-report.md and prepare BUG-FR11-001 template`
     - Update actual GitHub Issue URLs (#21, #22, #23) for FR-05 bugs in `bug-report.md`.
     - Create GitHub Issue template file `github-issue-BUG-FR11-001.md` with full reproduction steps and evidence attachment instructions.
+12. `d08f84f` - `chore: update github issue link for BUG-FR11-001`
+
+13. `c6e8f90` - `feat: automate FR19 admin user management (12 data-driven cases, Playwright script, multi-browser report)`
+    - Implement 12 data-driven test cases in `FR19-data.json` covering auth, role verification, user listing, deletion, self-deletion, invalid ID, and privilege escalation.
+    - Implement Playwright test script `FR19.spec.js` with 3 assertion patterns (visibility, URL, HTTP status/property/count).
+    - Handle Admin SPA UI navigation (React state-based tab switching on port 5174).
+    - Execute suite across Chromium, Firefox, WebKit: 36/36 passed.
+    - Generate Playwright HTML report at `Submission/reports/playwright-html-minhchung/FR19/` with injected student metadata (Run by: 23120242).
+    - Add `FR19-run-and-review-guide.md` in `HW4/0.workingProcess/task1/FR19/`.
