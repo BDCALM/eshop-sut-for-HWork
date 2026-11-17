@@ -10,7 +10,7 @@
 - Test date: 2026-11-17
 - Student ID: 23120242
 
-The 15 failed browser runs are reported as three distinct defects, not 15 separate bugs. The failures were reproduced with Playwright and supported by screenshots and error contexts under `HW4/test-results/FR05/`.
+The 15 failed browser runs are reported as three distinct defects, not 15 separate bugs. The failures were reproduced with Playwright and supported by screenshots, videos, and error contexts under `HW4/Submission/reports/playwright-html-minhchung/FR05/data/`, organized by test case and browser.
 
 ---
 
@@ -64,8 +64,8 @@ Users cannot clearly distinguish a completed search with zero results from a bro
 
 ### Evidence
 
-- Chromium screenshot: `HW4/test-results/FR05/FR05-FR05-TC06-Hiển-thị-empty-state-khi-không-có-kết-quả-chromium/test-failed-1.png`
-- Chromium error context: `HW4/test-results/FR05/FR05-FR05-TC06-Hiển-thị-empty-state-khi-không-có-kết-quả-chromium/error-context.md`
+- Chromium evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR05/data/FR05-FR05-TC06-Hiển-thị-empty-state-khi-không-có-kết-quả-chromium/`
+- Files: `error-context.md`, `test-failed-1.png`, and `video.webm`
 - Firefox and WebKit produced the same failure for TC06, TC07 and TC11.
 
 ### Suspected implementation area
@@ -128,8 +128,8 @@ User input is inserted into the DOM through an unsafe rendering path. Depending 
 
 ### Evidence
 
-- Chromium screenshot: `HW4/test-results/FR05/FR05-FR05-TC10-Hiển-thị-an-toàn-từ-khóa-có-thẻ-HTML-chromium/test-failed-1.png`
-- Chromium error context: `HW4/test-results/FR05/FR05-FR05-TC10-Hiển-thị-an-toàn-từ-khóa-có-thẻ-HTML-chromium/error-context.md`
+- Chromium evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR05/data/FR05-FR05-TC10-Hiển-thị-an-toàn-từ-khóa-có-thẻ-HTML-chromium/`
+- Files: `error-context.md`, `test-failed-1.png`, and `video.webm`
 - Firefox and WebKit produced the same failure.
 
 ### Suspected implementation area
@@ -186,8 +186,8 @@ Search results do not represent the user's literal query. The same implementatio
 
 ### Evidence
 
-- Chromium screenshot: `HW4/test-results/FR05/FR05-FR05-TC12-Xử-lý-ký-tự-39676-hư-một-từ-khóa-thông-thường-chromium/test-failed-1.png`
-- Chromium error context: `HW4/test-results/FR05/FR05-FR05-TC12-Xử-lý-ký-tự-39676-hư-một-từ-khóa-thông-thường-chromium/error-context.md`
+- Chromium evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR05/data/FR05-FR05-TC12-Xử-lý-ký-tự-39676-hư-một-từ-khóa-thông-thường-chromium/`
+- Files: `error-context.md`, `test-failed-1.png`, and `video.webm`
 - Firefox and WebKit produced the same failure.
 
 ### Suspected implementation area
@@ -198,4 +198,4 @@ Search results do not represent the user's literal query. The same implementatio
 
 ## Notes for GitHub issue screenshots
 
-The local evidence paths above are preserved for traceability. After each issue is created, upload the corresponding `test-failed-1.png` to that GitHub Issue by drag-and-drop or GitHub's image attachment flow, then replace the issue URL placeholders above with the actual URLs.
+The evidence folders above are preserved for traceability. After each issue is created, upload the corresponding `test-failed-1.png` to that GitHub Issue by drag-and-drop or GitHub's image attachment flow, then replace the issue URL placeholders above with the actual URLs.

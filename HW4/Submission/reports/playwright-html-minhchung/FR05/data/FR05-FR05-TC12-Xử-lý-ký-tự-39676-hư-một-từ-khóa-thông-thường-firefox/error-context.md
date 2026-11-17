@@ -1,0 +1,123 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: FR05.spec.js >> FR05-TC12: Xử lý ký tự wildcard như một từ khóa thông thường
+- Location: tests\FR05.spec.js:5:3
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByText('Không tìm thấy sản phẩm')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" getByText('Không tìm thấy sản phẩm') with timeout 5000ms
+  - waiting for getByText('Không tìm thấy sản phẩm')
+
+```
+
+```yaml
+- banner:
+  - link "EShop":
+    - /url: /
+  - navigation:
+    - link "Giỏ hàng":
+      - /url: /cart
+    - link "Đăng nhập":
+      - /url: /login
+    - link "Đăng ký":
+      - /url: /register
+- main:
+  - heading "Danh sách sản phẩm" [level=1]
+  - textbox "Tìm kiếm...": "%"
+  - button "Tìm"
+  - text: "Kết quả tìm kiếm cho: %"
+  - heading "iPhone 15 Pro Max" [level=2]
+  - paragraph: 30,000,000 VND
+  - link "Xem chi tiết":
+    - /url: /product/1
+  - button "Thêm vào giỏ"
+  - heading "Samsung Galaxy S24 Ultra" [level=2]
+  - paragraph: 28,000,000 VND
+  - link "Xem chi tiết":
+    - /url: /product/2
+  - button "Thêm vào giỏ"
+  - heading "MacBook Pro M3" [level=2]
+  - paragraph: 45,000,000 VND
+  - link "Xem chi tiết":
+    - /url: /product/3
+  - button "Thêm vào giỏ"
+  - heading "Tai nghe AirPods Pro 2" [level=2]
+  - paragraph: 6,000,000 VND
+  - link "Xem chi tiết":
+    - /url: /product/4
+  - button "Thêm vào giỏ"
+  - heading "Bàn phím cơ Keychron Q1" [level=2]
+  - paragraph: 4,000,000 VND
+  - link "Xem chi tiết":
+    - /url: /product/5
+  - button "Thêm vào giỏ"
+  - heading "Hiển thị 5 sản phẩm" [level=1]
+- contentinfo: © 2026 EShop SUT. Dành cho mục đích kiểm thử.
+```
+
+# Test source
+
+```ts
+  1  | const { test, expect } = require('@playwright/test');
+  2  | const testCases = require('./data/FR05-data.json');
+  3  | 
+  4  | for (const testCase of testCases) {
+  5  |   test(`${testCase.id}: ${testCase.title}`, async ({ page }) => {
+  6  |     await page.goto('http://localhost:5173/');
+  7  | 
+  8  |     const searchInput = page.getByPlaceholder('Tìm kiếm...');
+  9  |     const searchButton = page.getByRole('button', { name: 'Tìm' });
+  10 | 
+  11 |     // Assertion Pattern 1: Visibility/state assertion.
+  12 |     await expect(searchInput).toBeVisible();
+  13 |     await expect(searchButton).toBeVisible();
+  14 | 
+  15 |     if (testCase.query) {
+  16 |       await searchInput.fill(testCase.query);
+  17 |       await searchButton.click();
+  18 |     }
+  19 | 
+  20 |     // Assertion Pattern 2: Navigation/URL assertion.
+  21 |     await expect(page).toHaveURL(/http:\/\/localhost:5173\/?$/);
+  22 | 
+  23 |     const productTitles = page.locator('h2');
+  24 |     switch (testCase.assertion) {
+  25 |       case 'productCount':
+  26 |         // Assertion Pattern 3: Count/value assertion.
+  27 |         await expect(productTitles).toHaveCount(testCase.expectedProductCount);
+  28 |         break;
+  29 |       case 'productVisible':
+  30 |         // Assertion Pattern 3: Text/content assertion.
+  31 |         await expect(productTitles.filter({ hasText: testCase.expectedProduct })).toBeVisible();
+  32 |         break;
+  33 |       case 'emptyState':
+  34 |         // Expected by the SRS; this exposes the missing empty-state implementation.
+> 35 |         await expect(page.getByText(testCase.expectedEmptyText)).toBeVisible();
+     |                                                                  ^ Error: expect(locator).toBeVisible() failed
+  36 |         break;
+  37 |       case 'safeQuery':
+  38 |         // Expected by the SRS; this exposes unsafe query rendering if it occurs.
+  39 |         await expect(page.locator('body')).toContainText(testCase.expectedDisplayedQuery);
+  40 |         break;
+  41 |       default:
+  42 |         throw new Error(`Unknown FR-05 assertion type: ${testCase.assertion}`);
+  43 |     }
+  44 |   });
+  45 | }
+  46 | 
+```

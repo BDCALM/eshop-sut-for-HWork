@@ -8,7 +8,7 @@ The analysis covers 12 data-driven test cases executed on Chromium, Firefox, and
 
 Evidence is stored in:
 
-- HTML reports: `HW4/Submission/reports/playwright-html/FR05/`
+- HTML report and execution evidence: `HW4/Submission/reports/playwright-html-minhchung/FR05/`
 - Test data: `HW4/tests/data/FR05-data.json`
 - Automation script: `HW4/tests/FR05.spec.js`
 - Detailed bug reports: `HW4/Submission/reports/bug-report.md`
