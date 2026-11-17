@@ -35,3 +35,8 @@ Format `commit hash` - `Initial commit for Homework#4`
     - Execute suite across Chromium, Firefox, WebKit: 36/36 passed.
     - Generate Playwright HTML report at `Submission/reports/playwright-html-minhchung/FR19/` with injected student metadata (Run by: 23120242).
     - Add `FR19-run-and-review-guide.md` in `HW4/0.workingProcess/task1/FR19/`.
+14. `8903360` - `docs(FR19): document security defects, gap analysis and GitHub issue templates`
+    - Document three critical/high security defects (BUG-FR19-001, BUG-FR19-002, BUG-FR19-003) in `bug-report.md`.
+    - Append FR-19 section to `gap-analysis.md` highlighting human review corrections (TC07 reclassification, Admin SPA tab switching, and temporary user escalation for safe self-deletion testing).
+    - Generate GitHub Issue markdown templates in `HW4/0.workingProcess/task1/FR19/` for manual submission.
+    - Check off FR-19 milestones in `todo.md` and append entry to `prompt_log.md`.
