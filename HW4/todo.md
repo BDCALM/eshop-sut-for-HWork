@@ -33,7 +33,7 @@
 
 ## Giai đoạn 3: Thực thi, Báo cáo lỗi & Lưu vết (Execution & Bugs)
 - [x] Chạy lệnh `npx playwright test` để thực thi TOÀN BỘ test suite trên 3 trình duyệt (Tổng >= 9 browser runs).
-- [ ] Kiểm tra Playwright HTML Report sinh ra: Đảm bảo có hiển thị "Run by: {StudentID}" và ISO timestamp.
+- [x] Kiểm tra Playwright HTML Report sinh ra: Đảm bảo có hiển thị "Run by: {StudentID}" và ISO timestamp.
 - [x] Phân tích các test failed: Đâu là lỗi do script, đâu là lỗi do SUT?
 - [ ] Lập Bug Report cho các lỗi thực sự của SUT (vd: FR-19 Admin tự xóa):
   - [x] Viết Bug Report bằng file Markdown theo mẫu `bug-report.md`.

@@ -16,9 +16,10 @@ export default defineConfig({
   reporter: [
     ['html', {
       open: 'never',
-      outputFolder: 'playwright-report',
+      outputFolder: 'Submission/reports/playwright-html',
       title: `Run by: ${studentId} | ${runTimestamp}`,
     }],
+    ['./report-metadata-reporter.js'],
   ],
   use: {
     trace: 'on-first-retry',
