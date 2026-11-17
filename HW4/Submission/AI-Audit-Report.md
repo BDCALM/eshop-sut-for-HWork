@@ -58,8 +58,3 @@ MẪU (cần được sửa lại): *"[SKILLS-GUI-Testing.md, GUI & Usability Te
 * Anthropic (2025). Building reliable AI test agents — engineering blog.
 * DeepEval & Promptfoo documentation — testing frameworks for LLM systems.
 
-## HW04 FR-05 supplementary audit note
-
-During human review of the AI-generated FR-05 automation, the student strengthened the assertion for the HTML-query case instead of weakening the expected result to match the observed SUT output. The original intent of `FR05-TC10` was valid: `<script>alert(1)</script>` must be displayed as escaped text and must not be interpreted as markup. The observed result omitted the query from the visible body text, which is evidence of unsafe rendering in the SUT because `Home.jsx` uses `dangerouslySetInnerHTML`.
-
-The student also separated `FR05-TC12` from the empty-state defect after inspecting the failed browser evidence. The `%` query returned all five products because the backend interpolates the search value into a SQL `LIKE` expression. This is a distinct wildcard/query-construction defect, not merely another missing empty-state case. The stronger review therefore preserved the SRS-based expected results and produced three distinct bug reports from the 15 repeated browser failures: missing empty state, unsafe HTML rendering, and unescaped SQL wildcard handling.
