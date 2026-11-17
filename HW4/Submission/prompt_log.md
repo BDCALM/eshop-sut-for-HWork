@@ -96,3 +96,19 @@ Vậy khi được yêu cầu quay video để demo cách sử dụng file SKILL
 **AI's Answer:** 
 **Rejected:** nothing
 **Changed:** noting
+
+# Entry log - 17/11/2026 - Local environment setup
+
+**Model used:** GitHub Copilot
+**Prompt:** "hình như các folder backend, frontend-admin, frontend-web đang thiếu các file env đúng không ? Bởi vì khi tôi triển khai local cho Backend và web nhưng web không hiển bị bất kỳ giao diện nào"
+**AI's Answer:** Kiểm tra cấu hình môi trường, tạo các file local với `VITE_API_URL=http://localhost:3000/api`, cấu hình backend đọc `backend/.env`, và xác minh build/runtime.
+**Rejected:** nothing
+**Changed:** Created local env files, enabled backend dotenv loading, and verified the web/admin builds and local HTTP responses.
+
+# Entry log - 17/11/2026 - FR-05 automation
+
+**Model used:** GitHub Copilot
+**Prompt:** "Chúng ta bắt đầu giai đoạn 2 nhé - Ta sẽ thực hiện Automate cho tính năng 1 (FR05). Với mỗi tính năng: Sau khi có 12 test cases, script playwright và ít nhất 3 assertion patterns khác nhau. Bạn hãy tạo ra một file hướng dẫn cách chạy và hướng dẫn bắt lỗi..."
+**AI's Answer:** Tạo `FR05-data.json` với 12 ca, script data-driven `FR05.spec.js`, và hướng dẫn chạy/review trong `HW4/0.workingProcess/task1`.
+**Rejected:** nothing
+**Changed:** Added the FR-05 data, automation script, review guide, fixed the CommonJS module-loading issue, and ran 12 Chromium tests with 7 passed and 5 SUT/spec discrepancy failures.

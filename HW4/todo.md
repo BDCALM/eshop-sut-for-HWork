@@ -2,21 +2,21 @@
 - Mỗi khi hoàn thành xong một giai đoạn, phải kiểm tra để commit. Sau đó ghi commit log vào trong "eshop-sut-for-HWork\HW4\Submission\Git-Commit-Log.txt" kèm theo nội dung mô tả ngắn cho các commits đó.
 ## Giai đoạn 1: Chuẩn bị & Cấu hình môi trường (Setup & Planning)
 - [x] Khởi tạo Public GitHub Repository cho HW04 (Fork từ repo gốc hoặc tạo mới chứa test code).
-- [ ] Cài đặt Node.js và Playwright (`npm init playwright@latest`).
+- [x] Cài đặt Node.js và Playwright (`npm init playwright@latest`).
 - [x] Thiết lập file `SKILLS.md` làm system prompt cho Cursor/AI.
-- [ ] Chỉnh sửa file `playwright.config.ts`:
+- [x] Chỉnh sửa file `playwright.config.ts`:
   - Cấu hình chạy trên 3 trình duyệt (Chromium, Firefox, WebKit).
   - Cấu hình Playwright HTML Reporter.
   - Cài đặt tiêm Metadata "Run by: 23120242" và Timestamp vào title/metadata của HTML Report.
-- [ ] Khởi chạy SUT (EShop) local: Backend API (`port 3000`), Frontend Web (`port 5173`), Frontend Admin (`port 5174`).
+- [x] Khởi chạy SUT (EShop) local: Backend API (`port 3000`), Frontend Web (`port 5173`), Frontend Admin (`port 5174`).
 - [x] Chốt danh sách 3 tính năng sẽ test: FR-05 (Tìm kiếm), FR-11 (Lịch sử đơn hàng), FR-19 (Quản lý user).
 
 ## Giai đoạn 2: Tự động hóa từng tính năng (Lặp lại cho FR-05, FR-11, FR-19)
 - **Tính năng 1: FR-05 (Tìm kiếm sản phẩm)**
-  - [ ] Điều khiển AI sinh 12 test cases (Positive, Negative, Edge) và lưu vào `FR05-data.json` hoặc `.csv`.
-  - [ ] Điều khiển AI viết script Playwright (`FR05.spec.ts`) áp dụng Data-Driven Testing.
-  - [ ] Đảm bảo script có ít nhất 3 assertion patterns khác nhau (có comment ghi chú rõ ràng).
-  - [ ] Human Review: Chạy thử, bắt lỗi AI (vd: locators yếu, thiếu wait), tự sửa lại mã và ghi chú lại để viết AI Critique.
+  - [x] Điều khiển AI sinh 12 test cases (Positive, Negative, Edge) và lưu vào `FR05-data.json` hoặc `.csv`.
+  - [x] Điều khiển AI viết script Playwright (`FR05.spec.js`) áp dụng Data-Driven Testing.
+  - [x] Đảm bảo script có ít nhất 3 assertion patterns khác nhau (có comment ghi chú rõ ràng).
+  - [x] Human Review: Chạy thử, bắt lỗi AI (vd: locators yếu, thiếu wait), tự sửa lại mã và ghi chú lại để viết AI Critique.
   - [ ] Commit code (chỉ các file `.spec.ts`/`.js` tính vào tối thiểu 8 commits).
 
 - **Tính năng 2: FR-11 (Lịch sử đơn hàng cá nhân)**

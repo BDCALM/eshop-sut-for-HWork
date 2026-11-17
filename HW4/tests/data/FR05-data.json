@@ -1,0 +1,86 @@
+[
+  {
+    "id": "FR05-TC01",
+    "title": "Hiển thị toàn bộ sản phẩm khi không nhập từ khóa",
+    "query": "",
+    "assertion": "productCount",
+    "expectedProductCount": 5
+  },
+  {
+    "id": "FR05-TC02",
+    "title": "Tìm kiếm chính xác theo tên sản phẩm",
+    "query": "iPhone 15 Pro Max",
+    "assertion": "productVisible",
+    "expectedProduct": "iPhone 15 Pro Max"
+  },
+  {
+    "id": "FR05-TC03",
+    "title": "Tìm kiếm theo một phần tên sản phẩm",
+    "query": "Galaxy",
+    "assertion": "productVisible",
+    "expectedProduct": "Samsung Galaxy S24 Ultra"
+  },
+  {
+    "id": "FR05-TC04",
+    "title": "Tìm kiếm không phân biệt chữ hoa chữ thường",
+    "query": "iphone",
+    "assertion": "productVisible",
+    "expectedProduct": "iPhone 15 Pro Max"
+  },
+  {
+    "id": "FR05-TC05",
+    "title": "Tìm kiếm tên sản phẩm có nhiều từ",
+    "query": "Tai nghe AirPods",
+    "assertion": "productVisible",
+    "expectedProduct": "Tai nghe AirPods Pro 2"
+  },
+  {
+    "id": "FR05-TC06",
+    "title": "Hiển thị empty state khi không có kết quả",
+    "query": "san pham khong ton tai",
+    "assertion": "emptyState",
+    "expectedEmptyText": "Không tìm thấy sản phẩm"
+  },
+  {
+    "id": "FR05-TC07",
+    "title": "Xử lý từ khóa chỉ gồm khoảng trắng",
+    "query": "   ",
+    "assertion": "emptyState",
+    "expectedEmptyText": "Không tìm thấy sản phẩm"
+  },
+  {
+    "id": "FR05-TC08",
+    "title": "Tìm kiếm với từ khóa có dấu cách và chữ Việt",
+    "query": "Tai nghe",
+    "assertion": "productVisible",
+    "expectedProduct": "Tai nghe AirPods Pro 2"
+  },
+  {
+    "id": "FR05-TC09",
+    "title": "Tìm kiếm bằng chuỗi số xuất hiện trong tên",
+    "query": "15",
+    "assertion": "productVisible",
+    "expectedProduct": "iPhone 15 Pro Max"
+  },
+  {
+    "id": "FR05-TC10",
+    "title": "Hiển thị an toàn từ khóa có thẻ HTML",
+    "query": "<script>alert(1)</script>",
+    "assertion": "safeQuery",
+    "expectedDisplayedQuery": "<script>alert(1)</script>"
+  },
+  {
+    "id": "FR05-TC11",
+    "title": "Xử lý chuỗi tìm kiếm rất dài không có kết quả",
+    "query": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "assertion": "emptyState",
+    "expectedEmptyText": "Không tìm thấy sản phẩm"
+  },
+  {
+    "id": "FR05-TC12",
+    "title": "Xử lý ký tự wildcard như một từ khóa thông thường",
+    "query": "%",
+    "assertion": "emptyState",
+    "expectedEmptyText": "Không tìm thấy sản phẩm"
+  }
+]
