@@ -61,4 +61,12 @@ Format `commit hash` - `Initial commit for Homework#4`
     - Synchronize Self-Assessment table (100/100) and repository deliverables layout.
     - Append prompt log entry to `prompt_log.md`.
 20. `81ff6a8` - `report: add AI-Critique, Self assessment table; adjusting prompt_log`
+21. `d0a5cc6` - `docs(HW4): refine gap analysis and reports with strict test oracle consistency`
+    - Eliminate Test Oracle contradiction in FR-19 (sections 4.1 & 4.2), replacing assertion weakening narrative with human review enforcement of strict SRS assertions resulting in 9 failed runs with authentic visual evidence.
+    - Remove draft template reference from FR-05 Section 5 in `gap-analysis.md`.
+    - Expand FR-05 Section 4 into subsections 4.1 & 4.2 detailing AI script shortcomings and student corrections.
+    - Clarify functional scope of `BUG-FR19-003` originating from FR-04 and SEC-06 as a chained privilege escalation attack vector in `gap-analysis.md`, `automation-report.md`, and `bug-report.md`.
+    - Verify all relative markdown file paths.
+    - Append prompt log entry to `prompt_log.md`.
+
 
