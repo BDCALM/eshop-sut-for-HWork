@@ -1,5 +1,5 @@
 # Checklist Hoàn Thiện Bài Tập HW04 – Automation Testing
-
+- Mỗi khi hoàn thành xong một giai đoạn, phải kiểm tra để commit. Sau đó ghi commit log vào trong "eshop-sut-for-HWork\HW4\Submission\Git-Commit-Log.txt" kèm theo nội dung mô tả ngắn cho các commits đó.
 ## Giai đoạn 1: Chuẩn bị & Cấu hình môi trường (Setup & Planning)
 - [x] Khởi tạo Public GitHub Repository cho HW04 (Fork từ repo gốc hoặc tạo mới chứa test code).
 - [ ] Cài đặt Node.js và Playwright (`npm init playwright@latest`).
