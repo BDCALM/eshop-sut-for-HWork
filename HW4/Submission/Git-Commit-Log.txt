@@ -23,3 +23,6 @@ Format `commit hash` - `Initial commit for Homework#4`
     - Execute suite across Chromium, Firefox, WebKit: 33 passed, 3 failed (TC09 failed across all 3 browsers).
     - Store multi-browser failure evidence (`error-context.md`, `test-failed-1.png`, `video.webm`) in `HW4/Submission/reports/playwright-html-minhchung/FR11/data/`.
     - Document SUT cancellation defect in `gap-analysis.md` and `bug-report.md` (BUG-FR11-001), critiquing AI's initial shallow assertion.
+11. `3c7849f` - `docs: link FR05 GitHub issues in bug-report.md and prepare BUG-FR11-001 template`
+    - Update actual GitHub Issue URLs (#21, #22, #23) for FR-05 bugs in `bug-report.md`.
+    - Create GitHub Issue template file `github-issue-BUG-FR11-001.md` with full reproduction steps and evidence attachment instructions.
