@@ -18,3 +18,8 @@ Format `commit hash` - `Initial commit for Homework#4`
     - Implement Playwright test script `FR11.spec.js` using 3 assertion patterns (visibility, URL, count/text/API response).
     - Execute suite across Chromium, Firefox, WebKit (36/36 passed).
     - Generate Playwright HTML report with metadata injection (Student ID: 23120242 + ISO timestamp).
+10. `2040f2f` - `test(FR11): strengthen cancellation assertion for shipping state and record defect evidence`
+    - Strengthen `FR11-TC09` assertion in `FR11.spec.js` and `FR11-data.json` to verify that orders in `shipping` state do not display an active "Hủy đơn" button.
+    - Execute suite across Chromium, Firefox, WebKit: 33 passed, 3 failed (TC09 failed across all 3 browsers).
+    - Store multi-browser failure evidence (`error-context.md`, `test-failed-1.png`, `video.webm`) in `HW4/Submission/reports/playwright-html-minhchung/FR11/data/`.
+    - Document SUT cancellation defect in `gap-analysis.md` and `bug-report.md` (BUG-FR11-001), critiquing AI's initial shallow assertion.
