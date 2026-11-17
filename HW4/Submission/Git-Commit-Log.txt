@@ -12,3 +12,9 @@ Format `commit hash` - `Initial commit for Homework#4`
 5. `00de5c6` - `Rewrite gap analysis and add reusable gap-analysis template; organize Playwright evidence by feature`
 6. `6e4313b` - `Align Playwright output path with Submission/reports/playwright-html/FR05`
 7. `fa60989` - `Verify FR05 HTML report data against origin/main without changing current configuration`
+8. `bf7c552` - `chore: create workflow cho task 1 and update prompt-log.md`
+9. `2ae0285` - `feat: automate FR11 order history view (12 data-driven cases, Playwright script, multi-browser report)`
+    - Implement 12 data-driven test cases in `FR11-data.json` covering auth, empty state, order listing, Vietnamese status translations, and ownership.
+    - Implement Playwright test script `FR11.spec.js` using 3 assertion patterns (visibility, URL, count/text/API response).
+    - Execute suite across Chromium, Firefox, WebKit (36/36 passed).
+    - Generate Playwright HTML report with metadata injection (Student ID: 23120242 + ISO timestamp).
