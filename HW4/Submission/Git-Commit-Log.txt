@@ -1,0 +1,5 @@
+# Git Commit Log - HW#4 Automation  testing
+
+## Lich su commit da co
+
+1. `commit hash` - `Initial commit for Homework#4`
