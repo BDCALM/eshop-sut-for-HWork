@@ -60,3 +60,5 @@ Format `commit hash` - `Initial commit for Homework#4`
     - Update `HW4/Submission/README.md` with accurate 3-feature test summary, 108 multi-browser executions, and 7 confirmed SUT defects.
     - Synchronize Self-Assessment table (100/100) and repository deliverables layout.
     - Append prompt log entry to `prompt_log.md`.
+20. `81ff6a8` - `report: add AI-Critique, Self assessment table; adjusting prompt_log`
+
