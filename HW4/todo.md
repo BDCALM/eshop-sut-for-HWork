@@ -17,7 +17,7 @@
   - [x] Điều khiển AI viết script Playwright (`FR05.spec.js`) áp dụng Data-Driven Testing.
   - [x] Đảm bảo script có ít nhất 3 assertion patterns khác nhau (có comment ghi chú rõ ràng).
   - [x] Human Review: Chạy thử, bắt lỗi AI (vd: locators yếu, thiếu wait), tự sửa lại mã và ghi chú lại để viết AI Critique.
-  - [ ] Commit code (chỉ các file `.spec.ts`/`.js` tính vào tối thiểu 8 commits).
+  - [x] Commit code (chỉ các file `.spec.ts`/`.js` tính vào tối thiểu 8 commits).
 
 - **Tính năng 2: FR-11 (Lịch sử đơn hàng cá nhân)**
   - [ ] Sinh 12 test cases & file Data (`FR11-data.json`).
@@ -32,17 +32,17 @@
   - [ ] Human Review & Fix code. Commit code.
 
 ## Giai đoạn 3: Thực thi, Báo cáo lỗi & Lưu vết (Execution & Bugs)
-- [ ] Chạy lệnh `npx playwright test` để thực thi TOÀN BỘ test suite trên 3 trình duyệt (Tổng >= 9 browser runs).
+- [x] Chạy lệnh `npx playwright test` để thực thi TOÀN BỘ test suite trên 3 trình duyệt (Tổng >= 9 browser runs).
 - [ ] Kiểm tra Playwright HTML Report sinh ra: Đảm bảo có hiển thị "Run by: {StudentID}" và ISO timestamp.
-- [ ] Phân tích các test failed: Đâu là lỗi do script, đâu là lỗi do SUT?
+- [x] Phân tích các test failed: Đâu là lỗi do script, đâu là lỗi do SUT?
 - [ ] Lập Bug Report cho các lỗi thực sự của SUT (vd: FR-19 Admin tự xóa):
-  - [ ] Viết Bug Report bằng file Markdown theo mẫu `bug-report.md`.
+  - [x] Viết Bug Report bằng file Markdown theo mẫu `bug-report.md`.
   - [ ] Mở Issue trên GitHub Repo, đính kèm ảnh chụp màn hình (Screenshot).
 
 ## Giai đoạn 4: Quay Video Demo
 - [ ] Chuẩn bị kịch bản quay video (>= 5 phút, thuyết minh tiếng Việt).
 - [ ] Mở terminal (CMD/PowerShell) và gõ lệnh `whoami` & `hostname` (hoặc bật face-cam) ở đầu video.
-- [ ] Demo giới thiệu `SKILLS.md` (Agent Skill) đã dùng.
+- [ ] Demo giới thiệu `SKILLS.md` (Agent Skill) đã dùng. - quay riêng
 - [ ] Quay cảnh chạy một script hoàn chỉnh (vd: FR-19) chạy end-to-end trên đa trình duyệt.
 - [ ] Thuyết minh về **một lỗi của AI** mà bạn đã phát hiện và tự sửa lại trong quá trình review.
 - [ ] Mở và show HTML Report chứng minh có dòng chữ "Run by: {StudentID}".

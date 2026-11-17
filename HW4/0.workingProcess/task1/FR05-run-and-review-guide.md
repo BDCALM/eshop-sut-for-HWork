@@ -63,7 +63,8 @@ npx playwright test tests/FR05.spec.js --project=chromium --trace=retain-on-fail
 
 - `FR05-TC01` kiểm tra số lượng sản phẩm ban đầu.
 - `FR05-TC02` đến `FR05-TC05`, `FR05-TC08`, `FR05-TC09` kiểm tra tìm kiếm theo tên, một phần tên, hoa thường, Unicode và chuỗi số.
-- `FR05-TC06`, `FR05-TC07`, `FR05-TC11`, `FR05-TC12` kiểm tra empty state và input biên.
+- `FR05-TC06`, `FR05-TC07`, `FR05-TC11` kiểm tra empty state và input biên.
+- `FR05-TC12` kiểm tra ký tự SQL wildcard được xử lý như input literal, không làm mở rộng kết quả.
 - `FR05-TC10` kiểm tra từ khóa HTML được hiển thị như text an toàn.
 
 Các failure ở `TC06`, `TC07`, `TC11`, `TC12` có thể là lỗi SUT nếu không có thông báo empty state. Failure ở `TC10` có thể là lỗi SUT nếu query bị render như HTML. Không tự sửa SUT trong bước automation; ghi lại test, actual result, expected result, browser và screenshot/trace cho bug report.
@@ -86,7 +87,8 @@ Script cố ý dùng expected behavior theo SRS. Vì vậy các test có thể p
 
 Lệnh Chromium ngày 17/11/2026 chạy 12 test: **7 passed, 5 failed**.
 
-- `FR05-TC06`, `FR05-TC07`, `FR05-TC11`, `FR05-TC12`: không tìm thấy text `Không tìm thấy sản phẩm`, phù hợp với lỗi thiếu empty state trong SUT.
+- `FR05-TC06`, `FR05-TC07`, `FR05-TC11`: không tìm thấy text `Không tìm thấy sản phẩm`, phù hợp với lỗi thiếu empty state trong SUT.
+- `FR05-TC12`: ký tự `%` trả về cả 5 sản phẩm, cho thấy backend đang truyền wildcard trực tiếp vào SQL `LIKE` thay vì xử lý như ký tự literal.
 - `FR05-TC10`: query HTML không xuất hiện như text nguyên văn; cần kiểm tra lại việc render an toàn vì SUT đang dùng `dangerouslySetInnerHTML`.
 - Lỗi ban đầu do script dùng ESM `import` trong project chưa khai báo ESM. Human review đã sửa sang CommonJS `require`; lượt chạy sau đó load được 12 tests và không còn lỗi loader.
 

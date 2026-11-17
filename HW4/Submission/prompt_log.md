@@ -112,3 +112,11 @@ Vậy khi được yêu cầu quay video để demo cách sử dụng file SKILL
 **AI's Answer:** Tạo `FR05-data.json` với 12 ca, script data-driven `FR05.spec.js`, và hướng dẫn chạy/review trong `HW4/0.workingProcess/task1`.
 **Rejected:** nothing
 **Changed:** Added the FR-05 data, automation script, review guide, fixed the CommonJS module-loading issue, and ran 12 Chromium tests with 7 passed and 5 SUT/spec discrepancy failures.
+
+# Entry log - 17/11/2026 - FR-05 bug reporting and GitHub Issues
+
+**Model used:** GitHub Copilot
+**Prompt:** "Tôi đã chạy 12 test ở FR05 cho 3 trình duyệt, xác thực 15 failed và 21 passed, các test failed đều là do lỗi của SUT. Viết bug report và script GitHub CLI, dùng screenshots trong HW4/test-results/FR05."
+**AI's Answer:** Phân loại 15 repeated browser failures thành 3 distinct SUT defects, viết bug report có expected/actual/evidence và tạo script `create-fr05-github-issues.sh` cùng hướng dẫn `.md`.
+**Rejected:** nothing
+**Changed:** Distinguished missing empty state, unsafe HTML rendering, and unescaped SQL wildcard handling; documented screenshot upload placeholders and GitHub issue URL placeholders.
