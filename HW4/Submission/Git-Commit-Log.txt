@@ -46,3 +46,7 @@ Format `commit hash` - `Initial commit for Homework#4`
     - Execute suite across Chromium, Firefox, WebKit: 27 passed, 9 failed (3 SUT defects reproduced consistently across all 3 browsers).
     - Store authentic multi-browser failure evidence (screenshots `test-failed-1.png`, videos `video.webm`, traces `error-context.md`) in `HW4/Submission/reports/playwright-html-minhchung/FR19/data/`.
     - Update Playwright HTML report with student metadata and latest run status.
+17. `e6a7a30` - `docs(FR19): add image placeholders to issue templates and update bug report evidence paths`
+    - Add GitHub repository raw image URL placeholders and local file paths to `github-issue-BUG-FR19-001.md`, `BUG-FR19-002.md`, and `BUG-FR19-003.md`.
+    - Update test execution summary (27 passed, 9 failed) and multi-browser evidence sections in `bug-report.md` and `gap-analysis.md`.
+    - Record prompt log entry in `prompt_log.md`.
