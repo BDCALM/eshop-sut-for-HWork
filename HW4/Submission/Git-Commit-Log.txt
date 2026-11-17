@@ -7,3 +7,4 @@ Format `commit hash` - `Initial commit for Homework#4`
 
 1. `af11fef` - `Setup Playwright environment for HW4`
 2. `96d6a87` - `Automate FR05 product search (12 data-driven cases, Playwright script, review guide)`
+3. `837b9e2` - `Document FR05 bugs and GitHub issue workflow (3 SUT bugs, evidence paths, GitHub CLI script)`
