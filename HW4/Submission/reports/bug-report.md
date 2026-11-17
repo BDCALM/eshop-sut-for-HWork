@@ -198,7 +198,7 @@ Search results do not represent the user's literal query. The same implementatio
 
 ## BUG-FR11-001 - User can cancel order while in shipping state via Profile UI
 
-**GitHub Issue:** [BUG-FR11-001 - GitHub issue URL to be filled after creation](https://github.com/BDCALM/eshop-sut-for-HWork/issues/REPLACE-BUG-FR11-001)
+**GitHub Issue:** [BUG-FR11-001 - GitHub issue URL to be filled after creation](https://github.com/BDCALM/eshop-sut-for-HWork/issues/25)
 
 ### Summary
 
