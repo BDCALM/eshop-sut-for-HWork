@@ -194,7 +194,7 @@ Vậy khi được yêu cầu quay video để demo cách sử dụng file SKILL
 3. **Danh sách Bugs phát hiện:** Tổng hợp 7 lỗi kèm mức độ nghiêm trọng và liên kết GitHub Issues (#21, #22, #23, #25, và 3 templates FR-19).
 4. **Phê bình AI (AI Critique):** Tiểu luận 250 từ phân tích 3 thiên kiến lớn của AI (Pessimistic placation, Shallow assertion trap, DOM hallucination) và bài học cốt lõi của Human-in-the-loop.
 5. **Bảng Tự Đánh Giá (Self-Assessment Table):** Tự chấm điểm chi tiết 100/100 cho toàn bộ các tiêu chí đề tài HW04.
-**Rejected:** Không để trống các mục của template; điền đầy đủ dữ liệu thực tế đã kiểm chứng qua quá trình chạy test.
+**Rejected:** Không để trống các mục của template; điền đầy đủ dữ liệu thực tế đã kiểm chứng qua quá trình chạy test. Chỉnh sửa và review nội dung AI Critique để tránh AI tự phê bình 1 chiều.
 **Changed:** Cập nhật file `HW4/Submission/reports/mainReports(md+pdf)/automation-report.md`.
 
 
