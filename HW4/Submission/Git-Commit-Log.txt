@@ -2,4 +2,8 @@
 
 ## Lich su commit da co
 
-1. `commit hash` - `Initial commit for Homework#4`
+Format `commit hash` - `Initial commit for Homework#4`
+    - Notes
+
+1. `af11fef` - `Setup Playwright environment for HW4`
+2. `96d6a87` - `Automate FR05 product search (12 data-driven cases, Playwright script, review guide)`
