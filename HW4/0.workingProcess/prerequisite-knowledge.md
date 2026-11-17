@@ -1,3 +1,39 @@
+## 0. Assertion pattern là gì
+
+**Assertion pattern (mẫu kiểm chứng)** là các quy chuẩn logic được lập trình trong kịch bản kiểm thử nhằm xác minh xem hệ thống có đang phản hồi đúng như thiết kế hay không. Trong mô hình viết test chuẩn **AAA (Arrange - Act - Assert)**, mẫu kiểm chứng chính là bước cuối cùng (Assert) — nơi kịch bản đưa ra phán quyết Pass (Đạt) hay Fail (Trượt) cho một test case bằng cách so sánh Trạng thái thực tế (Actual) với Kết quả mong đợi (Expected).
+
+**Vai trò của Assertion Pattern trong Automation Test:**
+
+* **Quyết định tính hợp lệ của kịch bản:** Kịch bản tự động có thể thực hiện hàng chục thao tác click hay gõ phím trơn tru, nhưng nếu thiếu assertion, bài test hoàn toàn vô giá trị vì hệ thống không có tiêu chí để đánh giá đúng/sai.
+* **Hoạt động như "đôi mắt" của Tester:** Máy móc không thể tự nhìn thấy giao diện bị vỡ, thông báo lỗi hiện sai hay URL chưa chuyển hướng. Các pattern cung cấp phương pháp để kịch bản "đọc" và thẩm định chính xác từng thành phần trên giao diện.
+* **Ngăn chặn False Positive (Thành công giả):** Sử dụng đa dạng các pattern giúp bắt chính xác lỗi ngầm. Ví dụ: Nếu API đăng nhập trả về HTTP 200 OK nhưng giao diện lại hiển thị "Lỗi máy chủ", việc chỉ dùng pattern kiểm tra Network mà thiếu pattern kiểm tra Text trên UI sẽ khiến bài test báo Pass một cách sai lệch.
+
+**Các mẫu Assertion phổ biến (Thường dùng với Playwright hoặc Selenium):**
+
+* **State / Visibility Assertion (Kiểm chứng trạng thái):** Xác nhận một phần tử DOM có đang hiển thị, bị ẩn, có sẵn sàng để tương tác, hoặc bị vô hiệu hóa (disabled) hay không.
+* *Ví dụ:* Xác minh nút "Thanh toán" bị khóa (disabled) khi giỏ hàng đang trống (`await expect(button).toBeDisabled()`).
+
+
+* **Content / Value Assertion (Kiểm chứng nội dung văn bản/giá trị):** So sánh chính xác chuỗi văn bản hoặc giá trị số hiển thị trên UI với dữ liệu chuẩn.
+* *Ví dụ:* Sau khi nhập sai mật khẩu, cảnh báo lỗi chữ đỏ phải hiển thị đúng nguyên văn (`await expect(alert).toHaveText('Tài khoản bị khóa 30 giây')`).
+
+
+* **Navigation / URL Assertion (Kiểm chứng điều hướng):** Xác minh hệ thống đã chuyển hướng người dùng đến đúng trang đích sau một chuỗi hành động.
+* *Ví dụ:* Đăng nhập thành công phải thay đổi URL sang trang chủ thay vì kẹt lại ở form login (`await expect(page).toHaveURL(/.*dashboard/)`).
+
+
+* **Count / Structure Assertion (Kiểm chứng số lượng/cấu trúc):** Đếm số lượng phần tử được render trên màn hình để kiểm tra logic hiển thị danh sách.
+* *Ví dụ:* Khi thực hiện tìm kiếm từ khóa "Laptop", danh sách trả về phải render đúng số lượng thẻ sản phẩm khớp với database (`await expect(productCards).toHaveCount(5)`).
+
+
+* **Attribute Assertion (Kiểm chứng thuộc tính HTML):** Kiểm tra các thuộc tính ẩn bên dưới thẻ HTML, thường dùng cho SEO, tính năng hỗ trợ tiếp cận (accessibility) hoặc hình ảnh.
+* *Ví dụ:* Đảm bảo ảnh sản phẩm không bị lỗi hiển thị bằng cách kiểm tra thuộc tính thẻ alt (`await expect(image).toHaveAttribute('alt', 'Tên sản phẩm')`).
+
+
+
+Việc áp dụng nhiều assertion patterns khác nhau trong cùng một kịch bản ép buộc quá trình kiểm thử phải đánh giá tính năng một cách toàn diện đa chiều — từ trạng thái phần tử, nội dung văn bản, cho đến luồng điều hướng — thay vì chỉ kiểm tra sự tồn tại của một nút bấm một cách hời hợt.
+
+
 ## 1. Nền tảng Playwright Framework & JavaScript/TypeScript (Ưu tiên Cao nhất)
 
 Dù sử dụng Cursor hay bất kỳ AI nào, mã được sinh ra sẽ chạy trên Node.js bằng thư viện Playwright. Bạn cần nắm vững các khái niệm cơ bản sau để đọc hiểu và sửa mã do AI viết:

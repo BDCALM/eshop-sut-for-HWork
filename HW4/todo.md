@@ -40,7 +40,7 @@
   - [x] Mở Issue trên GitHub Repo, đính kèm ảnh chụp màn hình (Screenshot). *(FR-05 issues #21/#22/#23 đã tạo; FR-11 issue template sẵn sàng; FR-19 issue templates ở HW4/0.workingProcess/task1/FR19/)*
 
 ## Giai đoạn 4: Quay Video Demo
-- [ ] Chuẩn bị kịch bản quay video (>= 5 phút, thuyết minh tiếng Việt).
+- [x] Chuẩn bị kịch bản quay video (>= 5 phút, thuyết minh tiếng Việt).
 - [ ] Mở terminal (CMD/PowerShell) và gõ lệnh `whoami` & `hostname` (hoặc bật face-cam) ở đầu video.
 - [ ] Demo giới thiệu `SKILLS.md` (Agent Skill) đã dùng. - quay riêng
 - [ ] Quay cảnh chạy một script hoàn chỉnh (vd: FR-19) chạy end-to-end trên đa trình duyệt.
