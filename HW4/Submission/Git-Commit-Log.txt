@@ -68,5 +68,12 @@ Format `commit hash` - `Initial commit for Homework#4`
     - Clarify functional scope of `BUG-FR19-003` originating from FR-04 and SEC-06 as a chained privilege escalation attack vector in `gap-analysis.md`, `automation-report.md`, and `bug-report.md`.
     - Verify all relative markdown file paths.
     - Append prompt log entry to `prompt_log.md`.
+22. `558dca9` - `docs(HW4): update git commit log with gap analysis review entry`
+23. `a427735` - `fix(HW4): dynamic report routing in config and resolve port conflict for show-report`
+    - Free locked port 9323 and configure `--port 0` in video demo instructions to prevent EADDRINUSE errors.
+    - Implement dynamic feature detection in `playwright.config.ts` and `script-report-metadata-reporter.js` (detecting FR05, FR11, FR19 from CLI arguments or PLAYWRIGHT_FEATURE env).
+    - Add complete video demo script (5+ minutes, Vietnamese narration, human review critique) and guides in `HW4/0.workingProcess/ForVideoDemo/demoFast/`.
+    - Record entry in `prompt_log.md`.
+
 
 

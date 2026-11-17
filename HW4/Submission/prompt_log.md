@@ -224,3 +224,15 @@ Vậy khi được yêu cầu quay video để demo cách sử dụng file SKILL
   5. **Xác thực đường dẫn liên kết tương đối:** Đảm bảo tất cả liên kết tương đối giữa các báo cáo (`../bug-report.md`) trỏ đúng vị trí phân cấp thư mục.
 **Rejected:** Giữ vững nguyên tắc Test Oracle: không thay đổi kỳ vọng kiểm thử theo lỗi của phần mềm; phản ánh đúng bản chất 9 failed runs là do các lỗ hổng bảo mật nghiêm trọng của SUT.
 **Changed:** Cập nhật `HW4/Submission/reports/mainReports(md+pdf)/gap-analysis.md`, `HW4/Submission/reports/mainReports(md+pdf)/automation-report.md`, `HW4/Submission/reports/bug-report.md`, và `HW4/Submission/prompt_log.md`.
+
+
+# Entry log - 18/11/2026 - Fix Playwright Report Port Conflict & Dynamic Feature Reporter Routing
+
+**Model used:** Gemini 3.8 Flash (High)
+**Prompt:** "Bạn hãy kiểm tra và sửa lỗi này giúp tôi khi tôi bấm mở report của playwright mà không được... Error: listen EADDRINUSE: address already in use ::1:9323 ... (Ghi prompt log, ghi commit cho các file được bạn thay đổi ở lần chat này và commit chúng)"
+**AI's Answer:**
+1. **Khắc phục lỗi trùng port EADDRINUSE (Port 9323):** Xác định tiến trình Node.js (PID 15168) từ phiên `playwright show-report` trước đó vẫn đang chiếm dụng port 9323. Đã giải phóng port bằng cách tắt tiến trình treo. Đồng thời cập nhật tài liệu hướng dẫn quay video sử dụng tùy chọn an toàn `--port 0` (hệ điều hành tự cấp port khả dụng) để không bao giờ bị lỗi EADDRINUSE.
+2. **Khắc phục lỗi sai lệch thư mục Report giữa các tính năng:** Trong `HW4/playwright.config.ts` và `script-report-metadata-reporter.js`, sửa cơ chế cấu hình đường dẫn `outputFolder` từ hardcode sang cơ chế tự động nhận diện tính năng (Dynamic Feature Detection) qua tham số dòng lệnh CLI (`FR05`, `FR11`, `FR19`) hoặc biến môi trường `PLAYWRIGHT_FEATURE`. Nhờ đó, khi chạy `tests/FR11.spec.js`, Playwright xuất đúng report vào thư mục `FR11` thay vì bị ghi đè sang `FR19`.
+3. **Cập nhật kịch bản video demo:** Đồng bộ các câu lệnh mở báo cáo trong `KICH_BAN_CHI_TIET_5_PHUT.md`, `HUONG_DAN_CHUAN_BI_VA_QUAY.md`, và `BAN_NOI_NHANH_CHEAT_SHEET.md`.
+**Rejected:** Không sử dụng port cố định khi mở báo cáo để tránh xung đột cổng với các tiến trình chạy ngầm.
+**Changed:** Cập nhật `HW4/playwright.config.ts`, `HW4/Submission/reports/playwright-html-minhchung/script-report-metadata-reporter.js`, các file kịch bản video trong `HW4/0.workingProcess/ForVideoDemo/demoFast/`, `HW4/Submission/Git-Commit-Log.txt`, và `HW4/Submission/prompt_log.md`.

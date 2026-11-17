@@ -3,7 +3,19 @@ const path = require('node:path');
 
 class ReportMetadataReporter {
   async onExit() {
-    const feature = process.env.PLAYWRIGHT_FEATURE || 'FR19';
+    const cliArgs = process.argv.join(' ');
+    let feature = process.env.PLAYWRIGHT_FEATURE;
+    if (!feature) {
+      if (cliArgs.includes('FR05')) {
+        feature = 'FR05';
+      } else if (cliArgs.includes('FR11')) {
+        feature = 'FR11';
+      } else if (cliArgs.includes('FR19')) {
+        feature = 'FR19';
+      } else {
+        feature = 'FR11';
+      }
+    }
     const reportPath = path.resolve(__dirname, feature, 'index.html');
     if (!fs.existsSync(reportPath)) return;
 
