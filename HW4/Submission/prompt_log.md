@@ -135,3 +135,11 @@ Vậy khi được yêu cầu quay video để demo cách sử dụng file SKILL
 **AI's Answer:** Created three FR-05 GitHub issues for the confirmed defects and embedded the matching tracked Chromium evidence image in each issue.
 **Rejected:** nothing
 **Changed:** Created issues #21, #22, and #23 and linked the TC06, TC10, and TC12 PNG evidence images.
+
+# Entry log - 18/11/2026 - FR-11 automation and multi-browser execution
+
+**Model used:** Gemini 3.8 Flash (High)
+**Prompt:** "Sau khi bạn đọc xong các ngữ cảnh thì bạn hãy thực hiện giai đoạn 2 ở tính năng FR-11 (trong file todo.md) nhé. Để thực hiện Giai đoạn 2 và 3 cho mỗi tính năng FR thì bạn hãy follow theo file HW4/0.workingProcess/task1/workflow2-3.md. Hiện tại đang ở tiến độ như sau: đang ở phần '## 6. Chạy kiểm thử từng bước' của file workflow2-3.md. Notes: các file 'FR11-run-and-review-guide.md' đã được đưa vào folder 'eshop-sut-for-HWork\HW4\0.workingProcess\task1\FR11'"
+**AI's Answer:** Đọc toàn bộ tài liệu ngữ cảnh (AGENTS.md, SKILLS.md, README.md, setup_guide-local.md, todo.md, workflow2-3.md), kiểm tra trạng thái hoạt động của SUT (backend:3000 và web:5173), rà soát 12 test cases DDT trong FR11-data.json và script FR11.spec.js. Tiến hành Human Review: bổ sung random seed cho email khởi tạo để tránh xung đột tài khoản khi chạy song song trên nhiều workers/trình duyệt, cải tiến script-report-metadata-reporter.js với regex replacement mạnh mẽ để tiêm Student ID (23120242) và ISO timestamp chuẩn vào report FR11. Chạy smoke test Chromium (12/12 passed), sau đó thực thi toàn bộ suite trên cả 3 trình duyệt Chromium, Firefox, WebKit (36/36 passed). Xác nhận Playwright HTML Report tại `Submission/reports/playwright-html-minhchung/FR11/index.html` hiển thị đầy đủ metadata sinh viên và không phát sinh failure nào đối với phạm vi kiểm thử FR-11.
+**Rejected:** nothing
+**Changed:** Thêm random seed vào `registerAccount` trong `HW4/tests/FR11.spec.js` để tránh race condition email khi parallel; cập nhật regex xử lý title và header metadata trong `script-report-metadata-reporter.js`.

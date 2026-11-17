@@ -3,7 +3,8 @@ const path = require('node:path');
 
 class ReportMetadataReporter {
   async onExit() {
-    const reportPath = path.resolve(__dirname, 'Submission/reports/playwright-html/index.html');
+    const feature = process.env.PLAYWRIGHT_FEATURE || 'FR11';
+    const reportPath = path.resolve(__dirname, feature, 'index.html');
     if (!fs.existsSync(reportPath)) return;
 
     const studentId = '23120242';
@@ -11,13 +12,20 @@ class ReportMetadataReporter {
     let html = fs.readFileSync(reportPath, 'utf8');
 
     html = html.replace(
-      '<title>Playwright Test Report</title>',
+      /<title>.*?<\/title>/,
       `<title>Run by: ${studentId} | ${generatedAt}</title>`,
     );
-    html = html.replace(
-      '<body>',
-      `<body><div id="hw04-report-metadata" style="padding: 8px 16px; background: #e8f1ff; color: #17365d; font: 14px sans-serif; border-bottom: 1px solid #b8cce4;">Run by: ${studentId} | ${generatedAt}</div>`,
-    );
+    if (html.includes('id="hw04-report-metadata"')) {
+      html = html.replace(
+        /<div id="hw04-report-metadata"[^>]*>.*?<\/div>/,
+        `<div id="hw04-report-metadata" style="padding: 8px 16px; background: #e8f1ff; color: #17365d; font: 14px sans-serif; border-bottom: 1px solid #b8cce4;">Run by: ${studentId} | ${generatedAt}</div>`,
+      );
+    } else {
+      html = html.replace(
+        '<body>',
+        `<body><div id="hw04-report-metadata" style="padding: 8px 16px; background: #e8f1ff; color: #17365d; font: 14px sans-serif; border-bottom: 1px solid #b8cce4;">Run by: ${studentId} | ${generatedAt}</div>`,
+      );
+    }
 
     fs.writeFileSync(reportPath, html);
   }

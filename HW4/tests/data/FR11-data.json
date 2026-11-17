@@ -1,0 +1,77 @@
+[
+  {
+    "id": "FR11-TC01",
+    "title": "Hiển thị yêu cầu đăng nhập khi truy cập lịch sử đơn hàng chưa xác thực",
+    "mode": "unauthenticated"
+  },
+  {
+    "id": "FR11-TC02",
+    "title": "Hiển thị lỗi khi đăng nhập bằng mật khẩu không hợp lệ",
+    "mode": "invalidLogin"
+  },
+  {
+    "id": "FR11-TC03",
+    "title": "Đăng nhập thành công và mở trang hồ sơ",
+    "mode": "authenticated",
+    "orderStatuses": []
+  },
+  {
+    "id": "FR11-TC04",
+    "title": "Hiển thị trạng thái rỗng khi người dùng chưa có đơn hàng",
+    "mode": "authenticated",
+    "orderStatuses": []
+  },
+  {
+    "id": "FR11-TC05",
+    "title": "Hiển thị một đơn hàng đang chờ xác nhận",
+    "mode": "authenticated",
+    "orderStatuses": ["pending"]
+  },
+  {
+    "id": "FR11-TC06",
+    "title": "Hiển thị nhiều đơn hàng theo thứ tự mã giảm dần",
+    "mode": "authenticated",
+    "orderStatuses": ["pending", "pending"]
+  },
+  {
+    "id": "FR11-TC07",
+    "title": "Dịch trạng thái pending sang tiếng Việt",
+    "mode": "authenticated",
+    "orderStatuses": ["pending"],
+    "expectedStatusLabel": "Chờ xác nhận"
+  },
+  {
+    "id": "FR11-TC08",
+    "title": "Dịch trạng thái confirmed sang tiếng Việt",
+    "mode": "authenticated",
+    "orderStatuses": ["confirmed"],
+    "expectedStatusLabel": "Đã xác nhận"
+  },
+  {
+    "id": "FR11-TC09",
+    "title": "Dịch trạng thái shipping sang tiếng Việt",
+    "mode": "authenticated",
+    "orderStatuses": ["shipping"],
+    "expectedStatusLabel": "Đang giao"
+  },
+  {
+    "id": "FR11-TC10",
+    "title": "Dịch trạng thái delivered sang tiếng Việt",
+    "mode": "authenticated",
+    "orderStatuses": ["delivered"],
+    "expectedStatusLabel": "Đã giao"
+  },
+  {
+    "id": "FR11-TC11",
+    "title": "Dịch trạng thái canceled sang tiếng Việt",
+    "mode": "authenticated",
+    "orderStatuses": ["canceled"],
+    "expectedStatusLabel": "Đã hủy"
+  },
+  {
+    "id": "FR11-TC12",
+    "title": "Chỉ trả về đơn hàng của người dùng đang đăng nhập",
+    "mode": "ownership",
+    "orderStatuses": ["pending"]
+  }
+]

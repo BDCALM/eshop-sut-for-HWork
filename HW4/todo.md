@@ -20,10 +20,10 @@
   - [x] Commit code (chỉ các file `.spec.ts`/`.js` tính vào tối thiểu 8 commits).
 
 - **Tính năng 2: FR-11 (Lịch sử đơn hàng cá nhân)**
-  - [ ] Sinh 12 test cases & file Data (`FR11-data.json`).
-  - [ ] Viết script (`FR11.spec.ts`) - Lưu ý xử lý luồng Đăng nhập (dùng `beforeEach` hoặc Global Setup).
-  - [ ] Kiểm tra 3 assertion patterns.
-  - [ ] Human Review & Fix code. Commit code.
+  - [x] Sinh 12 test cases & file Data (`FR11-data.json`).
+  - [x] Viết script (`FR11.spec.js`) - Lưu ý xử lý luồng Đăng nhập (API setup + UI login).
+  - [x] Kiểm tra 3 assertion patterns.
+  - [x] Human Review & Fix code. Commit code.
 
 - **Tính năng 3: FR-19 (Quản lý người dùng - Admin)**
   - [ ] Sinh 12 test cases & file Data (`FR19-data.json`) - Nhớ đưa case Admin tự xóa mình hoặc ID sai định dạng vào data.
