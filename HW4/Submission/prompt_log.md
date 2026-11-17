@@ -175,3 +175,20 @@ Vậy khi được yêu cầu quay video để demo cách sử dụng file SKILL
 7. Chuẩn bị sẵn 3 file markdown mẫu cho GitHub Issues trong `HW4/0.workingProcess/task1/FR19/`.
 **Rejected:** Không tự ý sửa lỗi backend/database; tuân thủ quy tắc bảo toàn SUT defect cho mục đích kiểm thử.
 **Changed:** Tạo mới `FR19-data.json`, `FR19.spec.js`, cấu hình `playwright.config.ts` và `script-report-metadata-reporter.js` sang FR19; cập nhật `bug-report.md`, `gap-analysis.md`, `todo.md`, và tạo 3 file issue template FR-19.
+
+
+# Entry log - 18/11/2026 - FR-19 Multi-browser Defect Evidence Generation & GitHub Issue Placeholders
+
+**Model used:** Gemini 3.8 Flash (High)
+**Prompt:** "Tôi đang cần thêm minh chứng cho FR-19, là các minh chứng tương tự như ở folder (.md, file ảnh, file video) 'eshop-sut-for-HWork\HW4\Submission\reports\playwright-html-minhchung\FR05\data'. Bạn cũng hãy bổ sung các placeholder để chứa link hình ảnh (sẽ được push lên github trong cùng repository) ở trong các file nội dung cho github issue của FR19 (eshop-sut-for-HWork\HW4\0.workingProcess\task1\FR19\github-issue-BUG-FR19-001.md, github-issue-BUG-FR19-002.md và github-issue-BUG-FR19-003.md) nhé"
+**AI's Answer:** 
+1. Nâng cấp các test cases phát hiện lỗi bảo mật của FR-19 sang kiểm thử giao diện trực tiếp (`{ page }`) với các assertion ràng buộc chặt chẽ theo đặc tả SRS:
+   - `FR19-TC02`: Khẳng định token regular user không được phép truy cập/hiển thị bảng người dùng quản trị (`expect(table).not.toBeVisible()`).
+   - `FR19-TC06`: Khẳng định giao diện admin không được phép hiển thị nút 'Xóa' cạnh chính tài khoản admin đang đăng nhập (`expect(adminDeleteBtn).not.toBeVisible()`).
+   - `FR19-TC09`: Khẳng định tài khoản tự đổi role=admin không được phép đăng nhập thành công vào Admin Portal (`expect(adminNav).not.toBeVisible()`).
+2. Thực thi toàn bộ suite 12 test cases trên 3 trình duyệt (Chromium, Firefox, WebKit): 27 passed, 9 failed (3 SUT defects tái hiện chính xác trên cả 3 trình duyệt). Playwright tự động ghi lại toàn bộ minh chứng thất bại gồm ảnh chụp màn hình (`test-failed-1.png`), video (`video.webm`), và ngữ cảnh lỗi (`error-context.md`).
+3. Sao lưu toàn bộ 9 thư mục minh chứng vào `HW4/Submission/reports/playwright-html-minhchung/FR19/data/` tương tự cấu trúc chuẩn của FR05 và FR11.
+4. Bổ sung các image placeholder theo định dạng raw link GitHub repository (`https://raw.githubusercontent.com/BDCALM/eshop-sut-for-HWork/main/...`) và đường dẫn cục bộ để kéo thả vào cả 3 file GitHub issue template (`github-issue-BUG-FR19-001.md`, `github-issue-BUG-FR19-002.md`, `github-issue-BUG-FR19-003.md`).
+5. Cập nhật số liệu kết quả kiểm thử và đường dẫn minh chứng trong `bug-report.md` và `gap-analysis.md`.
+**Rejected:** Không sửa đổi mã nguồn SUT; giữ nguyên các lỗi bảo mật để làm minh chứng kiểm thử theo quy định AGENTS.md.
+**Changed:** Cập nhật `FR19.spec.js`, `FR19-data.json`, sao lưu minh chứng vào `FR19/data/`, cập nhật 3 file GitHub issue template, `bug-report.md`, `gap-analysis.md`, và `prompt_log.md`.

@@ -281,8 +281,9 @@ The evidence folders above are preserved for traceability. After each issue is c
 - Feature: FR-19 - Quản lý người dùng (Admin)
 - Test suite: `HW4/tests/FR19.spec.js`
 - Browsers: Chromium, Firefox, WebKit
-- Result: **36 passed, 0 failed**
-- Note: All 36 tests passed. SUT defects were documented by asserting the **actual SUT behavior** (not the expected SRS behavior). The defects below were confirmed through test output logs and console `[DEFECT]` markers.
+- Result: **27 passed, 9 failed**
+- Failure distribution: 3 SUT defects reproduced consistently across all 3 browsers (Chromium, Firefox, WebKit).
+- Multi-browser evidence: Full failure recordings (error-context.md, test-failed-1.png, video.webm) preserved under `HW4/Submission/reports/playwright-html-minhchung/FR19/data/`
 - Test date: 2026-11-18
 - Student ID: 23120242
 
@@ -299,6 +300,7 @@ The evidence folders above are preserved for traceability. After each issue is c
 ### Environment
 
 - Backend: `http://localhost:3000`
+- Admin UI: `http://localhost:5174`
 - Browsers reproduced: Chromium, Firefox, WebKit
 - Test date: 2026-11-18
 - Student ID: 23120242
@@ -312,18 +314,26 @@ The evidence folders above are preserved for traceability. After each issue is c
 
 1. `POST /api/login` with regular user credentials → capture JWT token.
 2. `GET /api/admin/users` with `Authorization: Bearer <token>` → observe HTTP 200 and full user list.
+3. In browser, inject token via `localStorage.setItem('adminToken', token)` at `http://localhost:5174/` → navigate to tab "Người dùng" → observe full user management table rendered with sensitive customer data.
 
 ### Test cases
 
-- `FR19-TC02`: Regular user JWT gọi GET /api/admin/users → SUT không enforce role (defect)
+- `FR19-TC02`: Regular user dùng JWT không được phép truy cập danh sách người dùng quản trị
 
 ### Expected result
 
-HTTP 403 Forbidden — route must verify `req.user.role === 'admin'` before returning data.
+HTTP 403 Forbidden — route must verify `req.user.role === 'admin'` before returning data. In UI, table must not be visible.
 
 ### Actual result
 
-HTTP 200 with the complete user list including emails, roles, login attempts, and shipping addresses of all users.
+HTTP 200 with the complete user list including emails, roles, login attempts, and shipping addresses of all users. Table rendered completely in UI.
+
+### Evidence
+
+- Chromium evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-3cd77-nh-sách-người-dùng-quản-trị-chromium/`
+- Firefox evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-3cd77-nh-sách-người-dùng-quản-trị-firefox/`
+- WebKit evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-3cd77-nh-sách-người-dùng-quản-trị-webkit/`
+- Files: `error-context.md`, `test-failed-1.png`, and `video.webm`
 
 ### Impact
 
@@ -342,17 +352,18 @@ Fix: Add middleware `(req, res, next) => { if (req.user.role !== 'admin') return
 
 ---
 
-## BUG-FR19-002 - DELETE /api/admin/users/:id always returns HTTP 200 regardless of ID validity
+## BUG-FR19-002 - DELETE /api/admin/users/:id always returns HTTP 200 regardless of ID validity & Admin self-deletion allowed
 
 **GitHub Issue:** [REPLACE-BUG-FR19-002]
 
 ### Summary
 
-The endpoint `DELETE /api/admin/users/:id` returns HTTP 200 `{"message":"User deleted"}` for any input: non-existent numeric IDs, non-numeric string IDs, and self-deletion. The implementation does not check the number of affected rows or validate the ID format.
+The endpoint `DELETE /api/admin/users/:id` returns HTTP 200 `{"message":"User deleted"}` for any input: non-existent numeric IDs, non-numeric string IDs, and self-deletion. In the Admin UI, the user table actively renders a red "Xóa" button on the logged-in admin's own row, allowing self-deletion.
 
 ### Environment
 
 - Backend: `http://localhost:3000`
+- Admin UI: `http://localhost:5174`
 - Browsers reproduced: Chromium, Firefox, WebKit
 - Test date: 2026-11-18
 - Student ID: 23120242
@@ -361,38 +372,49 @@ The endpoint `DELETE /api/admin/users/:id` returns HTTP 200 `{"message":"User de
 
 1. Backend is running locally.
 2. Admin JWT token available.
+3. Admin logged into `http://localhost:5174`.
 
 ### Steps to reproduce
 
-**Case A — Non-existent ID:**
+**Case A — Self-deletion on Admin UI:**
+1. Log into admin UI at `http://localhost:5174/login` with `admin@eshop.com`.
+2. Click "Người dùng" in the sidebar navigation.
+3. Locate the row for `admin@eshop.com`.
+4. Observe the red button `<button class="bg-red-500 ...">Xóa</button>` is active on the admin's own row.
+
+**Case B — Non-existent ID:**
 1. `DELETE /api/admin/users/999999` with admin token → observe HTTP 200.
 
-**Case B — Invalid (non-numeric) ID:**
+**Case C — Invalid (non-numeric) ID:**
 1. `DELETE /api/admin/users/invalid-id-abc` with admin token → observe HTTP 200.
-
-**Case C — Self-deletion:**
-1. `DELETE /api/admin/users/<own-id>` with own admin token → observe HTTP 200.
 
 ### Test cases
 
+- `FR19-TC06`: Admin UI không được hiển thị nút xóa cho chính tài khoản admin đang đăng nhập (self-deletion)
 - `FR19-TC07`: Admin xóa user với ID không tồn tại → SUT trả 200 (kỳ vọng 404)
 - `FR19-TC08`: Admin xóa user với ID không hợp lệ (chuỗi chữ) → SUT trả 200 thay vì 400
-- `FR19-TC06`: Admin tự xóa bản thân (self-deletion) → SUT cho phép
 
 ### Expected result
 
+- Self-deletion → UI must hide the "Xóa" button for the logged-in admin; API must return HTTP 403 `{"error":"Cannot delete your own account"}`
 - Non-existent ID → HTTP 404 `{"error":"User not found"}`
 - Invalid ID format → HTTP 400 `{"error":"Invalid ID"}`
-- Self-deletion → HTTP 403 `{"error":"Cannot delete your own account"}`
 
 ### Actual result
 
-All three cases return HTTP 200 `{"message":"User deleted"}`.
+UI displays active "Xóa" button for the admin account. All three API cases return HTTP 200 `{"message":"User deleted"}`.
+
+### Evidence
+
+- Chromium evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-d9aec-ng-đăng-nhập-self-deletion--chromium/`
+- Firefox evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-d9aec-ng-đăng-nhập-self-deletion--firefox/`
+- WebKit evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-d9aec-ng-đăng-nhập-self-deletion--webkit/`
+- Files: `error-context.md`, `test-failed-1.png`, and `video.webm`
 
 ### Impact
 
 - False positive responses mislead API clients.
-- Self-deletion can lock admins out of the system.
+- Self-deletion locks administrators out of the system.
 - Clients cannot distinguish successful vs. failed deletes.
 
 ### Severity / Priority
@@ -402,15 +424,10 @@ All three cases return HTTP 200 `{"message":"User deleted"}`.
 
 ### Suspected implementation area
 
-`backend/server.js` line 532-536:
-```javascript
-app.delete("/api/admin/users/:id", authenticateToken, (req, res) => {
-  db.run("DELETE FROM users WHERE id = ?", [req.params.id], function (err) {
-    res.json({ message: "User deleted" }); // ← always 200, no check on this.changes
-  });
-});
-```
-Fix: Check `this.changes === 0` → 404; validate `parseInt(req.params.id)` → 400 if NaN; check `req.params.id == req.user.id` → 403.
+1. **Frontend (`frontend-admin/src/App.jsx`):**
+   The user table renders `<button onClick={() => deleteUser(u.id)} ...>Xóa</button>` unconditionally for all rows, lacking `{u.email !== loggedInUserEmail && ...}`.
+2. **Backend (`backend/server.js` line 532-536):**
+   `db.run("DELETE FROM users WHERE id = ?", ...)` never checks `this.changes === 0` or validates `req.params.id == req.user.id`.
 
 ---
 
@@ -420,11 +437,12 @@ Fix: Check `this.changes === 0` → 404; validate `parseInt(req.params.id)` → 
 
 ### Summary
 
-The `PUT /api/users/me` endpoint reads a `role` field from the request body and writes it directly to the database. Any authenticated user can escalate their own role to `admin` without any authorization check.
+The `PUT /api/users/me` endpoint reads a `role` field from the request body and writes it directly to the database. Any authenticated user can escalate their own role to `admin` without any authorization check, allowing them to log into the Admin Portal.
 
 ### Environment
 
 - Backend: `http://localhost:3000`
+- Admin UI: `http://localhost:5174`
 - Browsers reproduced: Chromium, Firefox, WebKit
 - Test date: 2026-11-18
 - Student ID: 23120242
@@ -438,19 +456,27 @@ The `PUT /api/users/me` endpoint reads a `role` field from the request body and 
 
 1. `POST /api/login` with regular user credentials → capture JWT.
 2. `PUT /api/users/me` with body `{"name":"Hacker","role":"admin"}` and `Authorization: Bearer <token>`.
-3. `GET /api/users/me` → observe `role` field is now `admin`.
+3. Open `http://localhost:5174/login` and log in with the regular user's email and password.
+4. Observe successful entry into Admin Dashboard and full access to admin functions.
 
 ### Test cases
 
-- `FR19-TC09`: Regular user escalate role qua PUT /api/users/me → SUT chấp nhận (defect)
+- `FR19-TC09`: Regular user tự đổi role=admin qua PUT /api/users/me phải bị từ chối truy cập Admin Portal
 
 ### Expected result
 
-HTTP 200 but `role` field must be ignored — user profile update should only accept `name`, `shipping_address`, and `phone`.
+HTTP 200 but `role` field must be ignored. Login attempt on Admin Portal should be rejected with "Bạn không phải là admin!".
 
 ### Actual result
 
-HTTP 200 and `GET /api/users/me` confirms `"role": "admin"` for the previously regular user.
+HTTP 200, role is updated to `admin` in database, and the regular user successfully logs into the Admin Portal.
+
+### Evidence
+
+- Chromium evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-21b44--chối-truy-cập-Admin-Portal-chromium/`
+- Firefox evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-21b44--chối-truy-cập-Admin-Portal-firefox/`
+- WebKit evidence folder: `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-21b44--chối-truy-cập-Admin-Portal-webkit/`
+- Files: `error-context.md`, `test-failed-1.png`, and `video.webm`
 
 ### Impact
 

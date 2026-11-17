@@ -39,7 +39,18 @@ HTTP **200 OK** with the complete user list (all emails, roles, login_attempts, 
 
 - Test case: `FR19-TC02` in `HW4/tests/FR19.spec.js`
 - Test data: `HW4/tests/data/FR19-data.json`
-- Console output during run: `[DEFECT] Route không kiểm tra role=admin, regular user truy cập được`
+- Failure context: Playwright assertion `expect(page.getByRole('table')).not.toBeVisible()` failed because the user table is fully rendered with sensitive data.
+
+### Evidence Screenshots & Attachments
+
+**GitHub Repository Image URL (sau khi push lên repository):**
+![BUG-FR19-001 Evidence Screenshot](https://raw.githubusercontent.com/BDCALM/eshop-sut-for-HWork/main/HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-3cd77-nh-sách-người-dùng-quản-trị-chromium/test-failed-1.png)
+
+*(Hoặc kéo thả file ảnh cục bộ dưới đây vào khung soạn thảo GitHub Issue):*
+- **Chromium:** `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-3cd77-nh-sách-người-dùng-quản-trị-chromium/test-failed-1.png`
+- **Firefox:** `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-3cd77-nh-sách-người-dùng-quản-trị-firefox/test-failed-1.png`
+- **WebKit:** `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-3cd77-nh-sách-người-dùng-quản-trị-webkit/test-failed-1.png`
+- **Video đính kèm:** `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-3cd77-nh-sách-người-dùng-quản-trị-chromium/video.webm`
 
 ### Suspected root cause
 

@@ -40,3 +40,9 @@ Format `commit hash` - `Initial commit for Homework#4`
     - Append FR-19 section to `gap-analysis.md` highlighting human review corrections (TC07 reclassification, Admin SPA tab switching, and temporary user escalation for safe self-deletion testing).
     - Generate GitHub Issue markdown templates in `HW4/0.workingProcess/task1/FR19/` for manual submission.
     - Check off FR-19 milestones in `todo.md` and append entry to `prompt_log.md`.
+15. `d62afff` - `docs: update Git-Commit-Log with FR19 documentation commit`
+16. `49c475d` - `test(FR19): strengthen security defect assertions and collect multi-browser evidence`
+    - Strengthen assertion logic for security boundary (TC02), self-deletion protection (TC06), and privilege escalation (TC09) to assert strict SRS requirements.
+    - Execute suite across Chromium, Firefox, WebKit: 27 passed, 9 failed (3 SUT defects reproduced consistently across all 3 browsers).
+    - Store authentic multi-browser failure evidence (screenshots `test-failed-1.png`, videos `video.webm`, traces `error-context.md`) in `HW4/Submission/reports/playwright-html-minhchung/FR19/data/`.
+    - Update Playwright HTML report with student metadata and latest run status.

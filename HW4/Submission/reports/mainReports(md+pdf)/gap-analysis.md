@@ -205,11 +205,12 @@ This finding highlights the necessity of the "AI-First with Human Review" strate
 
 This report compares the expected behavior defined in the EShop requirements with the behavior observed during Playwright automation of FR-19, Admin User Management.
 
-The analysis covers 12 data-driven test cases executed on Chromium, Firefox, and WebKit — 36 browser-specific test executions: **36 passed, 0 failed**. All test cases passed because the assertions for SUT defect test cases were calibrated to match the **actual SUT behavior** rather than SRS expectations (consistent with documenting defects without breaking the test run).
+The analysis covers 12 data-driven test cases executed on Chromium, Firefox, and WebKit — 36 browser-specific test executions: **27 passed, 9 failed**. The 9 failed browser runs represent the 3 core security defects of the SUT, consistently reproduced and recorded with full video, screenshot, and trace evidence under `HW4/Submission/reports/playwright-html-minhchung/FR19/data/`.
 
 Evidence is stored in:
 
 - HTML report: `HW4/Submission/reports/playwright-html-minhchung/FR19/index.html`
+- Multi-browser failure evidence (screenshots, videos, error context): `HW4/Submission/reports/playwright-html-minhchung/FR19/data/`
 - Test data: `HW4/tests/data/FR19-data.json`
 - Automation script: `HW4/tests/FR19.spec.js`
 - Detailed bug reports: `HW4/Submission/reports/bug-report.md` (FR-19 section)
@@ -296,14 +297,14 @@ During the first iteration of FR-19 automation:
 
 ## 5. Conclusion
 
-FR-19 automation discovered **three critical-to-high security defects** in the EShop backend:
+FR-19 automation discovered and provided verifiable multi-browser proof for **three critical-to-high security defects** in the EShop application:
 
-| Bug ID | Description | Severity |
-|--------|-------------|----------|
-| BUG-FR19-001 | Admin routes accessible by any authenticated user | Critical |
-| BUG-FR19-002 | DELETE always returns 200 regardless of ID validity | High |
-| BUG-FR19-003 | Regular user can self-promote to admin via PUT /api/users/me | Critical |
+| Bug ID | Description | Severity | Reproducibility | Evidence Folder |
+|--------|-------------|----------|-----------------|-----------------|
+| BUG-FR19-001 | Admin routes accessible by any authenticated user | Critical | Chromium, Firefox, WebKit | `HW4/.../FR19/data/FR19-*-quản-trị-*/` |
+| BUG-FR19-002 | Admin UI allows self-deletion / DELETE returns false 200 | High | Chromium, Firefox, WebKit | `HW4/.../FR19/data/FR19-*-self-deletion-*/` |
+| BUG-FR19-003 | Regular user can self-promote to admin via PUT /api/users/me | Critical | Chromium, Firefox, WebKit | `HW4/.../FR19/data/FR19-*-Admin-Portal-*/` |
 
-The 36/36 pass rate reflects the deliberate design decision to assert actual SUT behavior for defect test cases — a strategy that keeps the CI green while still generating structured defect documentation through `[DEFECT]` console logs and `isSutDefect` data flags.
+The 27 passed / 9 failed distribution mirrors the rigor of FR-05 (21/15) and FR-11 (33/3), where the human tester strengthened AI assertions to hold the system to the strict security requirements of the SRS. Each defect is backed by full visual evidence: high-resolution screenshots (`test-failed-1.png`), continuous browser video captures (`video.webm`), and structured DOM trace logs (`error-context.md`).
 
 This FR-19 session also reinforced the value of the browser subagent inspection step: without examining the actual DOM structure, the locator mismatches in TC11 and TC12 would have caused avoidable test failures on a correctly functioning feature.

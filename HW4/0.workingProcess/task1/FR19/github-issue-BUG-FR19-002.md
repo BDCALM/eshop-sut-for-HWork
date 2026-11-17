@@ -60,7 +60,18 @@ Authorization: Bearer <own-admin-token>
 ### Automated test evidence
 
 - Test cases: `FR19-TC06`, `FR19-TC07`, `FR19-TC08` in `HW4/tests/FR19.spec.js`
-- Console: `[DEFECT] DELETE /api/admin/users/999999 trả HTTP 200 với message 'User deleted' dù ID không tồn tại — false success`
+- Failure context (TC06 Self-deletion): Playwright assertion `expect(adminRow.getByRole('button', { name: 'Xóa' })).not.toBeVisible()` failed because the "Xóa" button is actively displayed next to the admin account.
+
+### Evidence Screenshots & Attachments
+
+**GitHub Repository Image URL (sau khi push lên repository):**
+![BUG-FR19-002 Evidence Screenshot](https://raw.githubusercontent.com/BDCALM/eshop-sut-for-HWork/main/HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-d9aec-ng-đăng-nhập-self-deletion--chromium/test-failed-1.png)
+
+*(Hoặc kéo thả file ảnh cục bộ dưới đây vào khung soạn thảo GitHub Issue):*
+- **Chromium:** `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-d9aec-ng-đăng-nhập-self-deletion--chromium/test-failed-1.png`
+- **Firefox:** `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-d9aec-ng-đăng-nhập-self-deletion--firefox/test-failed-1.png`
+- **WebKit:** `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-d9aec-ng-đăng-nhập-self-deletion--webkit/test-failed-1.png`
+- **Video đính kèm:** `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-d9aec-ng-đăng-nhập-self-deletion--chromium/video.webm`
 
 ### Suspected root cause
 

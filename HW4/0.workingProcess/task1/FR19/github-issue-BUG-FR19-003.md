@@ -47,8 +47,18 @@ HTTP 200 and the user's `role` column in the database is updated to `"admin"`. T
 ### Automated test evidence
 
 - Test case: `FR19-TC09` in `HW4/tests/FR19.spec.js`
-- Console output: `[DEFECT] PUT /api/users/me chấp nhận client-supplied role, cho phép leo thang đặc quyền`
-- Assertion: `expect(profile.role).toBe('admin')` → passes (defect confirmed)
+- Failure context: Playwright assertion `expect(page.locator('li', { hasText: 'Người dùng' })).not.toBeVisible()` failed because the user was successfully granted admin privileges and entered the Admin Dashboard.
+
+### Evidence Screenshots & Attachments
+
+**GitHub Repository Image URL (sau khi push lên repository):**
+![BUG-FR19-003 Evidence Screenshot](https://raw.githubusercontent.com/BDCALM/eshop-sut-for-HWork/main/HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-21b44--chối-truy-cập-Admin-Portal-chromium/test-failed-1.png)
+
+*(Hoặc kéo thả file ảnh cục bộ dưới đây vào khung soạn thảo GitHub Issue):*
+- **Chromium:** `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-21b44--chối-truy-cập-Admin-Portal-chromium/test-failed-1.png`
+- **Firefox:** `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-21b44--chối-truy-cập-Admin-Portal-firefox/test-failed-1.png`
+- **WebKit:** `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-21b44--chối-truy-cập-Admin-Portal-webkit/test-failed-1.png`
+- **Video đính kèm:** `HW4/Submission/reports/playwright-html-minhchung/FR19/data/FR19-FR-19-Quản-lý-người-d-21b44--chối-truy-cập-Admin-Portal-chromium/video.webm`
 
 ### Suspected root cause
 
