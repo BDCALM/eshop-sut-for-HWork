@@ -1,9 +1,9 @@
 # BÁO CÁO HW04 – AUTOMATION TESTING
 
 **Thông tin sinh viên:**
-- Họ và tên: [Nguyễn Văn A - Sinh viên cập nhật họ tên]
+- Họ và tên: Nguyễn Văn Bình Dương
 - MSSV: 23120242
-- Demo Video (Unlisted YouTube): [Link Video Demo YouTube](<Cập nhật link sau khi quay video demo>)
+- Demo Video (Unlisted YouTube): [Link Video Demo YouTube](https://youtu.be/v589b_Zqjgk)
 - Public GitHub Repository: [https://github.com/BDCALM/eshop-sut-for-HWork](https://github.com/BDCALM/eshop-sut-for-HWork)
 
 ---

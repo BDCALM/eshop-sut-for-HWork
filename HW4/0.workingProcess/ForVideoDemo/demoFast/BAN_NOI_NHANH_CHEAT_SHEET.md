@@ -3,7 +3,7 @@
 
 ---
 
-## ⏱️ PHÂN ĐOẠN 1: MỞ ĐẦU & ĐỊNH DANH (0:00 - 0:45)
+##  PHÂN ĐOẠN 1: MỞ ĐẦU & ĐỊNH DANH (0:00 - 0:45)
 - **Hành động:** Terminal gõ `whoami; hostname; git branch`.
 - **Ý chính cần nói:**
   - Chào thầy cô và các bạn TA.
@@ -14,7 +14,7 @@
 
 ---
 
-## ⏱️ PHÂN ĐOẠN 2: DỮ LIỆU DDT & 3 ASSERTION PATTERNS (0:45 - 2:00)
+##  PHÂN ĐOẠN 2: DỮ LIỆU DDT & 3 ASSERTION PATTERNS (0:45 - 2:00)
 - **Hành động:** Mở `FR11-data.json`, sau đó mở `FR11.spec.js`.
 - **Ý chính cần nói:**
   - Áp dụng mô hình **Data-Driven Testing (DDT)**: dữ liệu tách biệt 100% khỏi code trong file JSON (12 test cases).
@@ -25,8 +25,7 @@
 
 ---
 
-## ⏱️ PHÂN ĐOẠN 3: NARRATE HUMAN REVIEW - CHỈ LỖI CỦA AI (2:00 - 3:30)
-*(Điểm ăn trọn rubric: Nói chậm, tự tin, nhấn mạnh)*
+##  PHÂN ĐOẠN 3: NARRATE HUMAN REVIEW - CHỈ LỖI CỦA AI (2:00 - 3:30)
 - **Hành động:** 
   1. Mở `README.md` mục 5 (FR-10 & FR-11): chỉ vào câu cấm hủy đơn khi đang `shipping`.
   2. Mở `FR11.spec.js` dòng 140-145: chỉ vào đoạn code sinh viên thêm vào.
@@ -39,7 +38,7 @@
 
 ---
 
-## ⏱️ PHÂN ĐOẠN 4: CHẠY PLAYWRIGHT ĐA TRÌNH DUYỆT (3:30 - 4:30)
+##  PHÂN ĐOẠN 4: CHẠY PLAYWRIGHT ĐA TRÌNH DUYỆT (3:30 - 4:30)
 - **Hành động:** Mở Terminal gõ lệnh:
   ```powershell
   cd HW4
@@ -53,9 +52,9 @@
 
 ---
 
-## ⏱️ PHÂN ĐOẠN 5: HTML REPORT & MINH CHỨNG LỖI (4:30 - 5:30+)
+##  PHÂN ĐOẠN 5: HTML REPORT & MINH CHỨNG LỖI (4:30 - 5:30+)
 - **Hành động:** 
-  1. Gõ: `npx playwright show-report --port 0 Submission/reports/playwright-html-minhchung/FR11`
+  1. Gõ: `npx playwright show-report Submission/reports/playwright-html-minhchung/FR11`
   2. Rê chuột vào tiêu đề: **"Run by: 23120242 | [Timestamp]"**.
   3. Bấm vào ca Failed -> Mở ảnh **`test-failed-1.png`** (thấy nút Hủy đơn đỏ).
   4. Bấm chạy video **`video.webm`** vài giây.

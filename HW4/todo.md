@@ -41,15 +41,15 @@
 
 ## Giai đoạn 4: Quay Video Demo
 - [x] Chuẩn bị kịch bản quay video (>= 5 phút, thuyết minh tiếng Việt).
-- [ ] Mở terminal (CMD/PowerShell) và gõ lệnh `whoami` & `hostname` (hoặc bật face-cam) ở đầu video.
-- [ ] Demo giới thiệu `SKILLS.md` (Agent Skill) đã dùng. - quay riêng
-- [ ] Quay cảnh chạy một script hoàn chỉnh (vd: FR-19) chạy end-to-end trên đa trình duyệt.
-- [ ] Thuyết minh về **một lỗi của AI** mà bạn đã phát hiện và tự sửa lại trong quá trình review.
-- [ ] Mở và show HTML Report chứng minh có dòng chữ "Run by: {StudentID}".
-- [ ] Upload video lên YouTube ở chế độ "Không công khai" (Unlisted) và lấy link.
+- [x] Mở terminal (CMD/PowerShell) và gõ lệnh `whoami` & `hostname` (hoặc bật face-cam) ở đầu video.
+- [x] Demo giới thiệu `SKILLS.md` (Agent Skill) đã dùng. - quay riêng
+- [x] Quay cảnh chạy một script hoàn chỉnh (vd: FR-19) chạy end-to-end trên đa trình duyệt.
+- [x] Thuyết minh về **một lỗi của AI** mà bạn đã phát hiện và tự sửa lại trong quá trình review.
+- [x] Mở và show HTML Report chứng minh có dòng chữ "Run by: {StudentID}".
+- [x] Upload video lên YouTube ở chế độ "Không công khai" (Unlisted) và lấy link.
 
 ## Giai đoạn 5: Viết Báo Cáo (Documentation)
-- [ ] **AI Audit Report:** Điền form khai báo theo mẫu (Liệt kê công cụ, ngày giờ, prompt đã dùng, kết quả AI trả về). (Lấy từ log sinh ra ở Step 4 của SKILLS.md).
+- [x] **AI Audit Report:** Điền form khai báo theo mẫu (Liệt kê công cụ, ngày giờ, prompt đã dùng, kết quả AI trả về). (Lấy từ log sinh ra ở Step 4 của SKILLS.md).
 - [x] **AI Critique (200-300 từ):** Phê bình AI (AI đã sai ở đâu, bias gì, thiếu sót gì, tại sao nó trượt lỗi, bài học hợp tác với AI) - Đã viết trong `automation-report.md` mục 4.
 - [x] **Git Commit Log:** Xuất lịch sử commit ra một file text (Yêu cầu >= 8 commits thay đổi file test script) - Đã lưu tại `Git-Commit-Log.txt`.
 - [x] **Test Summary Report (Báo cáo tóm tắt):**

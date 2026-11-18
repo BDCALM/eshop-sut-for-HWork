@@ -4,7 +4,8 @@
 - MSSV: 23120242
 - Khóa học: Kiểm thử phần mềm (CS423 / CSC13003) - ĐHKHTN, ĐHQG-HCM
 - GitHub Repository: [https://github.com/BDCALM/eshop-sut-for-HWork](https://github.com/BDCALM/eshop-sut-for-HWork)
-- Demo Video (Unlisted YouTube): [Link Video Demo YouTube](<Cập nhật link sau khi quay video demo>)
+- Demo Video (Unlisted YouTube): [Link Video Demo YouTube](https://youtu.be/v589b_Zqjgk)
+- Demo AGENTS SKILLS (Unlisted YouTube): [Link Video AGENTS SKILLS](https://youtu.be/GYg8hMZwYDM)
 
 ---
 
@@ -34,20 +35,29 @@
 
 ---
 
-### 1.3. Báo cáo Tóm tắt Thực thi (Test Execution Summary)
+### 1.3. Báo cáo Tóm tắt Thực thi Kiểm thử (Test Summary Report / Execution Summary)
 
-- **Số tính năng kiểm thử:** 3 features (FR-05, FR-11, FR-19).
-- **Tổng số test cases thiết kế & tự động hóa:** 36 test cases (12 test cases / feature).
-- **Tổng số test cases thực thi:** 36 / 36 (100%).
-- **Số lần chạy trình duyệt (Browser runs):** 9 suites (3 tính năng × 3 trình duyệt: Chromium, Firefox, WebKit), tổng cộng **108 lượt thực thi test case**.
-- **Kết quả thực thi chi tiết:**
+- **Môi trường & Công cụ thực thi (Testing Environment):**
+  - Framework: Playwright Test Runner (Node.js v22+)
+  - Trình duyệt kiểm thử: **Chromium**, **Firefox**, **WebKit** (Chạy song song - Multi-browser Parallel Testing)
+  - Hệ thống SUT: Backend API (`localhost:3000`), Storefront Web (`localhost:5173`), Admin Portal (`localhost:5174`)
+  - Phương pháp kiểm thử: Data-Driven Testing (DDT) kết hợp 3 Assertion Patterns (Visibility/State, Navigation/URL, Count/Value/Status).
+- **Phạm vi kiểm thử:** 3 tính năng lớn (FR-05 Pool A, FR-11 Pool B, FR-19 Pool C).
+- **Tổng số test cases thiết kế & tự động hóa:** 36 test cases (12 test cases / tính năng).
+- **Tổng số test cases thực thi:** 36 / 36 (Độ bao phủ thực thi: 100%).
+- **Số lượt thực thi đa trình duyệt (Browser runs):** 9 suites (3 tính năng × 3 trình duyệt), tổng cộng **108 lượt thực thi test case**.
+- **Tỷ lệ đạt / không đạt (Pass/Fail Rate):**
+  - **Passed:** 81 / 108 lượt (**75.0%**)
+  - **Failed:** 27 / 108 lượt (**25.0%**) — Tương ứng với 9 ca test bẫy đúng 7 lỗi bảo mật & nghiệp vụ của SUT
+  - **Blocked / Flaky / Error:** 0 lượt (**0%**) — 100% kết quả có tính lặp lại tất định (Deterministic)
+- **Kết quả thực thi chi tiết theo từng tính năng:**
 
-| Tính năng (Feature) | Thiết kế | Thực thi | Passed (Unique) | Failed (SUT Bug) | Passed (Multi-browser) | Failed (Multi-browser) |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **FR-05: Tìm kiếm sản phẩm** | 12 | 12 | 7 | 5 | 21 / 36 | 15 / 36 |
-| **FR-11: Lịch sử đơn hàng** | 12 | 12 | 11 | 1 | 33 / 36 | 3 / 36 |
-| **FR-19: Quản lý user (Admin)** | 12 | 12 | 9 | 3 | 27 / 36 | 9 / 36 |
-| **TỔNG CỘNG** | **36** | **36** | **27** | **9** | **81 / 108 (75%)** | **27 / 108 (25%)** |
+| Tính năng (Feature) | Thiết kế | Thực thi | Passed (Unique) | Failed (SUT Bug) | Passed (Multi-browser) | Failed (Multi-browser) | Tỷ lệ Pass (Browser) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **FR-05: Tìm kiếm sản phẩm** | 12 | 12 | 7 | 5 | 21 / 36 | 15 / 36 | 58.3% |
+| **FR-11: Lịch sử đơn hàng** | 12 | 12 | 11 | 1 | 33 / 36 | 3 / 36 | 91.7% |
+| **FR-19: Quản lý user (Admin)** | 12 | 12 | 9 | 3 | 27 / 36 | 9 / 36 | 75.0% |
+| **TỔNG CỘNG** | **36** | **36** | **27** | **9** | **81 / 108** | **27 / 108** | **75.0%** |
 
 > **Ghi chú quan trọng:** Toàn bộ 9 ca thất bại (27 lượt trên 3 trình duyệt) đều là **lỗi thực tế của SUT (SUT Defects)** do tester con người tăng cường assertion chặt chẽ theo đặc tả SRS để bẫy lỗi. Không có ca nào thất bại do lỗi kịch bản hay mạng.
 
@@ -61,9 +71,9 @@
 | **BUG-FR05-002** | FR-05 | Render chuỗi HTML không an toàn qua `dangerouslySetInnerHTML` (XSS Risk) | High | [GitHub Issue #22](https://github.com/BDCALM/eshop-sut-for-HWork/issues/22) |
 | **BUG-FR05-003** | FR-05 | Ký tự `%` bị hiểu nhầm thành SQL LIKE wildcard trả về mọi sản phẩm | Medium | [GitHub Issue #23](https://github.com/BDCALM/eshop-sut-for-HWork/issues/23) |
 | **BUG-FR11-001** | FR-11 | Nút 'Hủy đơn' vẫn hiển thị và cho phép hủy khi đơn ở trạng thái Đang giao | High | [GitHub Issue #25](https://github.com/BDCALM/eshop-sut-for-HWork/issues/25) |
-| **BUG-FR19-001** | FR-19 | Route `/api/admin/users` thiếu role guard, user thường xem/xóa được toàn bộ data | Critical | [Issue Template BUG-FR19-001](0.workingProcess/task1/FR19/github-issue-BUG-FR19-001.md) |
-| **BUG-FR19-002** | FR-19 | `DELETE /api/admin/users/:id` trả 200 false-success và cho phép Admin tự xóa chính mình | High | [Issue Template BUG-FR19-002](0.workingProcess/task1/FR19/github-issue-BUG-FR19-002.md) |
-| **BUG-FR19-003** | FR-19 | `PUT /api/users/me` cho phép user thường tự gửi `role: "admin"` để leo thang quyền | Critical | [Issue Template BUG-FR19-003](0.workingProcess/task1/FR19/github-issue-BUG-FR19-003.md) |
+| **BUG-FR19-001** | FR-19 | Route `/api/admin/users` thiếu role guard, user thường xem/xóa được toàn bộ data | Critical | [Issue Template BUG-FR19-001](../0.workingProcess/task1/FR19/github-issue-BUG-FR19-001.md) |
+| **BUG-FR19-002** | FR-19 | `DELETE /api/admin/users/:id` trả 200 false-success và cho phép Admin tự xóa chính mình | High | [Issue Template BUG-FR19-002](../0.workingProcess/task1/FR19/github-issue-BUG-FR19-002.md) |
+| **BUG-FR19-003** | FR-19 | `PUT /api/users/me` cho phép user thường tự gửi `role: "admin"` để leo thang quyền | Critical | [Issue Template BUG-FR19-003](../0.workingProcess/task1/FR19/github-issue-BUG-FR19-003.md) |
 
 ---
 
@@ -72,7 +82,8 @@
 ```text
 HW4/
 ├── Submission/
-│   ├── README.md                                    # File này (Self-assessment + Test summary)
+│   ├── README.md                                    # File này (Self-assessment + Test Summary Report)
+│   ├── AI-Audit-Report.md                           # Báo cáo Kiểm toán AI theo chuẩn FIT-HCMUS
 │   ├── prompt_log.md                                # Nhật ký tương tác AI theo chuẩn Step 4
 │   ├── Git-Commit-Log.txt                           # Lịch sử commit (>8 commits cho test scripts)
 │   └── reports/
