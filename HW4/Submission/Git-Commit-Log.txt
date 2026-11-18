@@ -74,6 +74,7 @@ Format `commit hash` - `Initial commit for Homework#4`
     - Implement dynamic feature detection in `playwright.config.ts` and `script-report-metadata-reporter.js` (detecting FR05, FR11, FR19 from CLI arguments or PLAYWRIGHT_FEATURE env).
     - Add complete video demo script (5+ minutes, Vietnamese narration, human review critique) and guides in `HW4/0.workingProcess/ForVideoDemo/demoFast/`.
     - Record entry in `prompt_log.md`.
-
+24. `0c88a9b` - `docs: finalize the documents"`
+25. `fa3ce86` - `chore: adjust the position into playwright-based file`
 
 
